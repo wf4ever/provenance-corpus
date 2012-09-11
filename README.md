@@ -12,13 +12,15 @@ are called for instance `2759-v2` representing version _2_ of workflow
 _2759_on myExperiment - ie.
 http://www.myexperiment.org/workflows/2759/versions/2
 
-
 Within the workflow folder, different workflow runs are shown as 
 `run1`, `run2` etc, each containing the provenance output of 
 export using the [Taverna-Prov plugin](https://github.com/wf4ever/taverna-prov), 
 including the workflow output values, the [PROV-O
 RDF](http://www.w3.org/TR/prov-o/) of the provenance in
 `workflowrun.prov.ttl`, and the intermediate values in `intermediates/`.
+
+Each workflow identifies the credited author(s) as stated on the
+corresponding myExperiment page in `CREDITS.txt`.
 
 
 Licensing
