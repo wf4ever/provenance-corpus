@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:GRS4U2VJDQ0" author="" title="" />
+  <s:processor name="String_Constant" boring="true">
+    <s:stringconstant>entrezgene</s:stringconstant>
+  </s:processor>
+  <s:processor name="String_Constant1" boring="true">
+    <s:stringconstant>cytoscape</s:stringconstant>
+  </s:processor>
+  <s:processor name="String_Constant2" boring="true">
+    <s:stringconstant>675</s:stringconstant>
+  </s:processor>
+  <s:processor name="idSearchAttachment">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.bind.ca/wsdl/bind.wsdl</s:wsdl>
+      <s:operation>idSearchAttachment</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="split">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="regex" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="regex2" boring="true">
+    <s:stringconstant>\t</s:stringconstant>
+  </s:processor>
+  <s:processor name="split2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="filter">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.FilterStringList</s:local>
+  </s:processor>
+  <s:processor name="regex3" boring="true">
+    <s:stringconstant>pp</s:stringconstant>
+  </s:processor>
+  <s:link source="String_Constant1:value" sink="idSearchAttachment:attachmentFormat" />
+  <s:link source="String_Constant1:value" sink="idSearchAttachment:returnType" />
+  <s:link source="String_Constant2:value" sink="idSearchAttachment:id" />
+  <s:link source="String_Constant:value" sink="idSearchAttachment:idType" />
+  <s:link source="filter:filteredlist" sink="filter_output" />
+  <s:link source="idSearchAttachment:attachmentList" sink="split:string" />
+  <s:link source="regex2:value" sink="split2:regex" />
+  <s:link source="regex3:value" sink="filter:regex" />
+  <s:link source="regex:value" sink="split:regex" />
+  <s:link source="split2:split" sink="filter:stringlist" />
+  <s:link source="idSearchAttachment:attachmentList" sink="attachment" />
+  <s:link source="idSearchAttachment:searchResultBean" sink="result" />
+  <s:link source="split2:split" sink="split2_output" />
+  <s:link source="split:split" sink="split2:string" />
+  <s:link source="split:split" sink="test_output" />
+  <s:sink name="result" />
+  <s:sink name="attachment" />
+  <s:sink name="test_output" />
+  <s:sink name="split2_output" />
+  <s:sink name="filter_output" />
+</s:scufl>
+
+

@@ -1,0 +1,651 @@
+<workflow xmlns="http://taverna.sf.net/2008/xml/t2flow" version="1" producedBy="taverna-2.2.0"><dataflow id="bae5d681-44b8-4fe5-8364-f0ca48eaa85b" role="top"><name>Example_workflow_for_REST_and_XPath_activities</name><inputPorts><port><name>Name_Of_Location_for_Weather_Forecast</name><depth>0</depth><granularDepth>0</granularDepth><annotations><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.ExampleValue">
+        <text>Swansea</text>
+      </annotationBean>
+      <date>2010-09-10 00:57:47.197 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.ExampleValue">
+        <text>Manchester</text>
+      </annotationBean>
+      <date>2010-09-10 01:02:39.266 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.ExampleValue">
+        <text>London</text>
+      </annotationBean>
+      <date>2010-09-13 13:14:42.348 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain></annotations></port></inputPorts><outputPorts><port><name>Forecast_Status</name><annotations /></port><port><name>Sunrise_Time</name><annotations /></port><port><name>Sunset_Time</name><annotations /></port><port><name>Forecast_For</name><annotations /></port></outputPorts><processors><processor><name>LookupWOEID_REST_Service</name><inputPorts><port><name>location</name><depth>0</depth></port></inputPorts><outputPorts><port><name>responseBody</name><depth>0</depth><granularDepth>0</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>rest-activity</artifact><version>0.3.1</version></raven><class>net.sf.taverna.t2.activities.rest.RESTActivity</class><inputMap><map from="location" to="location" /></inputMap><outputMap><map from="responseBody" to="responseBody" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.rest.RESTActivityConfigurationBean xmlns="">
+  <httpMethod>GET</httpMethod>
+  <urlSignature>http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.places%20where%20text=%22{location}%22&amp;format=xml</urlSignature>
+  <acceptsHeaderValue>text/plain</acceptsHeaderValue>
+  <contentTypeForUpdates>application/xml</contentTypeForUpdates>
+  <outgoingDataFormat>String</outgoingDataFormat>
+  <sendHTTPExpectRequestHeader>false</sendHTTPExpectRequestHeader>
+  <showRedirectionOutputPort>false</showRedirectionOutputPort>
+  <activityInputs>
+    <entry>
+      <string>location</string>
+      <java-class>java.lang.String</java-class>
+    </entry>
+  </activityInputs>
+</net.sf.taverna.t2.activities.rest.RESTActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="location" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor><processor><name>Get_Forecast_REST_Service</name><inputPorts><port><name>location_woeid</name><depth>0</depth></port></inputPorts><outputPorts><port><name>responseBody</name><depth>0</depth><granularDepth>0</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>rest-activity</artifact><version>0.3.1</version></raven><class>net.sf.taverna.t2.activities.rest.RESTActivity</class><inputMap><map from="location_woeid" to="location_woeid" /></inputMap><outputMap><map from="responseBody" to="responseBody" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.rest.RESTActivityConfigurationBean xmlns="">
+  <httpMethod>GET</httpMethod>
+  <urlSignature>http://weather.yahooapis.com/forecastrss?w={location_woeid}</urlSignature>
+  <acceptsHeaderValue>text/plain</acceptsHeaderValue>
+  <contentTypeForUpdates>application/xml</contentTypeForUpdates>
+  <outgoingDataFormat>String</outgoingDataFormat>
+  <sendHTTPExpectRequestHeader>false</sendHTTPExpectRequestHeader>
+  <showRedirectionOutputPort>false</showRedirectionOutputPort>
+  <activityInputs>
+    <entry>
+      <string>location_woeid</string>
+      <java-class>java.lang.String</java-class>
+    </entry>
+  </activityInputs>
+</net.sf.taverna.t2.activities.rest.RESTActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="location_woeid" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor><processor><name>Extract_WOEID_XPath_Service</name><inputPorts><port><name>xml_text</name><depth>0</depth></port></inputPorts><outputPorts><port><name>nodelist</name><depth>1</depth><granularDepth>1</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>xpath-activity</artifact><version>0.3</version></raven><class>net.sf.taverna.t2.activities.xpath.XPathActivity</class><inputMap><map from="xml_text" to="xml_text" /></inputMap><outputMap><map from="nodelist" to="nodelist" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean xmlns="">
+  <xmlDocument>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng" yahoo:count="1" yahoo:created="2010-09-09T23:47:33Z" yahoo:lang="en-US"&gt;&lt;results&gt;&lt;place xmlns="http://where.yahooapis.com/v1/schema.rng" xml:lang="en-US" yahoo:uri="http://where.yahooapis.com/v1/place/4097"&gt;&lt;woeid&gt;4097&lt;/woeid&gt;&lt;placeTypeName code="7"&gt;Town&lt;/placeTypeName&gt;&lt;name&gt;Barrie&lt;/name&gt;&lt;country code="CA" type="Country"&gt;Canada&lt;/country&gt;&lt;admin1 code="CA-ON" type="Province"&gt;Ontario&lt;/admin1&gt;&lt;admin2 code="" type="County"&gt;Simcoe&lt;/admin2&gt;&lt;admin3/&gt;&lt;locality1 type="Town"&gt;Barrie&lt;/locality1&gt;&lt;locality2/&gt;&lt;postal/&gt;&lt;centroid&gt;&lt;latitude&gt;44.389301&lt;/latitude&gt;&lt;longitude&gt;-79.686317&lt;/longitude&gt;&lt;/centroid&gt;&lt;boundingBox&gt;&lt;southWest&gt;&lt;latitude&gt;44.317379&lt;/latitude&gt;&lt;longitude&gt;-79.745796&lt;/longitude&gt;&lt;/southWest&gt;&lt;northEast&gt;&lt;latitude&gt;44.424049&lt;/latitude&gt;&lt;longitude&gt;-79.603439&lt;/longitude&gt;&lt;/northEast&gt;&lt;/boundingBox&gt;&lt;areaRank&gt;5&lt;/areaRank&gt;&lt;popRank&gt;10&lt;/popRank&gt;&lt;/place&gt;&lt;/results&gt;&lt;/query&gt;&lt;!-- total: 41 --&gt;&lt;!-- yqlengine1.pipes.ch1.yahoo.com uncompressed/chunked Thu Sep  9 16:47:33 PDT 2010 --&gt;</xmlDocument>
+  <xpathExpression>/query/results/default:place/default:woeid</xpathExpression>
+  <xpathNamespaceMap>
+    <entry>
+      <string>default</string>
+      <string>http://where.yahooapis.com/v1/schema.rng</string>
+    </entry>
+    <entry>
+      <string>yahoo</string>
+      <string>http://www.yahooapis.com/v1/base.rng</string>
+    </entry>
+  </xpathNamespaceMap>
+</net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="xml_text" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor><processor><name>Extract_Forecast_Status_XPath_Service</name><inputPorts><port><name>xml_text</name><depth>0</depth></port></inputPorts><outputPorts><port><name>nodelist</name><depth>1</depth><granularDepth>1</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>xpath-activity</artifact><version>0.3</version></raven><class>net.sf.taverna.t2.activities.xpath.XPathActivity</class><inputMap><map from="xml_text" to="xml_text" /></inputMap><outputMap><map from="nodelist" to="nodelist" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean xmlns="">
+  <xmlDocument>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0"&gt;
+			&lt;channel&gt;
+		
+&lt;title&gt;Yahoo! Weather - Khabarovsk, RU&lt;/title&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;description&gt;Yahoo! Weather for Khabarovsk, RU&lt;/description&gt;
+&lt;language&gt;en-us&lt;/language&gt;
+&lt;lastBuildDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/lastBuildDate&gt;
+&lt;ttl&gt;60&lt;/ttl&gt;
+&lt;yweather:location city="Khabarovsk" region="" country="Russia"/&gt;
+&lt;yweather:units temperature="F" distance="mi" pressure="in" speed="mph"/&gt;
+&lt;yweather:wind chill="64" direction="270" speed="9"/&gt;
+&lt;yweather:atmosphere humidity="64" visibility="6.21" pressure="29.74" rising="0"/&gt;
+&lt;yweather:astronomy sunrise="7:27 am" sunset="8:24 pm"/&gt;
+&lt;image&gt;
+&lt;title&gt;Yahoo! Weather&lt;/title&gt;
+&lt;width&gt;142&lt;/width&gt;
+&lt;height&gt;18&lt;/height&gt;
+&lt;link&gt;http://weather.yahoo.com&lt;/link&gt;
+&lt;url&gt;http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif&lt;/url&gt;
+&lt;/image&gt;
+&lt;item&gt;
+&lt;title&gt;Conditions for Khabarovsk, RU at 10:30 am VLAST&lt;/title&gt;
+&lt;geo:lat&gt;48.43&lt;/geo:lat&gt;
+&lt;geo:long&gt;135.13&lt;/geo:long&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;pubDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/pubDate&gt;
+&lt;yweather:condition text="Fair" code="34" temp="64" date="Fri, 10 Sep 2010 10:30 am VLAST"/&gt;
+&lt;description&gt;&lt;![CDATA[
+&lt;img src="http://l.yimg.com/a/i/us/we/52/34.gif"/&gt;&lt;br /&gt;
+&lt;b&gt;Current Conditions:&lt;/b&gt;&lt;br /&gt;
+Fair, 64 F&lt;BR /&gt;
+&lt;BR /&gt;&lt;b&gt;Forecast:&lt;/b&gt;&lt;BR /&gt;
+Fri - Sunny. High: 76 Low: 52&lt;br /&gt;
+Sat - Sunny. High: 76 Low: 55&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href="http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html"&gt;Full Forecast at Yahoo! Weather&lt;/a&gt;&lt;BR/&gt;&lt;BR/&gt;
+(provided by &lt;a href="http://www.weather.com" &gt;The Weather Channel&lt;/a&gt;)&lt;br/&gt;
+]]&gt;&lt;/description&gt;
+&lt;yweather:forecast day="Fri" date="10 Sep 2010" low="52" high="76" text="Sunny" code="32"/&gt;
+&lt;yweather:forecast day="Sat" date="11 Sep 2010" low="55" high="76" text="Sunny" code="32"/&gt;
+&lt;guid isPermaLink="false"&gt;RSXX0044_2010_09_10_10_30_VLAST&lt;/guid&gt;
+&lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;&lt;!-- api3.weather.ch1.yahoo.com uncompressed/chunked Thu Sep  9 16:50:57 PDT 2010 --&gt;</xmlDocument>
+  <xpathExpression>/rss/channel/item/yweather:condition/@text</xpathExpression>
+  <xpathNamespaceMap>
+    <entry>
+      <string>geo</string>
+      <string>http://www.w3.org/2003/01/geo/wgs84_pos#</string>
+    </entry>
+    <entry>
+      <string>yweather</string>
+      <string>http://xml.weather.yahoo.com/ns/rss/1.0</string>
+    </entry>
+  </xpathNamespaceMap>
+</net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="xml_text" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor><processor><name>Extract_Sunrise_Time_XPath_Service</name><inputPorts><port><name>xml_text</name><depth>0</depth></port></inputPorts><outputPorts><port><name>nodelist</name><depth>1</depth><granularDepth>1</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>xpath-activity</artifact><version>0.3</version></raven><class>net.sf.taverna.t2.activities.xpath.XPathActivity</class><inputMap><map from="xml_text" to="xml_text" /></inputMap><outputMap><map from="nodelist" to="nodelist" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean xmlns="">
+  <xmlDocument>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0"&gt;
+			&lt;channel&gt;
+		
+&lt;title&gt;Yahoo! Weather - Khabarovsk, RU&lt;/title&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;description&gt;Yahoo! Weather for Khabarovsk, RU&lt;/description&gt;
+&lt;language&gt;en-us&lt;/language&gt;
+&lt;lastBuildDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/lastBuildDate&gt;
+&lt;ttl&gt;60&lt;/ttl&gt;
+&lt;yweather:location city="Khabarovsk" region="" country="Russia"/&gt;
+&lt;yweather:units temperature="F" distance="mi" pressure="in" speed="mph"/&gt;
+&lt;yweather:wind chill="64" direction="270" speed="9"/&gt;
+&lt;yweather:atmosphere humidity="64" visibility="6.21" pressure="29.74" rising="0"/&gt;
+&lt;yweather:astronomy sunrise="7:27 am" sunset="8:24 pm"/&gt;
+&lt;image&gt;
+&lt;title&gt;Yahoo! Weather&lt;/title&gt;
+&lt;width&gt;142&lt;/width&gt;
+&lt;height&gt;18&lt;/height&gt;
+&lt;link&gt;http://weather.yahoo.com&lt;/link&gt;
+&lt;url&gt;http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif&lt;/url&gt;
+&lt;/image&gt;
+&lt;item&gt;
+&lt;title&gt;Conditions for Khabarovsk, RU at 10:30 am VLAST&lt;/title&gt;
+&lt;geo:lat&gt;48.43&lt;/geo:lat&gt;
+&lt;geo:long&gt;135.13&lt;/geo:long&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;pubDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/pubDate&gt;
+&lt;yweather:condition text="Fair" code="34" temp="64" date="Fri, 10 Sep 2010 10:30 am VLAST"/&gt;
+&lt;description&gt;&lt;![CDATA[
+&lt;img src="http://l.yimg.com/a/i/us/we/52/34.gif"/&gt;&lt;br /&gt;
+&lt;b&gt;Current Conditions:&lt;/b&gt;&lt;br /&gt;
+Fair, 64 F&lt;BR /&gt;
+&lt;BR /&gt;&lt;b&gt;Forecast:&lt;/b&gt;&lt;BR /&gt;
+Fri - Sunny. High: 76 Low: 52&lt;br /&gt;
+Sat - Sunny. High: 76 Low: 55&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href="http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html"&gt;Full Forecast at Yahoo! Weather&lt;/a&gt;&lt;BR/&gt;&lt;BR/&gt;
+(provided by &lt;a href="http://www.weather.com" &gt;The Weather Channel&lt;/a&gt;)&lt;br/&gt;
+]]&gt;&lt;/description&gt;
+&lt;yweather:forecast day="Fri" date="10 Sep 2010" low="52" high="76" text="Sunny" code="32"/&gt;
+&lt;yweather:forecast day="Sat" date="11 Sep 2010" low="55" high="76" text="Sunny" code="32"/&gt;
+&lt;guid isPermaLink="false"&gt;RSXX0044_2010_09_10_10_30_VLAST&lt;/guid&gt;
+&lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;&lt;!-- api3.weather.ch1.yahoo.com uncompressed/chunked Thu Sep  9 16:50:57 PDT 2010 --&gt;</xmlDocument>
+  <xpathExpression>/rss/channel/yweather:astronomy/@sunrise</xpathExpression>
+  <xpathNamespaceMap>
+    <entry>
+      <string>geo</string>
+      <string>http://www.w3.org/2003/01/geo/wgs84_pos#</string>
+    </entry>
+    <entry>
+      <string>yweather</string>
+      <string>http://xml.weather.yahoo.com/ns/rss/1.0</string>
+    </entry>
+  </xpathNamespaceMap>
+</net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="xml_text" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor><processor><name>Extract_Sunset_Time_XPath_Service</name><inputPorts><port><name>xml_text</name><depth>0</depth></port></inputPorts><outputPorts><port><name>nodelist</name><depth>1</depth><granularDepth>1</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>xpath-activity</artifact><version>0.3</version></raven><class>net.sf.taverna.t2.activities.xpath.XPathActivity</class><inputMap><map from="xml_text" to="xml_text" /></inputMap><outputMap><map from="nodelist" to="nodelist" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean xmlns="">
+  <xmlDocument>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0"&gt;
+			&lt;channel&gt;
+		
+&lt;title&gt;Yahoo! Weather - Khabarovsk, RU&lt;/title&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;description&gt;Yahoo! Weather for Khabarovsk, RU&lt;/description&gt;
+&lt;language&gt;en-us&lt;/language&gt;
+&lt;lastBuildDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/lastBuildDate&gt;
+&lt;ttl&gt;60&lt;/ttl&gt;
+&lt;yweather:location city="Khabarovsk" region="" country="Russia"/&gt;
+&lt;yweather:units temperature="F" distance="mi" pressure="in" speed="mph"/&gt;
+&lt;yweather:wind chill="64" direction="270" speed="9"/&gt;
+&lt;yweather:atmosphere humidity="64" visibility="6.21" pressure="29.74" rising="0"/&gt;
+&lt;yweather:astronomy sunrise="7:27 am" sunset="8:24 pm"/&gt;
+&lt;image&gt;
+&lt;title&gt;Yahoo! Weather&lt;/title&gt;
+&lt;width&gt;142&lt;/width&gt;
+&lt;height&gt;18&lt;/height&gt;
+&lt;link&gt;http://weather.yahoo.com&lt;/link&gt;
+&lt;url&gt;http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif&lt;/url&gt;
+&lt;/image&gt;
+&lt;item&gt;
+&lt;title&gt;Conditions for Khabarovsk, RU at 10:30 am VLAST&lt;/title&gt;
+&lt;geo:lat&gt;48.43&lt;/geo:lat&gt;
+&lt;geo:long&gt;135.13&lt;/geo:long&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;pubDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/pubDate&gt;
+&lt;yweather:condition text="Fair" code="34" temp="64" date="Fri, 10 Sep 2010 10:30 am VLAST"/&gt;
+&lt;description&gt;&lt;![CDATA[
+&lt;img src="http://l.yimg.com/a/i/us/we/52/34.gif"/&gt;&lt;br /&gt;
+&lt;b&gt;Current Conditions:&lt;/b&gt;&lt;br /&gt;
+Fair, 64 F&lt;BR /&gt;
+&lt;BR /&gt;&lt;b&gt;Forecast:&lt;/b&gt;&lt;BR /&gt;
+Fri - Sunny. High: 76 Low: 52&lt;br /&gt;
+Sat - Sunny. High: 76 Low: 55&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href="http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html"&gt;Full Forecast at Yahoo! Weather&lt;/a&gt;&lt;BR/&gt;&lt;BR/&gt;
+(provided by &lt;a href="http://www.weather.com" &gt;The Weather Channel&lt;/a&gt;)&lt;br/&gt;
+]]&gt;&lt;/description&gt;
+&lt;yweather:forecast day="Fri" date="10 Sep 2010" low="52" high="76" text="Sunny" code="32"/&gt;
+&lt;yweather:forecast day="Sat" date="11 Sep 2010" low="55" high="76" text="Sunny" code="32"/&gt;
+&lt;guid isPermaLink="false"&gt;RSXX0044_2010_09_10_10_30_VLAST&lt;/guid&gt;
+&lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;&lt;!-- api3.weather.ch1.yahoo.com uncompressed/chunked Thu Sep  9 16:50:57 PDT 2010 --&gt;</xmlDocument>
+  <xpathExpression>/rss/channel/yweather:astronomy/@sunset</xpathExpression>
+  <xpathNamespaceMap>
+    <entry>
+      <string>geo</string>
+      <string>http://www.w3.org/2003/01/geo/wgs84_pos#</string>
+    </entry>
+    <entry>
+      <string>yweather</string>
+      <string>http://xml.weather.yahoo.com/ns/rss/1.0</string>
+    </entry>
+  </xpathNamespaceMap>
+</net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="xml_text" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor><processor><name>Extract_Forecast_Title_XPath_Service</name><inputPorts><port><name>xml_text</name><depth>0</depth></port></inputPorts><outputPorts><port><name>nodelist</name><depth>1</depth><granularDepth>1</granularDepth></port></outputPorts><annotations /><activities><activity><raven><group>net.sf.taverna.t2.ui-activities</group><artifact>xpath-activity</artifact><version>0.3</version></raven><class>net.sf.taverna.t2.activities.xpath.XPathActivity</class><inputMap><map from="xml_text" to="xml_text" /></inputMap><outputMap><map from="nodelist" to="nodelist" /></outputMap><configBean encoding="xstream"><net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean xmlns="">
+  <xmlDocument>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;rss xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#" version="2.0"&gt;
+			&lt;channel&gt;
+		
+&lt;title&gt;Yahoo! Weather - Khabarovsk, RU&lt;/title&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;description&gt;Yahoo! Weather for Khabarovsk, RU&lt;/description&gt;
+&lt;language&gt;en-us&lt;/language&gt;
+&lt;lastBuildDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/lastBuildDate&gt;
+&lt;ttl&gt;60&lt;/ttl&gt;
+&lt;yweather:location city="Khabarovsk" region="" country="Russia"/&gt;
+&lt;yweather:units temperature="F" distance="mi" pressure="in" speed="mph"/&gt;
+&lt;yweather:wind chill="64" direction="270" speed="9"/&gt;
+&lt;yweather:atmosphere humidity="64" visibility="6.21" pressure="29.74" rising="0"/&gt;
+&lt;yweather:astronomy sunrise="7:27 am" sunset="8:24 pm"/&gt;
+&lt;image&gt;
+&lt;title&gt;Yahoo! Weather&lt;/title&gt;
+&lt;width&gt;142&lt;/width&gt;
+&lt;height&gt;18&lt;/height&gt;
+&lt;link&gt;http://weather.yahoo.com&lt;/link&gt;
+&lt;url&gt;http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif&lt;/url&gt;
+&lt;/image&gt;
+&lt;item&gt;
+&lt;title&gt;Conditions for Khabarovsk, RU at 10:30 am VLAST&lt;/title&gt;
+&lt;geo:lat&gt;48.43&lt;/geo:lat&gt;
+&lt;geo:long&gt;135.13&lt;/geo:long&gt;
+&lt;link&gt;http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html&lt;/link&gt;
+&lt;pubDate&gt;Fri, 10 Sep 2010 10:30 am VLAST&lt;/pubDate&gt;
+&lt;yweather:condition text="Fair" code="34" temp="64" date="Fri, 10 Sep 2010 10:30 am VLAST"/&gt;
+&lt;description&gt;&lt;![CDATA[
+&lt;img src="http://l.yimg.com/a/i/us/we/52/34.gif"/&gt;&lt;br /&gt;
+&lt;b&gt;Current Conditions:&lt;/b&gt;&lt;br /&gt;
+Fair, 64 F&lt;BR /&gt;
+&lt;BR /&gt;&lt;b&gt;Forecast:&lt;/b&gt;&lt;BR /&gt;
+Fri - Sunny. High: 76 Low: 52&lt;br /&gt;
+Sat - Sunny. High: 76 Low: 55&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href="http://us.rd.yahoo.com/dailynews/rss/weather/Khabarovsk__RU/*http://weather.yahoo.com/forecast/RSXX0044_f.html"&gt;Full Forecast at Yahoo! Weather&lt;/a&gt;&lt;BR/&gt;&lt;BR/&gt;
+(provided by &lt;a href="http://www.weather.com" &gt;The Weather Channel&lt;/a&gt;)&lt;br/&gt;
+]]&gt;&lt;/description&gt;
+&lt;yweather:forecast day="Fri" date="10 Sep 2010" low="52" high="76" text="Sunny" code="32"/&gt;
+&lt;yweather:forecast day="Sat" date="11 Sep 2010" low="55" high="76" text="Sunny" code="32"/&gt;
+&lt;guid isPermaLink="false"&gt;RSXX0044_2010_09_10_10_30_VLAST&lt;/guid&gt;
+&lt;/item&gt;
+&lt;/channel&gt;
+&lt;/rss&gt;&lt;!-- api3.weather.ch1.yahoo.com uncompressed/chunked Thu Sep  9 16:50:57 PDT 2010 --&gt;</xmlDocument>
+  <xpathExpression>/rss/channel/item/title</xpathExpression>
+  <xpathNamespaceMap>
+    <entry>
+      <string>geo</string>
+      <string>http://www.w3.org/2003/01/geo/wgs84_pos#</string>
+    </entry>
+    <entry>
+      <string>yweather</string>
+      <string>http://xml.weather.yahoo.com/ns/rss/1.0</string>
+    </entry>
+  </xpathNamespaceMap>
+</net.sf.taverna.t2.activities.xpath.XPathActivityConfigurationBean></configBean><annotations /></activity></activities><dispatchStack><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Parallelize</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig xmlns="">
+  <maxJobs>1</maxJobs>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ParallelizeConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.ErrorBounce</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Failover</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Retry</class><configBean encoding="xstream"><net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig xmlns="">
+  <backoffFactor>1.0</backoffFactor>
+  <initialDelay>1000</initialDelay>
+  <maxDelay>5000</maxDelay>
+  <maxRetries>0</maxRetries>
+</net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.RetryConfig></configBean></dispatchLayer><dispatchLayer><raven><group>net.sf.taverna.t2.core</group><artifact>workflowmodel-impl</artifact><version>1.2</version></raven><class>net.sf.taverna.t2.workflowmodel.processor.dispatch.layers.Invoke</class><configBean encoding="xstream"><null xmlns="" /></configBean></dispatchLayer></dispatchStack><iterationStrategyStack><iteration><strategy><cross><port name="xml_text" depth="0" /></cross></strategy></iteration></iterationStrategyStack></processor></processors><conditions /><datalinks><datalink><sink type="processor"><processor>LookupWOEID_REST_Service</processor><port>location</port></sink><source type="dataflow"><port>Name_Of_Location_for_Weather_Forecast</port></source></datalink><datalink><sink type="processor"><processor>Get_Forecast_REST_Service</processor><port>location_woeid</port></sink><source type="processor"><processor>Extract_WOEID_XPath_Service</processor><port>nodelist</port></source></datalink><datalink><sink type="processor"><processor>Extract_WOEID_XPath_Service</processor><port>xml_text</port></sink><source type="processor"><processor>LookupWOEID_REST_Service</processor><port>responseBody</port></source></datalink><datalink><sink type="processor"><processor>Extract_Forecast_Status_XPath_Service</processor><port>xml_text</port></sink><source type="processor"><processor>Get_Forecast_REST_Service</processor><port>responseBody</port></source></datalink><datalink><sink type="processor"><processor>Extract_Sunrise_Time_XPath_Service</processor><port>xml_text</port></sink><source type="processor"><processor>Get_Forecast_REST_Service</processor><port>responseBody</port></source></datalink><datalink><sink type="processor"><processor>Extract_Sunset_Time_XPath_Service</processor><port>xml_text</port></sink><source type="processor"><processor>Get_Forecast_REST_Service</processor><port>responseBody</port></source></datalink><datalink><sink type="processor"><processor>Extract_Forecast_Title_XPath_Service</processor><port>xml_text</port></sink><source type="processor"><processor>Get_Forecast_REST_Service</processor><port>responseBody</port></source></datalink><datalink><sink type="dataflow"><port>Forecast_Status</port></sink><source type="processor"><processor>Extract_Forecast_Status_XPath_Service</processor><port>nodelist</port></source></datalink><datalink><sink type="dataflow"><port>Sunrise_Time</port></sink><source type="processor"><processor>Extract_Sunrise_Time_XPath_Service</processor><port>nodelist</port></source></datalink><datalink><sink type="dataflow"><port>Sunset_Time</port></sink><source type="processor"><processor>Extract_Sunset_Time_XPath_Service</processor><port>nodelist</port></source></datalink><datalink><sink type="dataflow"><port>Forecast_For</port></sink><source type="processor"><processor>Extract_Forecast_Title_XPath_Service</processor><port>nodelist</port></source></datalink></datalinks><annotations><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>bb64e3f2-47c7-40bc-a6a1-7495f0b045e7</identification>
+      </annotationBean>
+      <date>2010-09-10 00:43:04.67 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>71675b2f-bbd9-4f69-884a-e67c307d2dc5</identification>
+      </annotationBean>
+      <date>2010-09-10 00:59:47.308 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>bae5d681-44b8-4fe5-8364-f0ca48eaa85b</identification>
+      </annotationBean>
+      <date>2010-09-13 13:21:32.387 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>00df285e-d655-4135-a7b6-94754e26c417</identification>
+      </annotationBean>
+      <date>2010-09-10 00:39:07.235 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>4692013e-c5a0-4c4f-ac17-265f0d36052f</identification>
+      </annotationBean>
+      <date>2010-09-10 00:49:05.79 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>4449c7a8-fb4d-42b8-8a56-c22c437eda8a</identification>
+      </annotationBean>
+      <date>2010-09-10 01:02:03.319 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>7c220fc4-cdf4-4664-8b2d-cdaba005e817</identification>
+      </annotationBean>
+      <date>2010-09-13 13:14:47.551 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>95cd67e9-9051-4db4-8b1b-42b4098d747a</identification>
+      </annotationBean>
+      <date>2010-09-10 01:02:39.380 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>9185fd6b-8b0a-472e-b80d-e012450aad4d</identification>
+      </annotationBean>
+      <date>2010-09-10 00:31:34.533 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.DescriptiveTitle">
+        <text>Example workflow for REST and XPath activities</text>
+      </annotationBean>
+      <date>2010-09-13 13:17:11.886 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>9ba438e1-8fd6-4e45-87a4-60abeaba0d6c</identification>
+      </annotationBean>
+      <date>2010-09-10 00:40:57.603 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.Author">
+        <text>Sergejs Aleksejevs</text>
+      </annotationBean>
+      <date>2010-09-13 13:16:55.856 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>b75d9416-fd0f-4cff-8b01-50e26a08db2b</identification>
+      </annotationBean>
+      <date>2010-09-10 00:44:04.439 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.FreeTextDescription">
+        <text>This workflow fetches weather forecast for the user-specified location.
+
+First of all it uses the provided location name to obtain a </text>
+      </annotationBean>
+      <date>2010-09-13 13:18:31.788 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>331267e3-e82c-4aec-9cec-4316809b9e3d</identification>
+      </annotationBean>
+      <date>2010-09-10 00:44:56.613 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>bb7d1fb5-495c-42e7-83e7-8b3bf59d86cd</identification>
+      </annotationBean>
+      <date>2010-09-13 12:38:17.476 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>003b6ba4-6907-4ddd-808a-6edd7b8e2c78</identification>
+      </annotationBean>
+      <date>2010-09-10 01:01:28.352 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>0ec21056-ee08-4101-83b0-5fd46710c4a8</identification>
+      </annotationBean>
+      <date>2010-09-10 00:44:28.374 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>0287d73c-42e5-4c84-a0a3-ec906aabd922</identification>
+      </annotationBean>
+      <date>2010-09-10 00:45:53.765 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.FreeTextDescription">
+        <text>This workflow fetches weather forecast for the user-specified location.
+
+First of all it uses the provided location name to obtain a WOEID ("Where On Earth ID") of that location, then uses that unique identifier to fetch the weather forecast from Yahoo server.
+
+Multiple results may be obtained in case there is no unique translation of the location to a WOEID.
+
+REST activity is used to perform HTTP requests and fetch data from remote servers; XPath activity is then used to parse the XML data and extract only selected elements.</text>
+      </annotationBean>
+      <date>2010-09-13 13:21:32.278 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>b5dfa14a-32d5-49c7-a108-9945fe97ee81</identification>
+      </annotationBean>
+      <date>2010-09-13 12:45:15.134 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>6598e3c6-a9f5-4b3d-9ac0-8bb35bc5a73b</identification>
+      </annotationBean>
+      <date>2010-09-10 00:57:19.904 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>46e1030d-249b-4e1b-be36-b70d8bae7c14</identification>
+      </annotationBean>
+      <date>2010-09-10 00:45:30.425 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>650013f2-5624-4350-ba20-1612afa22521</identification>
+      </annotationBean>
+      <date>2010-09-10 00:56:19.974 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>0847eb0f-8ad4-4dc0-bc2e-a624eb4c99e3</identification>
+      </annotationBean>
+      <date>2010-09-10 00:58:00.761 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2><annotation_chain_2_2 encoding="xstream"><net.sf.taverna.t2.annotation.AnnotationChainImpl xmlns="">
+  <annotationAssertions>
+    <net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+      <annotationBean class="net.sf.taverna.t2.annotation.annotationbeans.IdentificationAssertion">
+        <identification>ac7241c6-46c9-46e2-98c7-7f2a174c956d</identification>
+      </annotationBean>
+      <date>2010-09-10 00:42:09.909 BST</date>
+      <creators />
+      <curationEventList />
+    </net.sf.taverna.t2.annotation.AnnotationAssertionImpl>
+  </annotationAssertions>
+</net.sf.taverna.t2.annotation.AnnotationChainImpl></annotation_chain_2_2></annotations></dataflow></workflow>

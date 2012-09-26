@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://www.ivoa.net/xml/VOTable/v1.1">
+  <COOSYS ID="J2000" equinox="J2000" epoch="J2000" system="eq_FK5"/>
+  <RESOURCE name="AMIGA Fundamental Physics Parameters">
+    <DESCRIPTION>AMIGA Search byname results</DESCRIPTION>
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <INFO name="Objects Found" value="8"/>
+    <TABLE name="Search Results">
+
+
+			<FIELD ID="col1" name="CIG Number" unit="" datatype="char" precision="" width="" arraysize="8*" ucd="ID_MAIN">
+			<DESCRIPTION>CIG Number in KIG catalogue</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col2" name="RA J2000" unit="deg" datatype="double" precision="5" width="9" arraysize="" ref="J2000" ucd="POS_EQ_RA_MAIN">
+			<DESCRIPTION>Right Ascension J2000 (Leon and Verdes-Montenegro 2003)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col3" name="DEC J2000" unit="deg" datatype="double" precision="4" width="7" arraysize="" ref="J2000" ucd="POS_EQ_DEC_MAIN">
+			<DESCRIPTION>Declination J2000 (Leon and Verdes-Montenegro 2003)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col4" name="DEC B1950" unit="deg" datatype="double" precision="4" width="7" arraysize="" ref="B1950" ucd="POS_EQ_DEC">
+			<DESCRIPTION>Declination 1950 (Leon and Verdes-Montenegro 2003)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col5" name="MB" unit="mag" datatype="float" precision="2" width="6" arraysize="" ucd="phys.magAbs;meta.main">
+			<DESCRIPTION>Blue absolute magnitude compiled from CGCG in (Verdes-Montenegro et al. 2005)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col6" name="mB-corr" unit="mag" datatype="float" precision="3" width="6" arraysize="" ucd="phot.mag;arith;em.opt.B">
+			<DESCRIPTION>Blue corrected magnitude calculated as mB-corr = mB + AV + Ag + Ai+AK (Verdes-Montenegro et al. 2005)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col7" name="LB" unit="Lsun" datatype="float" precision="2" width="5" arraysize="" ucd="phys.luminosity;em.opt;arith.ratio">
+			<DESCRIPTION>Blue luminosity calculated from D and mB-corr (Verdes-Montenegro et al. 2005) as explained in Lisenfeld et al. 2007</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col8" name="Vr" unit="km/s" datatype="int" precision="" width="5" arraysize="" ucd="meta.main;src.veloc.hc">
+			<DESCRIPTION>Recession Velocity (Verdes-Montenegro et al. 2005)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col9" name="V3K" unit="km/s" datatype="int" precision="" width="5" arraysize="" ucd="src.veloc.hc">
+			<DESCRIPTION>3K corrected recession Velocity (Verdes-Montenegro et al. 2005)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col10" name="Distance" unit="Mpc" datatype="float" precision="1" width="5" arraysize="" ucd="pos.distance">
+			<DESCRIPTION>Distance (Verdes-Montenegro et al. 2005)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col11" name="Morph" unit="" datatype="char" precision="" width="" arraysize="4*" ucd="src.morph.type;meta.main">
+			<DESCRIPTION>Morphological type (letter)
+Hubble type determined in Sulentic et al. 2006, coded in the RC3 system for galaxies with vR greater than 1000 km/s. When a type could not be assigned a code "Un" (Uncertain) is given.
+For galaxies with vR lower than 1000 km/s, different morphological types have been compiled from the bibliography (Sulentic et al. 2006, Table 4) which do not fit RC3 codification. We provide a bibliographic code in parentheses corresponding to the references listed in footnote 2 of Table 4 in Sulentic et al. 2006. We have not selected a preferred type when several were available, but provided all of them.</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col12" name="Morph rc3" unit="" datatype="int" precision="" width="2" arraysize="" ucd="src.morph.type;meta.code.class">
+			<DESCRIPTION>Numeric morphological type (code)
+Hubble type determined in Sulentic et al. 2006 Table 3, coded in the RC3 system for galaxies with vR greater than 1000 km/s. For galaxies with vR lower than 1000 km/s, different morphological types have been compiled from the bibliography (Sulentic et al. 2006, Table 4) which do not fit RC3 codification. We provide a bibliographic code in parentheses corresponding to the references listed in footnote 2 of Table 4 in Sulentic et al. 2006. We have not selected a preferred type when several were available, but provided all of them.</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col13" name="Conf morph" unit="" datatype="char" precision="" width="" arraysize="*" ucd="meta.code;src.morph.type;stat.probability">
+			<DESCRIPTION>Morphology confirmation
+A code "y" indicates that the assigned type is uncertain and there is
+a need for better imaging data.</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col14" name="Bar" unit="" datatype="char" precision="" width="" arraysize="*" ucd="meta.code;src.morph.param">
+			<DESCRIPTION>Presence of a Bar
+A code "y"  indicates secure presence and a "n" clear absence of a bar.</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col15" name="Int" unit="" datatype="char" precision="" width="" arraysize="*" ucd="meta.code;src.morph.param">
+			<DESCRIPTION>Interacting
+A code "y" indicates a morphologically distorted system and/or almost certain interacting system while  "-"  indicates evidence for interaction/asymmetry with/without certain detection of a companion.</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col16" name="ULFIR" unit="" datatype="int" precision="" width="1" arraysize="" ucd="meta.code;stat.max;phys.luminosity;em.IR">
+			<DESCRIPTION>Flux density upper limit code (Lisenfeld et al. 2007)
+1: LFIR luminosity is an upper limit
+0: LFIR liminosity has been measured</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col17" name="E12" unit="" datatype="int" precision="" width="1" arraysize="" ucd="meta.code.class;em.IR.8-15um">
+			<DESCRIPTION>Detected galaxies are flagged with "y''
+if they have been classified as extended, and with "n'' when classified as point sources. (Lisenfeld et al. 2007)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col18" name="E25" unit="" datatype="int" precision="" width="1" arraysize="" ucd="meta.code.class;em.IR.15-30um">
+			<DESCRIPTION>Detected galaxies are flagged with "y''
+if they have been classified as extended, and with "n'' when classified as point sources. (Lisenfeld et al. 2007)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col19" name="E60" unit="" datatype="int" precision="" width="1" arraysize="" ucd="meta.code.class;em.IR.30-60um">
+			<DESCRIPTION>Detected galaxies are flagged with "y''
+if they have been classified as extended, and with "n'' when classified as point sources. (Lisenfeld et al. 2007)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col20" name="E100" unit="" datatype="int" precision="" width="1" arraysize="" ucd="meta.code.class;em.IR.60-100um">
+			<DESCRIPTION>Detected galaxies are flagged with "y''
+if they have been classified as extended, and with "n'' when classified as point sources. (Lisenfeld et al. 2007)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col21" name="nk" unit="" datatype="float" precision="3" width="7" arraysize="" ucd="arith.factor;src.density">
+			<DESCRIPTION>Local number density of similar size neighbours (Verley et al. 2007b)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col22" name="QKar" unit="" datatype="float" precision="3" width="7" arraysize="" ucd="phys.acceleration;phys.gravity;meta.modelled">
+			<DESCRIPTION>Tidal strength estimation of similar size neighbours in the whole available square field. (Verley et al. 2007b)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col23" name="Q05" unit="" datatype="float" precision="3" width="7" arraysize="" ucd="phys.acceleration;phys.gravity;meta.modelled">
+			<DESCRIPTION>Tidal strength estimation within 0.5Mpc (Verley et al. 2007b)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col24" name="Q05Kar" unit="" datatype="float" precision="3" width="7" arraysize="" ucd="phys.acceleration;phys.gravity;meta.modelled">
+			<DESCRIPTION>Tidal strength estimation of similar size neighbours within 0.5Mpc (Verley et al. 2007b)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col25" name="F0.3" unit="mJy" datatype="float" precision="2" width="5" arraysize="" ucd="phot.flux.density;em.radio.200-400MHz">
+			<DESCRIPTION>Flux density at 325 or 352 MHz, calculated as described in Leon et al. 2008</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col26" name="P0.3" unit="W/Hz" datatype="float" precision="3" width="7" arraysize="" ucd="phys.luminosity;em.radio.200-400MHz">
+			<DESCRIPTION>Radio power at 325/352 MHz, calculated as described in Leon et al. 2008</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col27" name="F1.4" unit="mJy" datatype="float" precision="2" width="5" arraysize="" ucd="phot.flux.density;em.radio.750-1500MHz">
+			<DESCRIPTION>Flux density at 1420 MHz, calculated as described in Leon et al. 2008</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col28" name="P1.4" unit="W/Hz" datatype="float" precision="3" width="7" arraysize="" ucd="phys.luminosity;em.radio.750-1500MHz">
+			<DESCRIPTION>Radio power at 1420 MHz, calculated as described in Leon et al. 2008</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col29" name="F4.8" unit="mJy" datatype="float" precision="2" width="5" arraysize="" ucd="phot.flux.density;em.radio.3-6GHz">
+			<DESCRIPTION>Flux density at 4850 MHz, calculated as described in Leon et al. 2008</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col30" name="Factor 5" unit="" datatype="int" precision="1" width="1" arraysize="" ucd="meta.code.class">
+			<DESCRIPTION>Factor 5 radio excess (corrected with the FIRST study). 1 if the galaxy present radio excess above a factor 5, 0 if not. (Sabater et al. 2008)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col31" name="AGN FIR" unit="" datatype="int" precision="1" width="1" arraysize="" ucd="meta.code.class">
+			<DESCRIPTION>FIR colour classification. 1 if the galaxy is classified as AGN candidate, -1 if classified as normal galaxy. (Sabater et al. 2008)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col32" name="Lit" unit="" datatype="char" precision="" width="" arraysize="20*" ucd="meta.code.class">
+			<DESCRIPTION>Final classification of activity using data from the literature (Sabater et al. 2008)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col33" name="Lit NED" unit="" datatype="char" precision="" width="" arraysize="20*" ucd="meta.code.class">
+			<DESCRIPTION>Classification of activity in NED (Sabater et al. 2008)</DESCRIPTION>
+			</FIELD>
+	
+			<FIELD ID="col34" name="Lit VC" unit="" datatype="char" precision="" width="" arraysize="20*" ucd="meta.code.class">
+			<DESCRIPTION>Classification of activity in the Veron-Cetty catalogue (Sabater et al. 2008)</DESCRIPTION>
+			</FIELD>
+	
+
+
+			<GROUP Name="Name">
+			<FIELDRef ref="col1"/>
+			</GROUP>
+	\t\t\t<GROUP Name="Coords">\n<FIELDRef ref="col2"/><FIELDRef ref="col3"/></GROUP><GROUP Name="Optical"><FIELDRef ref="col4"/><FIELDRef ref="col5"/><FIELDRef ref="col6"/></GROUP><GROUP Name="Velocity"><FIELDRef ref="col7"/><FIELDRef ref="col8"/><FIELDRef ref="col9"/></GROUP><GROUP Name="Morphology"><FIELDRef ref="col10"/><FIELDRef ref="col11"/><FIELDRef ref="col12"/><FIELDRef ref="col13"/><FIELDRef ref="col14"/></GROUP><GROUP Name="FIR"><FIELDRef ref="col15"/><FIELDRef ref="col16"/><FIELDRef ref="col17"/><FIELDRef ref="col18"/><FIELDRef ref="col19"/></GROUP><GROUP Name="Isolation"><FIELDRef ref="col20"/><FIELDRef ref="col21"/><FIELDRef ref="col22"/><FIELDRef ref="col23"/></GROUP><GROUP Name="Radio"><FIELDRef ref="col24"/><FIELDRef ref="col25"/><FIELDRef ref="col26"/><FIELDRef ref="col27"/><FIELDRef ref="col28"/><FIELDRef ref="col29"/></GROUP><GROUP Name="Activity"><FIELDRef ref="col30"/><FIELDRef ref="col31"/><FIELDRef ref="col32"/><FIELDRef ref="col33"/></GROUP>
+			<GROUP Name="Image">
+			<FIELDRef ref="col34"/>
+			</GROUP>
+	
+
+      <DATA>
+        <TABLEDATA>
+
+<TR><TD>CIG 4</TD><TD>0.99487</TD><TD>20.7524</TD><TD>-20.56</TD><TD>11.525</TD><TD>10.17</TD><TD>2310</TD><TD>1958</TD><TD>26.1</TD><TD>Sc</TD><TD>5</TD><TD></TD><TD>n</TD><TD></TD><TD>9.91</TD><TD>0.660</TD><TD>0.610</TD><TD>5.190</TD><TD>16.780</TD><TD>0.987</TD><TD>4</TD><TD>-2.059</TD><TD>-3.797</TD><TD>0.00</TD><TD>0.000</TD><TD>31.70</TD><TD>21.412</TD><TD>-18.00</TD><TD>-21.166</TD><TD>-1</TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG0004-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 5</TD><TD>1.97625</TD><TD>20.4123</TD><TD>-20.29</TD><TD>14.712</TD><TD>10.07</TD><TD>7865</TD><TD>7514</TD><TD>100.2</TD><TD>Sbc</TD><TD>4</TD><TD></TD><TD></TD><TD></TD><TD>9.75</TD><TD>0.129</TD><TD>0.120</TD><TD>0.250</TD><TD>0.760</TD><TD>1.588</TD><TD>5</TD><TD>-2.962</TD><TD>-2.962</TD><TD>0.00</TD><TD>0.000</TD><TD>-2.00</TD><TD>-21.380</TD><TD>-18.00</TD><TD>-22.335</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG0005-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 6</TD><TD>2.22791</TD><TD>23.8174</TD><TD>-19.64</TD><TD>14.092</TD><TD>9.81</TD><TD>4528</TD><TD>4183</TD><TD>55.8</TD><TD>Un</TD><TD></TD><TD></TD><TD></TD><TD>y</TD><TD>9.73</TD><TD>0.081</TD><TD>0.123</TD><TD>1.060</TD><TD>1.630</TD><TD>1.373</TD><TD>5</TD><TD>-3.533</TD><TD>-3.533</TD><TD>0.00</TD><TD>0.000</TD><TD>6.10</TD><TD>21.356</TD><TD>-18.00</TD><TD>-21.826</TD><TD></TD><TD>HII</TD><TD>HII</TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG0006-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 1035</TD><TD>356.28587</TD><TD>19.9010</TD><TD>-19.02</TD><TD>14.496</TD><TD>9.56</TD><TD>4151</TD><TD>3793</TD><TD>50.6</TD><TD>Sc</TD><TD>5</TD><TD></TD><TD></TD><TD>?</TD><TD>9.80</TD><TD>0.120</TD><TD>0.138</TD><TD>0.940</TD><TD>3.800</TD><TD>1.267</TD><TD>5</TD><TD>-3.530</TD><TD>-3.530</TD><TD>0.00</TD><TD>0.000</TD><TD>3.90</TD><TD>21.077</TD><TD>-18.00</TD><TD>-21.741</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG1035-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 1040</TD><TD>357.08012</TD><TD>24.0910</TD><TD>-20.24</TD><TD>15.324</TD><TD>10.04</TD><TD>10055</TD><TD>9705</TD><TD>129.4</TD><TD>Sc</TD><TD>5</TD><TD></TD><TD></TD><TD></TD><TD>9.84</TD><TD>0.150</TD><TD>0.099</TD><TD>0.130</TD><TD>0.460</TD><TD>1.208</TD><TD>5</TD><TD>-3.728</TD><TD>-3.728</TD><TD>0.00</TD><TD>0.000</TD><TD>-2.00</TD><TD>-21.603</TD><TD>-18.00</TD><TD>-22.557</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG1040-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 1041</TD><TD>357.18791</TD><TD>15.9292</TD><TD>-19.90</TD><TD>15.091</TD><TD>9.91</TD><TD>7850</TD><TD>7488</TD><TD>99.8</TD><TD>Scd</TD><TD>6</TD><TD></TD><TD>y</TD><TD></TD><TD>9.65</TD><TD>0.117</TD><TD>0.087</TD><TD>0.150</TD><TD>0.288</TD><TD>1.578</TD><TD>5</TD><TD>-2.930</TD><TD>-2.930</TD><TD>0.00</TD><TD>0.000</TD><TD>-2.00</TD><TD>-21.377</TD><TD>-18.00</TD><TD>-22.332</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG1041-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 1046</TD><TD>358.91433</TD><TD>19.5157</TD><TD>-20.60</TD><TD>14.413</TD><TD>10.19</TD><TD>7896</TD><TD>7540</TD><TD>100.5</TD><TD>Sc</TD><TD>5</TD><TD></TD><TD></TD><TD></TD><TD>9.88</TD><TD>0.069</TD><TD>0.153</TD><TD>0.200</TD><TD>0.624</TD><TD>1.763</TD><TD>5</TD><TD>-2.020</TD><TD>-3.114</TD><TD>0.00</TD><TD>0.000</TD><TD>-2.00</TD><TD>-21.383</TD><TD>-18.00</TD><TD>-22.338</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG1046-DSS2-R-05mx05m.gif</TD></TR>
+<TR><TD>CIG 1051</TD><TD>359.86958</TD><TD>21.4146</TD><TD>-20.80</TD><TD>14.828</TD><TD>10.27</TD><TD>10359</TD><TD>10007</TD><TD>133.4</TD><TD>Sc</TD><TD>5</TD><TD></TD><TD></TD><TD></TD><TD>9.98</TD><TD>0.087</TD><TD>0.220</TD><TD>0.360</TD><TD>0.261</TD><TD>1.243</TD><TD>5</TD><TD>-3.447</TD><TD>-3.447</TD><TD>0.00</TD><TD>0.000</TD><TD>3.10</TD><TD>21.820</TD><TD>-18.00</TD><TD>-22.583</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>http://amiga.iaa.es/IMAGENES_CIG/CIG1051-DSS2-R-05mx05m.gif</TD></TR>
+
+
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>
