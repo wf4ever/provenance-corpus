@@ -1,0 +1,528 @@
+# @base <file:/Users/khalidbelhajjame/Documents/temp/provenance_corpus/workflow_80_version_2_run_9/workflowrun.prov.ttl> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scufl2: <http://ns.taverna.org.uk/2010/scufl2#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:qualifiedAssociation _:node1781qm4aqx1 ;
+	prov:startedAtTime "2012-09-26T18:41:15.811+01:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> .
+
+_:node1781qm4aqx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/00e41a99-97a6-4523-a3f7-4b164de8a70a/> , <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/696f2e60-4b21-4416-89ee-7ccbd53cd549/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of BioAID_Discover_proteins_from_text" ;
+	prov:endedAtTime "2012-09-11T13:30:59.791+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx2 ;
+	prov:qualifiedUsage _:node1781qm4aqx3 ;
+	prov:startedAtTime "2012-09-11T13:30:57.639+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node1781qm4aqx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/> .
+
+_:node1781qm4aqx3 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/in/text> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/in/text> rdfs:label "Workflow input text" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/in/text> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/in/text> .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/36ba49c3-1c93-4a58-b6d3-9d895a6f63d7/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/out/discovered_proteins> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/d5c09839-af26-4bf6-a67f-f2d7d4c6348e> ;
+	prov:qualifiedGeneration _:node1781qm4aqx4 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> .
+
+_:node1781qm4aqx4 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/out/discovered_proteins> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/out/discovered_proteins> rdfs:label "Workflow output discovered_proteins" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/00e41a99-97a6-4523-a3f7-4b164de8a70a/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> ;
+	rdfs:label "Processor execution prelearned_genomics_model (facade429:BioAID_Discover_proteins_from_text:prelearned_genomics_model)" ;
+	prov:endedAtTime "2012-09-11T13:30:57.856+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx5 ;
+	prov:startedAtTime "2012-09-11T13:30:57.847+01:00"^^xsd:dateTime .
+
+_:node1781qm4aqx5 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/> rdfs:label "Processor prelearned_genomics_model" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/> .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/in/learned_model> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/00e41a99-97a6-4523-a3f7-4b164de8a70a/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx6 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/00e41a99-97a6-4523-a3f7-4b164de8a70a/> .
+
+_:node1781qm4aqx6 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/00e41a99-97a6-4523-a3f7-4b164de8a70a/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/prelearned_genomics_model/out/value> rdfs:label "prelearned_genomics_model output value" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/696f2e60-4b21-4416-89ee-7ccbd53cd549/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> ;
+	rdfs:label "Processor execution Discover_entities (facade429:BioAID_Discover_proteins_from_text:Discover_entities)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.180+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx7 ;
+	prov:qualifiedUsage _:node1781qm4aqx8 , _:node1781qm4aqx9 ;
+	prov:startedAtTime "2012-09-11T13:30:57.954+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> .
+
+_:node1781qm4aqx7 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/> rdfs:label "Processor Discover_entities" .
+
+_:node1781qm4aqx8 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/in/learned_model> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/in/learned_model> rdfs:label "Discover_entities input learned_model" .
+
+_:node1781qm4aqx9 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/in/text> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/in/text> rdfs:label "Discover_entities input text" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/out/discovered_entities> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/696f2e60-4b21-4416-89ee-7ccbd53cd549/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx10 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/696f2e60-4b21-4416-89ee-7ccbd53cd549/> .
+
+_:node1781qm4aqx10 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/696f2e60-4b21-4416-89ee-7ccbd53cd549/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/out/discovered_entities> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Discover_entities/out/discovered_entities> rdfs:label "Discover_entities output discovered_entities" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/f63d3ae9-f0ab-41ba-9c97-cee4cb1672cd/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/f63d3ae9-f0ab-41ba-9c97-cee4cb1672cd/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/f63d3ae9-f0ab-41ba-9c97-cee4cb1672cd/> ;
+	rdfs:label "Processor execution Default_input_type (facade429:BioAID_Discover_proteins_from_text:Discover_entities:invocation1467:facade430:Discover_entities:Default_input_type)" ;
+	prov:endedAtTime "2012-09-11T13:30:58.006+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx11 ;
+	prov:startedAtTime "2012-09-11T13:30:57.996+01:00"^^xsd:dateTime .
+
+_:node1781qm4aqx11 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/> rdfs:label "Processor Default_input_type" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/> .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/24927777-cbce-4f1c-9297-de57a82ac85c> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/out/value> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/input_type> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/f63d3ae9-f0ab-41ba-9c97-cee4cb1672cd/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx12 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/f63d3ae9-f0ab-41ba-9c97-cee4cb1672cd/> .
+
+_:node1781qm4aqx12 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/f63d3ae9-f0ab-41ba-9c97-cee4cb1672cd/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_input_type/out/value> rdfs:label "Default_input_type output value" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/8342690f-d079-4f4b-8309-15448f5a4ab7/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/8342690f-d079-4f4b-8309-15448f5a4ab7/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/8342690f-d079-4f4b-8309-15448f5a4ab7/> ;
+	rdfs:label "Processor execution Default_output_type (facade429:BioAID_Discover_proteins_from_text:Discover_entities:invocation1467:facade430:Discover_entities:Default_output_type)" ;
+	prov:endedAtTime "2012-09-11T13:30:58.025+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx13 ;
+	prov:startedAtTime "2012-09-11T13:30:58.002+01:00"^^xsd:dateTime .
+
+_:node1781qm4aqx13 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/> rdfs:label "Processor Default_output_type" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6d82844d-0057-4b7b-a608-8b0e1bcbbd82> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/out/value> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/output_type> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/8342690f-d079-4f4b-8309-15448f5a4ab7/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx14 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/8342690f-d079-4f4b-8309-15448f5a4ab7/> .
+
+_:node1781qm4aqx14 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/8342690f-d079-4f4b-8309-15448f5a4ab7/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/Default_output_type/out/value> rdfs:label "Default_output_type output value" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/24927777-cbce-4f1c-9297-de57a82ac85c> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6d82844d-0057-4b7b-a608-8b0e1bcbbd82> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> ;
+	rdfs:label "Processor execution NErecognize (facade429:BioAID_Discover_proteins_from_text:Discover_entities:invocation1467:facade430:Discover_entities:NErecognize)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.152+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx15 ;
+	prov:qualifiedUsage _:node1781qm4aqx16 , _:node1781qm4aqx17 , _:node1781qm4aqx18 , _:node1781qm4aqx19 ;
+	prov:startedAtTime "2012-09-11T13:30:58.035+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/24927777-cbce-4f1c-9297-de57a82ac85c> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6d82844d-0057-4b7b-a608-8b0e1bcbbd82> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> .
+
+_:node1781qm4aqx15 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/> rdfs:label "Processor NErecognize" .
+
+_:node1781qm4aqx16 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6d82844d-0057-4b7b-a608-8b0e1bcbbd82> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/output_type> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/output_type> rdfs:label "NErecognize input output_type" .
+
+_:node1781qm4aqx17 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/r_type> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/r_type> rdfs:label "NErecognize input r_type" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/r_type> .
+
+_:node1781qm4aqx18 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/input_data> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/input_data> rdfs:label "NErecognize input input_data" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/input_data> .
+
+_:node1781qm4aqx19 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/24927777-cbce-4f1c-9297-de57a82ac85c> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/input_type> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/in/input_type> rdfs:label "NErecognize input input_type" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/afc336cb-423e-4263-ab91-136a6a4d6abc/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/out/attachmentList> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> ;
+	a prov:Collection , prov:EmptyCollection ;
+	prov:qualifiedGeneration _:node1781qm4aqx20 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> .
+
+_:node1781qm4aqx20 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/out/attachmentList> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/out/attachmentList> rdfs:label "NErecognize output attachmentList" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/in/input_string> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/out/NErecognizeReturn> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/in/string> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx21 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> .
+
+_:node1781qm4aqx21 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/3d1e9012-c905-4005-921e-a1c32acd289f/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/out/NErecognizeReturn> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Discover_entities/processor/NErecognize/out/NErecognizeReturn> rdfs:label "NErecognize output NErecognizeReturn" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/39a63ac4-6311-4dc7-a534-a0d357d23573/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> ;
+	rdfs:label "Processor execution Extract_proteins (facade429:BioAID_Discover_proteins_from_text:Extract_proteins)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.780+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx22 ;
+	prov:qualifiedUsage _:node1781qm4aqx23 ;
+	prov:startedAtTime "2012-09-11T13:30:59.189+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/39a63ac4-6311-4dc7-a534-a0d357d23573/> .
+
+_:node1781qm4aqx22 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/> rdfs:label "Processor Extract_proteins" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/> .
+
+_:node1781qm4aqx23 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/in/input_string> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/in/input_string> rdfs:label "Extract_proteins input input_string" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/36ba49c3-1c93-4a58-b6d3-9d895a6f63d7/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/out/protein_molecule_list> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/39a63ac4-6311-4dc7-a534-a0d357d23573/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx24 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/39a63ac4-6311-4dc7-a534-a0d357d23573/> .
+
+_:node1781qm4aqx24 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/39a63ac4-6311-4dc7-a534-a0d357d23573/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/out/protein_molecule_list> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/BioAID_Discover_proteins_from_text/processor/Extract_proteins/out/protein_molecule_list> rdfs:label "Extract_proteins output protein_molecule_list" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/6a9cddac-6185-4d7f-b16b-caa8134622b0/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/6a9cddac-6185-4d7f-b16b-caa8134622b0/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/6a9cddac-6185-4d7f-b16b-caa8134622b0/> ;
+	rdfs:label "Processor execution filter_protein_molecule_regexp (facade429:BioAID_Discover_proteins_from_text:Extract_proteins:invocation1471:facade431:Extract_proteins:filter_protein_molecule_regexp)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.259+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx25 ;
+	prov:startedAtTime "2012-09-11T13:30:59.252+01:00"^^xsd:dateTime .
+
+_:node1781qm4aqx25 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/> rdfs:label "Processor filter_protein_molecule_regexp" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/> .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/in/regex> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/6a9cddac-6185-4d7f-b16b-caa8134622b0/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx26 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/6a9cddac-6185-4d7f-b16b-caa8134622b0/> .
+
+_:node1781qm4aqx26 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/6a9cddac-6185-4d7f-b16b-caa8134622b0/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/filter_protein_molecule_regexp/out/value> rdfs:label "filter_protein_molecule_regexp output value" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/14a94484-5a3e-481c-a1ab-b4ad7b768735/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/14a94484-5a3e-481c-a1ab-b4ad7b768735/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/14a94484-5a3e-481c-a1ab-b4ad7b768735/> ;
+	rdfs:label "Processor execution splitOn_protein_molecule_regexp (facade429:BioAID_Discover_proteins_from_text:Extract_proteins:invocation1471:facade431:Extract_proteins:splitOn_protein_molecule_regexp)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.274+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx27 ;
+	prov:startedAtTime "2012-09-11T13:30:59.256+01:00"^^xsd:dateTime .
+
+_:node1781qm4aqx27 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/> rdfs:label "Processor splitOn_protein_molecule_regexp" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/577c2d49-8430-4df7-8e54-da92eb7633ff> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/in/regex> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/14a94484-5a3e-481c-a1ab-b4ad7b768735/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx28 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/14a94484-5a3e-481c-a1ab-b4ad7b768735/> .
+
+_:node1781qm4aqx28 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/14a94484-5a3e-481c-a1ab-b4ad7b768735/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/splitOn_protein_molecule_regexp/out/value> rdfs:label "splitOn_protein_molecule_regexp output value" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/1f0bc0e9-5e1f-4918-bcee-d0ef68d1c377/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/1f0bc0e9-5e1f-4918-bcee-d0ef68d1c377/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/577c2d49-8430-4df7-8e54-da92eb7633ff> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/1f0bc0e9-5e1f-4918-bcee-d0ef68d1c377/> ;
+	rdfs:label "Processor execution SplitOn_protein_molecule (facade429:BioAID_Discover_proteins_from_text:Extract_proteins:invocation1471:facade431:Extract_proteins:SplitOn_protein_molecule)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.380+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx29 ;
+	prov:qualifiedUsage _:node1781qm4aqx30 , _:node1781qm4aqx31 ;
+	prov:startedAtTime "2012-09-11T13:30:59.283+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/577c2d49-8430-4df7-8e54-da92eb7633ff> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> .
+
+_:node1781qm4aqx29 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/> rdfs:label "Processor SplitOn_protein_molecule" .
+
+_:node1781qm4aqx30 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/in/string> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/in/string> rdfs:label "SplitOn_protein_molecule input string" .
+
+_:node1781qm4aqx31 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/577c2d49-8430-4df7-8e54-da92eb7633ff> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/in/regex> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/in/regex> rdfs:label "SplitOn_protein_molecule input regex" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/d0fca1da-1140-4ab0-a3b6-047e08f1a745/false/1> tavernaprov:content <intermediates/d0/d0fca1da-1140-4ab0-a3b6-047e08f1a745.list> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/in/stringlist> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/out/split> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/1f0bc0e9-5e1f-4918-bcee-d0ef68d1c377/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1c5e6927-0f0c-4146-9b43-805284dfe237> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6a14ebb3-3019-4969-a9ec-00f1439761e9> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/8356cc26-8def-45fd-89c9-9ff496a2e6be> ;
+	prov:qualifiedGeneration _:node1781qm4aqx32 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/1f0bc0e9-5e1f-4918-bcee-d0ef68d1c377/> .
+
+_:node1781qm4aqx32 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/1f0bc0e9-5e1f-4918-bcee-d0ef68d1c377/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/out/split> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/SplitOn_protein_molecule/out/split> rdfs:label "SplitOn_protein_molecule output split" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/48f47c35-fdbb-481c-9d2d-0fafb0e07ad6/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/48f47c35-fdbb-481c-9d2d-0fafb0e07ad6/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/d0fca1da-1140-4ab0-a3b6-047e08f1a745/false/1> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/48f47c35-fdbb-481c-9d2d-0fafb0e07ad6/> ;
+	rdfs:label "Processor execution Filter_protein_molecules (facade429:BioAID_Discover_proteins_from_text:Extract_proteins:invocation1471:facade431:Extract_proteins:Filter_protein_molecules)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.570+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx33 ;
+	prov:qualifiedUsage _:node1781qm4aqx34 , _:node1781qm4aqx35 ;
+	prov:startedAtTime "2012-09-11T13:30:59.448+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/d0fca1da-1140-4ab0-a3b6-047e08f1a745/false/1> , <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4> .
+
+_:node1781qm4aqx33 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/> rdfs:label "Processor Filter_protein_molecules" .
+
+_:node1781qm4aqx34 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/d0fca1da-1140-4ab0-a3b6-047e08f1a745/false/1> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/in/stringlist> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/in/stringlist> rdfs:label "Filter_protein_molecules input stringlist" .
+
+_:node1781qm4aqx35 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/in/regex> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/in/regex> rdfs:label "Filter_protein_molecules input regex" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/bcef87c7-d9e3-4baf-a462-5b6a27f1cb98/false/1> tavernaprov:content <intermediates/bc/bcef87c7-d9e3-4baf-a462-5b6a27f1cb98.list> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/out/filteredlist> , <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/in/stringlist> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/48f47c35-fdbb-481c-9d2d-0fafb0e07ad6/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/16144155-3702-4e1c-b531-655779974cc2> ;
+	prov:qualifiedGeneration _:node1781qm4aqx36 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/48f47c35-fdbb-481c-9d2d-0fafb0e07ad6/> .
+
+_:node1781qm4aqx36 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/48f47c35-fdbb-481c-9d2d-0fafb0e07ad6/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/out/filteredlist> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Filter_protein_molecules/out/filteredlist> rdfs:label "Filter_protein_molecules output filteredlist" .
+
+<http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/54c26e6d-ed19-4e92-9b8b-5113d14a5f8c/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/54c26e6d-ed19-4e92-9b8b-5113d14a5f8c/> ;
+	wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/bcef87c7-d9e3-4baf-a462-5b6a27f1cb98/false/1> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/54c26e6d-ed19-4e92-9b8b-5113d14a5f8c/> ;
+	rdfs:label "Processor execution Remove_duplicate_strings (facade429:BioAID_Discover_proteins_from_text:Extract_proteins:invocation1471:facade431:Extract_proteins:Remove_duplicate_strings)" ;
+	prov:endedAtTime "2012-09-11T13:30:59.721+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node1781qm4aqx37 ;
+	prov:qualifiedUsage _:node1781qm4aqx38 ;
+	prov:startedAtTime "2012-09-11T13:30:59.629+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/bcef87c7-d9e3-4baf-a462-5b6a27f1cb98/false/1> .
+
+_:node1781qm4aqx37 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/> rdfs:label "Processor Remove_duplicate_strings" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/> .
+
+_:node1781qm4aqx38 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/bcef87c7-d9e3-4baf-a462-5b6a27f1cb98/false/1> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/in/stringlist> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/in/stringlist> rdfs:label "Remove_duplicate_strings input stringlist" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/36ba49c3-1c93-4a58-b6d3-9d895a6f63d7/false/1> tavernaprov:content <discovered_proteins/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/out/strippedlist> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/54c26e6d-ed19-4e92-9b8b-5113d14a5f8c/> ;
+	prov:qualifiedGeneration _:node1781qm4aqx39 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/54c26e6d-ed19-4e92-9b8b-5113d14a5f8c/> .
+
+_:node1781qm4aqx39 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/d2c2e79c-c655-4fdd-a692-afdf670d8424/process/54c26e6d-ed19-4e92-9b8b-5113d14a5f8c/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/out/strippedlist> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/bb8590e2-0155-4178-9c57-17739515c2c1/workflow/Extract_proteins/processor/Remove_duplicate_strings/out/strippedlist> rdfs:label "Remove_duplicate_strings output strippedlist" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/list/afc336cb-423e-4263-ab91-136a6a4d6abc/false/1> tavernaprov:content <intermediates/af/afc336cb-423e-4263-ab91-136a6a4d6abc.list> .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/577c2d49-8430-4df7-8e54-da92eb7633ff> tavernaprov:content <intermediates/57/577c2d49-8430-4df7-8e54-da92eb7633ff.txt> .
+
+<intermediates/57/577c2d49-8430-4df7-8e54-da92eb7633ff.txt> tavernaprov:sha1 "74aaa5b6c4195a1cc3554e1699242f2e3435443b" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6a14ebb3-3019-4969-a9ec-00f1439761e9> tavernaprov:content <intermediates/6a/6a14ebb3-3019-4969-a9ec-00f1439761e9.txt> .
+
+<intermediates/6a/6a14ebb3-3019-4969-a9ec-00f1439761e9.txt> tavernaprov:sha1 "16f8f216fb5b5145639437c628684f374b53f312" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1801305f-b624-4eb6-bc38-ef3e12d36f12> tavernaprov:content <text.txt> .
+
+<text.txt> tavernaprov:sha1 "baf403c2d21b6f725c53b6b104b8b2910050d7fe" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4> tavernaprov:content <intermediates/4e/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4.txt> .
+
+<intermediates/4e/4e9ee204-ded7-4a0d-8c3a-9a7d9f6da4a4.txt> tavernaprov:sha1 "bfb413fcddab521e5df47e18dac68b407a1fbba6" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/7ace9df8-e5a9-4627-a8a1-48e4f6686429> tavernaprov:content <intermediates/7a/7ace9df8-e5a9-4627-a8a1-48e4f6686429.txt> .
+
+<intermediates/7a/7ace9df8-e5a9-4627-a8a1-48e4f6686429.txt> tavernaprov:sha1 "e680ff8da521a8c637db597d79244fad5b8929e2" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/ec949eae-50cb-4adc-b636-85a21d04c9ab> tavernaprov:content <intermediates/ec/ec949eae-50cb-4adc-b636-85a21d04c9ab.txt> .
+
+<intermediates/ec/ec949eae-50cb-4adc-b636-85a21d04c9ab.txt> tavernaprov:sha1 "6fbfedf27eec559bf771473f947947a6cf6bad3f" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/6d82844d-0057-4b7b-a608-8b0e1bcbbd82> tavernaprov:content <intermediates/6d/6d82844d-0057-4b7b-a608-8b0e1bcbbd82.txt> .
+
+<intermediates/6d/6d82844d-0057-4b7b-a608-8b0e1bcbbd82.txt> tavernaprov:sha1 "623d5a8c031de7dc1f4cb0336911c39886cc5aa2" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/d5c09839-af26-4bf6-a67f-f2d7d4c6348e> tavernaprov:content <discovered_proteins/0.txt> .
+
+<discovered_proteins/0.txt> tavernaprov:sha1 "3c27f103f75c30376f0416fd7bb144c328999cf6" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/24927777-cbce-4f1c-9297-de57a82ac85c> tavernaprov:content <intermediates/24/24927777-cbce-4f1c-9297-de57a82ac85c.txt> .
+
+<intermediates/24/24927777-cbce-4f1c-9297-de57a82ac85c.txt> tavernaprov:sha1 "372ea08cab33e71c02c651dbc83a474d32c676ea" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/1c5e6927-0f0c-4146-9b43-805284dfe237> tavernaprov:content <intermediates/1c/1c5e6927-0f0c-4146-9b43-805284dfe237.txt> .
+
+<intermediates/1c/1c5e6927-0f0c-4146-9b43-805284dfe237.txt> tavernaprov:sha1 "8b93df8c2f68a96c90672f586acc9cd7a24af7e7" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/16144155-3702-4e1c-b531-655779974cc2> tavernaprov:content <intermediates/16/16144155-3702-4e1c-b531-655779974cc2.txt> .
+
+<intermediates/16/16144155-3702-4e1c-b531-655779974cc2.txt> tavernaprov:sha1 "3c27f103f75c30376f0416fd7bb144c328999cf6" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/d2c2e79c-c655-4fdd-a692-afdf670d8424/ref/8356cc26-8def-45fd-89c9-9ff496a2e6be> tavernaprov:content <intermediates/83/8356cc26-8def-45fd-89c9-9ff496a2e6be.txt> .
+
+<intermediates/83/8356cc26-8def-45fd-89c9-9ff496a2e6be.txt> tavernaprov:sha1 "3c27f103f75c30376f0416fd7bb144c328999cf6" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+:taverna-prov-export prov:endedAtTime "2012-09-26T18:41:36.831+01:00"^^xsd:dateTime .

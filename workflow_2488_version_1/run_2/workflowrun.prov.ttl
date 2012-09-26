@@ -1,0 +1,256 @@
+# @base <file:/Users/khalidbelhajjame/Documents/temp/provenance_corpus/workflow_2488_version_1_run_2/workflowrun.prov.ttl> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scufl2: <http://ns.taverna.org.uk/2010/scufl2#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:qualifiedAssociation _:node17810gc08x1 ;
+	prov:startedAtTime "2012-09-26T11:03:43.858+01:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> .
+
+_:node17810gc08x1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/203b7087-ff3c-4a72-ae5e-d766f5f0edd7/> , <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/cde01f2a-dbc1-4074-b6b7-f73a90a02114/> , <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/fc985434-a643-4f89-8146-9a5edbbf2b04/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of Get_homologous_from_NCBI_homoloGene" ;
+	prov:endedAtTime "2012-09-11T10:24:52.821+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810gc08x2 ;
+	prov:qualifiedUsage _:node17810gc08x3 , _:node17810gc08x4 ;
+	prov:startedAtTime "2012-09-11T10:24:36.543+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17810gc08x2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/> .
+
+_:node17810gc08x3 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/in/proteinAccs> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/in/proteinAccs> rdfs:label "Workflow input proteinAccs" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/in/proteinAccs> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/in/string> .
+
+_:node17810gc08x4 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/in/specie> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/in/specie> rdfs:label "Workflow input specie" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/in/specie> .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bd2079a8-3ee4-4c9d-8e5d-fda156f590ff/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/out/listOfproteinAccs> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/out/split> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> , <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/fc985434-a643-4f89-8146-9a5edbbf2b04/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9020798c-ab2e-4a9d-9ff0-d2e3fe905792> ;
+	prov:qualifiedGeneration _:node17810gc08x14 , _:node17810gc08x5 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> , <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/fc985434-a643-4f89-8146-9a5edbbf2b04/> .
+
+_:node17810gc08x5 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/out/listOfproteinAccs> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/out/listOfproteinAccs> rdfs:label "Workflow output listOfproteinAccs" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bb0da4af-53f8-4436-9b29-796e45bcfef9/false/2> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/out/Beanshell_listOfResults> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/6895c5e9-29b5-4112-8700-b9cbc950e5b2/false/1> ;
+	prov:qualifiedGeneration _:node17810gc08x6 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/6895c5e9-29b5-4112-8700-b9cbc950e5b2/false/1> a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/7df27004-1a06-4e1f-9414-ef7c587ecd19> .
+
+_:node17810gc08x6 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/out/Beanshell_listOfResults> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/out/Beanshell_listOfResults> rdfs:label "Workflow output Beanshell_listOfResults" .
+
+<http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/cde01f2a-dbc1-4074-b6b7-f73a90a02114/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	rdfs:label "Processor execution homologeneUrlNCBI_value (facade5:Get_homologous_from_NCBI_homoloGene:homologeneUrlNCBI_value)" ;
+	prov:endedAtTime "2012-09-11T10:24:36.644+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810gc08x7 ;
+	prov:startedAtTime "2012-09-11T10:24:36.632+01:00"^^xsd:dateTime .
+
+_:node17810gc08x7 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/> rdfs:label "Processor homologeneUrlNCBI_value" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/> .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/fce2b257-9f83-4d0f-8a7c-fe982897823e> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/homologeneUrlNCBI> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/cde01f2a-dbc1-4074-b6b7-f73a90a02114/> ;
+	prov:qualifiedGeneration _:node17810gc08x8 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/cde01f2a-dbc1-4074-b6b7-f73a90a02114/> .
+
+_:node17810gc08x8 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/cde01f2a-dbc1-4074-b6b7-f73a90a02114/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/homologeneUrlNCBI_value/out/value> rdfs:label "homologeneUrlNCBI_value output value" .
+
+<http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/203b7087-ff3c-4a72-ae5e-d766f5f0edd7/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	rdfs:label "Processor execution regex_value (facade5:Get_homologous_from_NCBI_homoloGene:regex_value)" ;
+	prov:endedAtTime "2012-09-11T10:24:36.646+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810gc08x9 ;
+	prov:startedAtTime "2012-09-11T10:24:36.635+01:00"^^xsd:dateTime .
+
+_:node17810gc08x9 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/> rdfs:label "Processor regex_value" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/f6eacef4-4a8f-42a5-a1ee-6b4aa180ee99> tavernaprov:content <intermediates/f6/f6eacef4-4a8f-42a5-a1ee-6b4aa180ee99.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/in/regex> , <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/203b7087-ff3c-4a72-ae5e-d766f5f0edd7/> ;
+	prov:qualifiedGeneration _:node17810gc08x10 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/203b7087-ff3c-4a72-ae5e-d766f5f0edd7/> .
+
+_:node17810gc08x10 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/203b7087-ff3c-4a72-ae5e-d766f5f0edd7/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/regex_value/out/value> rdfs:label "regex_value output value" .
+
+<http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/fc985434-a643-4f89-8146-9a5edbbf2b04/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/f6eacef4-4a8f-42a5-a1ee-6b4aa180ee99> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	rdfs:label "Processor execution Split_string_into_string_list_by_regular_expression (facade5:Get_homologous_from_NCBI_homoloGene:Split_string_into_string_list_by_regular_expression)" ;
+	prov:endedAtTime "2012-09-11T10:24:36.886+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810gc08x11 ;
+	prov:qualifiedUsage _:node17810gc08x12 , _:node17810gc08x13 ;
+	prov:startedAtTime "2012-09-11T10:24:36.737+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/f6eacef4-4a8f-42a5-a1ee-6b4aa180ee99> .
+
+_:node17810gc08x11 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/> rdfs:label "Processor Split_string_into_string_list_by_regular_expression" .
+
+_:node17810gc08x12 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/f6eacef4-4a8f-42a5-a1ee-6b4aa180ee99> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/in/regex> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/in/regex> rdfs:label "Split_string_into_string_list_by_regular_expression input regex" .
+
+_:node17810gc08x13 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/in/string> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/in/string> rdfs:label "Split_string_into_string_list_by_regular_expression input string" .
+
+_:node17810gc08x14 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/fc985434-a643-4f89-8146-9a5edbbf2b04/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/out/split> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/Split_string_into_string_list_by_regular_expression/out/split> rdfs:label "Split_string_into_string_list_by_regular_expression output split" .
+
+<http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/8649ef1c-bcff-4f93-a4b4-5dfff8734ef5/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bd2079a8-3ee4-4c9d-8e5d-fda156f590ff/false/1> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/fce2b257-9f83-4d0f-8a7c-fe982897823e> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> ;
+	rdfs:label "Processor execution getHomologousFrom_homoloGene (facade5:Get_homologous_from_NCBI_homoloGene:getHomologousFrom_homoloGene)" ;
+	prov:endedAtTime "2012-09-11T10:24:52.800+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810gc08x15 ;
+	prov:qualifiedUsage _:node17810gc08x16 , _:node17810gc08x17 , _:node17810gc08x18 ;
+	prov:startedAtTime "2012-09-11T10:24:36.913+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bd2079a8-3ee4-4c9d-8e5d-fda156f590ff/false/1> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> , <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/fce2b257-9f83-4d0f-8a7c-fe982897823e> .
+
+<http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/8649ef1c-bcff-4f93-a4b4-5dfff8734ef5/> .
+
+_:node17810gc08x15 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/> rdfs:label "Processor getHomologousFrom_homoloGene" .
+
+_:node17810gc08x16 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/specie> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/specie> rdfs:label "getHomologousFrom_homoloGene input specie" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9a0d09c0-a1eb-4b38-bb0b-1b26bc6ae1e8> tavernaprov:content <specie.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/specie> .
+
+_:node17810gc08x17 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bd2079a8-3ee4-4c9d-8e5d-fda156f590ff/false/1> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/queryAccs> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/queryAccs> rdfs:label "getHomologousFrom_homoloGene input queryAccs" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bd2079a8-3ee4-4c9d-8e5d-fda156f590ff/false/1> tavernaprov:content <listOfproteinAccs/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/queryAccs> .
+
+_:node17810gc08x18 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/fce2b257-9f83-4d0f-8a7c-fe982897823e> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/homologeneUrlNCBI> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/in/homologeneUrlNCBI> rdfs:label "getHomologousFrom_homoloGene input homologeneUrlNCBI" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/bb0da4af-53f8-4436-9b29-796e45bcfef9/false/2> tavernaprov:content <Beanshell_listOfResults/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/out/listOfResults> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/8649ef1c-bcff-4f93-a4b4-5dfff8734ef5/> ;
+	prov:qualifiedGeneration _:node17810gc08x19 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/8649ef1c-bcff-4f93-a4b4-5dfff8734ef5/> .
+
+_:node17810gc08x19 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/427c15a7-7b28-441b-9b9b-9eaeaa573f11/process/8649ef1c-bcff-4f93-a4b4-5dfff8734ef5/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/out/listOfResults> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/b62064b9-4d4c-459b-bf16-dc62f06035a3/workflow/Get_homologous_from_NCBI_homoloGene/processor/getHomologousFrom_homoloGene/out/listOfResults> rdfs:label "getHomologousFrom_homoloGene output listOfResults" .
+
+<intermediates/f6/f6eacef4-4a8f-42a5-a1ee-6b4aa180ee99.txt> tavernaprov:sha1 "5c10b5b2cd673a0616d529aa5234b12ee7153808" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/23fa802e-cbd9-4572-9b19-39185ed76f1f> tavernaprov:content <proteinAccs.txt> .
+
+<proteinAccs.txt> tavernaprov:sha1 "e879dc62ea4e415476cecb4d15961858487918f7" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<specie.txt> tavernaprov:sha1 "8b124db1955c7ca16e5eb8264f0da428ea2b3eae" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/9020798c-ab2e-4a9d-9ff0-d2e3fe905792> tavernaprov:content <listOfproteinAccs/0.txt> .
+
+<listOfproteinAccs/0.txt> tavernaprov:sha1 "e879dc62ea4e415476cecb4d15961858487918f7" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/fce2b257-9f83-4d0f-8a7c-fe982897823e> tavernaprov:content <intermediates/fc/fce2b257-9f83-4d0f-8a7c-fe982897823e.txt> .
+
+<intermediates/fc/fce2b257-9f83-4d0f-8a7c-fe982897823e.txt> tavernaprov:sha1 "ed6faa1b1fe3c60d26fa39df3905404710f49c7d" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/ref/7df27004-1a06-4e1f-9414-ef7c587ecd19> tavernaprov:content <Beanshell_listOfResults/0/0.txt> .
+
+<Beanshell_listOfResults/0/0.txt> tavernaprov:sha1 "e357d27db610ea3c5088d30d15923ef05bb811a6" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/427c15a7-7b28-441b-9b9b-9eaeaa573f11/list/6895c5e9-29b5-4112-8700-b9cbc950e5b2/false/1> tavernaprov:content <Beanshell_listOfResults/0/> .
+
+:taverna-prov-export prov:endedAtTime "2012-09-26T11:04:00.946+01:00"^^xsd:dateTime .

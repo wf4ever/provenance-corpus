@@ -1,0 +1,185 @@
+# @base <file:/Users/khalidbelhajjame/Documents/temp/provenance_corpus/workflow_2445_version_1_run_1/workflowrun.prov.ttl> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scufl2: <http://ns.taverna.org.uk/2010/scufl2#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:qualifiedAssociation _:node17810rcd4x1 ;
+	prov:startedAtTime "2012-09-26T11:09:44.769+01:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> .
+
+_:node17810rcd4x1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of Biomart_datasets_for_the_Ensembl_Genes_mart_service" ;
+	prov:endedAtTime "2012-09-11T10:36:29.046+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810rcd4x2 ;
+	prov:qualifiedUsage _:node17810rcd4x3 ;
+	prov:startedAtTime "2012-09-11T10:36:27.569+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17810rcd4x2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/> .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/in/species> , <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/in/species> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/8ddd4b2c-d2d0-4544-8b77-cc62bdd50bdd> .
+
+_:node17810rcd4x3 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/in/species> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/in/species> rdfs:label "Workflow input species" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/47c698ab-93bc-4cf5-a4e3-016c328dd20a/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetAssembly> , <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetAssembly> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/580025d9-e140-4fb2-a8ca-6c5a53c30767> ;
+	tavernaprov:content <datasetAssembly/> ;
+	prov:qualifiedGeneration _:node17810rcd4x11 , _:node17810rcd4x4 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> .
+
+_:node17810rcd4x4 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetAssembly> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetAssembly> rdfs:label "Workflow output datasetAssembly" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/5811dacb-509b-4d5c-8c26-c79aaa11d0c7/false/1> tavernaprov:content <datasetName/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetName> , <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetName> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/612d0417-75db-4d7b-8c4e-0d75e95f8f82> ;
+	prov:qualifiedGeneration _:node17810rcd4x12 , _:node17810rcd4x5 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> .
+
+_:node17810rcd4x5 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetName> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetName> rdfs:label "Workflow output datasetName" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/fec4ceed-bf38-49ea-a807-3db47e7d7d56/false/1> tavernaprov:content <datasetDate/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetDate> , <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetDate> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/7306d14b-95b4-4e58-88c9-7558a07a6e2b> ;
+	prov:qualifiedGeneration _:node17810rcd4x10 , _:node17810rcd4x6 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> .
+
+_:node17810rcd4x6 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetDate> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetDate> rdfs:label "Workflow output datasetDate" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/214ecb54-88ce-4507-90ac-6eb61c9d0ba7/false/1> tavernaprov:content <datasetSpecie/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetSpecie> , <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetSpecie> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/14c5381c-af94-4acb-a875-d9875fe7a16c> ;
+	prov:qualifiedGeneration _:node17810rcd4x13 , _:node17810rcd4x7 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> , <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> .
+
+_:node17810rcd4x7 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetSpecie> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/out/datasetSpecie> rdfs:label "Workflow output datasetSpecie" .
+
+<http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/> ;
+	rdfs:label "Processor execution GetDatasetsFromBiomartEnsemblGenes (facade9:Biomart_datasets_for_the_Ensembl_Genes_mart_service:GetDatasetsFromBiomartEnsemblGenes)" ;
+	prov:endedAtTime "2012-09-11T10:36:28.922+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17810rcd4x8 ;
+	prov:qualifiedUsage _:node17810rcd4x9 ;
+	prov:startedAtTime "2012-09-11T10:36:27.647+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> .
+
+_:node17810rcd4x8 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/> rdfs:label "Processor GetDatasetsFromBiomartEnsemblGenes" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/> .
+
+_:node17810rcd4x9 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/in/species> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/in/species> rdfs:label "GetDatasetsFromBiomartEnsemblGenes input species" .
+
+_:node17810rcd4x10 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetDate> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetDate> rdfs:label "GetDatasetsFromBiomartEnsemblGenes output datasetDate" .
+
+_:node17810rcd4x11 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetAssembly> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetAssembly> rdfs:label "GetDatasetsFromBiomartEnsemblGenes output datasetAssembly" .
+
+_:node17810rcd4x12 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetName> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetName> rdfs:label "GetDatasetsFromBiomartEnsemblGenes output datasetName" .
+
+_:node17810rcd4x13 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/43e1efd0-33fc-4954-b1eb-aba802d382a4/process/860d6e6e-82d4-433d-a4a2-04c53806effb/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetSpecie> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/755a3386-8dfe-48d1-8e94-a9cb8433fc29/workflow/Biomart_datasets_for_the_Ensembl_Genes_mart_service/processor/GetDatasetsFromBiomartEnsemblGenes/out/datasetSpecie> rdfs:label "GetDatasetsFromBiomartEnsemblGenes output datasetSpecie" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/14c5381c-af94-4acb-a875-d9875fe7a16c> tavernaprov:content <datasetSpecie/0.txt> .
+
+<datasetSpecie/0.txt> tavernaprov:sha1 "94621b382cf33df9b82dbf2235fa2d593c29a7cd" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/580025d9-e140-4fb2-a8ca-6c5a53c30767> tavernaprov:content <datasetAssembly/0.txt> .
+
+<datasetAssembly/0.txt> tavernaprov:sha1 "cf9b775c2c444520178d30c267440066c6eff6e8" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/8ddd4b2c-d2d0-4544-8b77-cc62bdd50bdd> tavernaprov:content <species/0.txt> .
+
+<species/0.txt> tavernaprov:sha1 "94621b382cf33df9b82dbf2235fa2d593c29a7cd" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/612d0417-75db-4d7b-8c4e-0d75e95f8f82> tavernaprov:content <datasetName/0.txt> .
+
+<datasetName/0.txt> tavernaprov:sha1 "0bc46cfbbb0398f224822999815e3ca435f4bd0c" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/ref/7306d14b-95b4-4e58-88c9-7558a07a6e2b> tavernaprov:content <datasetDate/0.txt> .
+
+<datasetDate/0.txt> tavernaprov:sha1 "0904f5786bd19ffad566d371094cd072e6b7a5ab" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/43e1efd0-33fc-4954-b1eb-aba802d382a4/list/81c35307-5ca5-451d-ba89-e341d92c4544/false/1> tavernaprov:content <species/> .
+
+:taverna-prov-export prov:endedAtTime "2012-09-26T11:10:01.772+01:00"^^xsd:dateTime .
