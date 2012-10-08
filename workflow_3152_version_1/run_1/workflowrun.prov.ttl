@@ -1,0 +1,134 @@
+# @base <file:/C:/Documents%20and%20Settings/agarrido/Mis%20documentos/provenance%20corpus/corpus/workflow_3152_version_1/run_1/workflowrun.prov.ttl> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scufl2: <http://ns.taverna.org.uk/2010/scufl2#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:qualifiedAssociation _:node178odhhf6x1 ;
+	prov:startedAtTime "2012-10-05T14:14:08.171+02:00"^^xsd:dateTime ;
+	prov:endedAtTime "2012-10-05T14:14:37.750+02:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> .
+
+_:node178odhhf6x1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/1c4240de-4217-4fb7-b2f5-11626f584071/> , <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of Workflow21" ;
+	prov:endedAtTime "2012-10-05T14:13:17.281+02:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node178odhhf6x2 ;
+	prov:startedAtTime "2012-10-05T14:13:14.921+02:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node178odhhf6x2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/> .
+
+<http://ns.taverna.org.uk/2011/data/f975fc2f-cb00-4421-874f-b123f8d11998/ref/a2282da2-fc5a-47e5-ad0e-106adaec7715> tavernaprov:content <Beanshell_startTimeRange.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/out/Beanshell_startTimeRange> , <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/out/startTimeRange> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> , <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> ;
+	prov:qualifiedGeneration _:node178odhhf6x3 , _:node178odhhf6x9 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> , <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> .
+
+_:node178odhhf6x3 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/out/Beanshell_startTimeRange> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/out/Beanshell_startTimeRange> rdfs:label "Workflow output Beanshell_startTimeRange" .
+
+<http://ns.taverna.org.uk/2011/data/f975fc2f-cb00-4421-874f-b123f8d11998/ref/f04e762d-9b14-441b-bf24-26de0663c9de> tavernaprov:content <Beanshell_endTimeRange.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/out/Beanshell_endTimeRange> , <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/out/endTimeRange> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> , <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> ;
+	prov:qualifiedGeneration _:node178odhhf6x10 , _:node178odhhf6x4 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> , <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> .
+
+_:node178odhhf6x4 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/out/Beanshell_endTimeRange> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/out/Beanshell_endTimeRange> rdfs:label "Workflow output Beanshell_endTimeRange" .
+
+<http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/1c4240de-4217-4fb7-b2f5-11626f584071/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> ;
+	rdfs:label "Processor execution inputTime_value (facade0:Workflow21:inputTime_value)" ;
+	prov:endedAtTime "2012-10-05T14:13:17.140+02:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node178odhhf6x5 ;
+	prov:startedAtTime "2012-10-05T14:13:15.859+02:00"^^xsd:dateTime .
+
+_:node178odhhf6x5 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/> rdfs:label "Processor inputTime_value" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/> , <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/> , <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/> .
+
+<http://ns.taverna.org.uk/2011/data/f975fc2f-cb00-4421-874f-b123f8d11998/ref/52530175-ee7c-467a-aa7e-137289540b6a> tavernaprov:content <intermediates/52/52530175-ee7c-467a-aa7e-137289540b6a.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/in/inputTime> , <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/1c4240de-4217-4fb7-b2f5-11626f584071/> ;
+	prov:qualifiedGeneration _:node178odhhf6x6 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/1c4240de-4217-4fb7-b2f5-11626f584071/> .
+
+_:node178odhhf6x6 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/1c4240de-4217-4fb7-b2f5-11626f584071/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/inputTime_value/out/value> rdfs:label "inputTime_value output value" .
+
+<http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/f975fc2f-cb00-4421-874f-b123f8d11998/ref/52530175-ee7c-467a-aa7e-137289540b6a> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/> ;
+	rdfs:label "Processor execution Beanshell (facade0:Workflow21:Beanshell)" ;
+	prov:endedAtTime "2012-10-05T14:13:17.250+02:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node178odhhf6x7 ;
+	prov:qualifiedUsage _:node178odhhf6x8 ;
+	prov:startedAtTime "2012-10-05T14:13:17.171+02:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/f975fc2f-cb00-4421-874f-b123f8d11998/ref/52530175-ee7c-467a-aa7e-137289540b6a> .
+
+_:node178odhhf6x7 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/> rdfs:label "Processor Beanshell" .
+
+_:node178odhhf6x8 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/f975fc2f-cb00-4421-874f-b123f8d11998/ref/52530175-ee7c-467a-aa7e-137289540b6a> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/in/inputTime> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/in/inputTime> rdfs:label "Beanshell input inputTime" .
+
+_:node178odhhf6x9 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/out/startTimeRange> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/out/startTimeRange> rdfs:label "Beanshell output startTimeRange" .
+
+_:node178odhhf6x10 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/f975fc2f-cb00-4421-874f-b123f8d11998/process/d0a6455a-7c47-42f8-9bc7-8515bcd445aa/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/out/endTimeRange> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9f925cdf-98b9-4034-8d25-6b44b15a4635/workflow/Workflow21/processor/Beanshell/out/endTimeRange> rdfs:label "Beanshell output endTimeRange" .
+
+<Beanshell_endTimeRange.txt> tavernaprov:sha1 "3ebd1d53c2b78cad4f943a7a33b93c5ed1ee57ff" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<intermediates/52/52530175-ee7c-467a-aa7e-137289540b6a.txt> tavernaprov:sha1 "f9ad4fd13538cb666a43de21df3222896ef87bd0" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<Beanshell_startTimeRange.txt> tavernaprov:sha1 "f729902c771bafedc01c13cf1fc87c545feac6c4" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

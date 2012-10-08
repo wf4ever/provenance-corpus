@@ -1,0 +1,784 @@
+<helio:queryResponse xmlns:helio="http://helio-vo.eu/xml/QueryService/v0.1"><VOTABLE version="1.1" xmlns="http://www.ivoa.net/xml/VOTable/v1.1">
+<RESOURCE>
+<DESCRIPTION>HFC Query Interface</DESCRIPTION>
+<INFO name="QUERY_STATUS" value="OK"/>
+<INFO name="EXECUTED_AT" value="2012-10-05 11:53:04"/>
+<INFO name="MAX_RECORD_ALLOWED" value="10000"/>
+<INFO name="QUERY_STRING">SELECT VIEW_AR_HQI.INSTITUT,VIEW_AR_HQI.CODE,VIEW_AR_HQI.VERSION,VIEW_AR_HQI.FEATURE_NAME,VIEW_AR_HQI.ENC_MET,VIEW_AR_HQI.PERSON,VIEW_AR_HQI.CONTACT,VIEW_AR_HQI.REFERENCE,VIEW_AR_HQI.OBSERVAT,VIEW_AR_HQI.INSTRUME,VIEW_AR_HQI.TELESCOP,VIEW_AR_HQI.UNITS,VIEW_AR_HQI.WAVEMIN,VIEW_AR_HQI.WAVEMAX,VIEW_AR_HQI.WAVENAME,VIEW_AR_HQI.WAVEUNIT,VIEW_AR_HQI.SPECTRAL_NAME,VIEW_AR_HQI.OBS_TYPE,VIEW_AR_HQI.DATE_OBS,VIEW_AR_HQI.DATE_END,VIEW_AR_HQI.JDINT,VIEW_AR_HQI.JDFRAC,VIEW_AR_HQI.C_ROTATION,VIEW_AR_HQI.FILENAME,VIEW_AR_HQI.URL,VIEW_AR_HQI.CDELT1,VIEW_AR_HQI.CDELT2,VIEW_AR_HQI.NAXIS1,VIEW_AR_HQI.NAXIS2,VIEW_AR_HQI.CENTER_X,VIEW_AR_HQI.CENTER_Y,VIEW_AR_HQI.R_SUN,VIEW_AR_HQI.BITPIX,VIEW_AR_HQI.BSCALE,VIEW_AR_HQI.BZERO,VIEW_AR_HQI.EXP_TIME,VIEW_AR_HQI.FILE_FORMAT,VIEW_AR_HQI.QCLK_URL,VIEW_AR_HQI.QCLK_FNAME,VIEW_AR_HQI.ID_AR,VIEW_AR_HQI.NOAA_NUMBER,VIEW_AR_HQI.FEAT_X_PIX,VIEW_AR_HQI.FEAT_Y_PIX,VIEW_AR_HQI.FEAT_X_ARCSEC,VIEW_AR_HQI.FEAT_Y_ARCSEC,VIEW_AR_HQI.FEAT_HG_LONG_DEG,VIEW_AR_HQI.FEAT_HG_LAT_DEG,VIEW_AR_HQI.FEAT_CARR_LONG_DEG,VIEW_AR_HQI.FEAT_CARR_LAT_DEG,VIEW_AR_HQI.BR_X0_PIX,VIEW_AR_HQI.BR_Y0_PIX,VIEW_AR_HQI.BR_X1_PIX,VIEW_AR_HQI.BR_Y1_PIX,VIEW_AR_HQI.BR_X2_PIX,VIEW_AR_HQI.BR_Y2_PIX,VIEW_AR_HQI.BR_X3_PIX,VIEW_AR_HQI.BR_Y3_PIX,VIEW_AR_HQI.BR_X0_ARCSEC,VIEW_AR_HQI.BR_Y0_ARCSEC,VIEW_AR_HQI.BR_X1_ARCSEC,VIEW_AR_HQI.BR_Y1_ARCSEC,VIEW_AR_HQI.BR_X2_ARCSEC,VIEW_AR_HQI.BR_Y2_ARCSEC,VIEW_AR_HQI.BR_X3_ARCSEC,VIEW_AR_HQI.BR_Y3_ARCSEC,VIEW_AR_HQI.BR_HG_LONG0_DEG,VIEW_AR_HQI.BR_HG_LAT0_DEG,VIEW_AR_HQI.BR_HG_LONG1_DEG,VIEW_AR_HQI.BR_HG_LAT1_DEG,VIEW_AR_HQI.BR_HG_LONG2_DEG,VIEW_AR_HQI.BR_HG_LAT2_DEG,VIEW_AR_HQI.BR_HG_LONG3_DEG,VIEW_AR_HQI.BR_HG_LAT3_DEG,VIEW_AR_HQI.BR_CARR_LONG0_DEG,VIEW_AR_HQI.BR_CARR_LAT0_DEG,VIEW_AR_HQI.BR_CARR_LONG1_DEG,VIEW_AR_HQI.BR_CARR_LAT1_DEG,VIEW_AR_HQI.BR_CARR_LONG2_DEG,VIEW_AR_HQI.BR_CARR_LAT2_DEG,VIEW_AR_HQI.BR_CARR_LONG3_DEG,VIEW_AR_HQI.BR_CARR_LAT3_DEG,VIEW_AR_HQI.FEAT_AREA_PIX,VIEW_AR_HQI.FEAT_AREA_DEG2,VIEW_AR_HQI.FEAT_AREA_MM2,VIEW_AR_HQI.FEAT_MAX_INT,VIEW_AR_HQI.FEAT_MIN_INT,VIEW_AR_HQI.FEAT_MEAN_INT,VIEW_AR_HQI.FEAT_MEAN2QSUN,VIEW_AR_HQI.FEAT_MIN_BZ,VIEW_AR_HQI.FEAT_MAX_BZ,VIEW_AR_HQI.FEAT_MEAN_BZ,VIEW_AR_HQI.FEAT_MEAN_GRAD,VIEW_AR_HQI.FEAT_MEDIAN_GRAD,VIEW_AR_HQI.FEAT_MAX_GRAD,VIEW_AR_HQI.FEAT_LENGTH_NL,VIEW_AR_HQI.FEAT_LENGTH_SG,VIEW_AR_HQI.CC_X_PIX,VIEW_AR_HQI.CC_Y_PIX,VIEW_AR_HQI.CC_X_ARCSEC,VIEW_AR_HQI.CC_Y_ARCSEC,VIEW_AR_HQI.CC,VIEW_AR_HQI.CC_LENGTH,VIEW_AR_HQI.SNAPSHOT FROM VIEW_AR_HQI WHERE DATE_OBS&gt;='1997-03-25T16:15:05' and DATE_OBS&lt;='1997-03-26T05:15:05' and ((BR_HG_LAT0_DEG&lt;=3.0 or BR_HG_LAT0_DEG is null)  or (BR_HG_LAT2_DEG&lt;=3.0 or BR_HG_LAT2_DEG is null)) and ((BR_HG_LAT1_DEG&gt;=3.0 or BR_HG_LAT1_DEG is null) or (BR_HG_LAT3_DEG&gt;=3.0 or BR_HG_LAT3_DEG is null)) and BR_X0_ARCSEC&lt;0   LIMIT 10000</INFO>
+<INFO name="QUERY_URL">http://voparis-helio.obspm.fr:80/hfc-hqi/HelioQueryService?&amp;WHERE=DATE_OBS&gt;='1997-03-25T16:15:05' and DATE_OBS&lt;='1997-03-26T05:15:05' and ((BR_HG_LAT0_DEG&lt;=3.0 or BR_HG_LAT0_DEG is null)  or (BR_HG_LAT2_DEG&lt;=3.0 or BR_HG_LAT2_DEG is null)) and ((BR_HG_LAT1_DEG&gt;=3.0 or BR_HG_LAT1_DEG is null) or (BR_HG_LAT3_DEG&gt;=3.0 or BR_HG_LAT3_DEG is null)) and BR_X0_ARCSEC&lt;0&amp;FROM=VIEW_AR_HQI</INFO>
+<TABLE name="hqi-VIEW_AR_HQI">
+<FIELD arraysize="*" datatype="char" name="INSTITUT" ucd="meta.curration"/>
+<FIELD arraysize="*" datatype="char" name="CODE" ucd="meta.code;meta.software"/>
+<FIELD arraysize="*" datatype="char" name="VERSION" ucd="meta.version"/>
+<FIELD arraysize="*" datatype="char" name="FEATURE_NAME" ucd="meta.id"/>
+<FIELD arraysize="*" datatype="char" name="ENC_MET" ucd="undefined"/>
+<FIELD arraysize="*" datatype="char" name="PERSON" ucd="undefined"/>
+<FIELD arraysize="*" datatype="char" name="CONTACT" ucd="meta.curration"/>
+<FIELD arraysize="*" datatype="char" name="REFERENCE" ucd="meta.ref"/>
+<FIELD arraysize="*" datatype="char" name="OBSERVAT" ucd="instr.obsty;meta.id"/>
+<FIELD arraysize="*" datatype="char" name="INSTRUME" ucd="instr;meta.id"/>
+<FIELD arraysize="*" datatype="char" name="TELESCOP" ucd="instr.tel"/>
+<FIELD arraysize="*" datatype="char" name="UNITS" ucd="meta.unit"/>
+<FIELD datatype="float" name="WAVEMIN" ucd="em.wl;stat.min"/>
+<FIELD datatype="float" name="WAVEMAX" ucd="em.wl;stat.max"/>
+<FIELD arraysize="*" datatype="char" name="WAVENAME" ucd="meta.id;em.wl"/>
+<FIELD arraysize="*" datatype="char" name="WAVEUNIT" ucd="meta.unit;em.wl"/>
+<FIELD arraysize="*" datatype="char" name="SPECTRAL_NAME" ucd="meta.id;spect"/>
+<FIELD arraysize="*" datatype="char" name="OBS_TYPE" ucd="undefined"/>
+<FIELD arraysize="*" datatype="char" name="DATE_OBS" ucd="time.start;obs" xtype="iso8601"/>
+<FIELD arraysize="*" datatype="char" name="DATE_END" ucd="time.end;obs" xtype="iso8601"/>
+<FIELD datatype="int" name="JDINT" ucd="meta.id.part;time.epoch;obs">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="JDFRAC" ucd="meta.id.part;time.epoch;obs"/>
+<FIELD datatype="int" name="C_ROTATION" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="FILENAME" ucd="meta.file"/>
+<FIELD arraysize="*" datatype="char" name="URL" ucd="meta.url"/>
+<FIELD datatype="double" name="CDELT1" ucd="undefined"/>
+<FIELD datatype="double" name="CDELT2" ucd="undefined"/>
+<FIELD datatype="int" name="NAXIS1" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="NAXIS2" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="CENTER_X" ucd="undefined"/>
+<FIELD datatype="double" name="CENTER_Y" ucd="undefined"/>
+<FIELD datatype="double" name="R_SUN" ucd="phys.size.radius"/>
+<FIELD datatype="int" name="BITPIX" ucd="meta.code">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="BSCALE" ucd="undefined"/>
+<FIELD datatype="double" name="BZERO" ucd="undefined"/>
+<FIELD datatype="float" name="EXP_TIME" ucd="time" xtype="iso8601"/>
+<FIELD arraysize="*" datatype="char" name="FILE_FORMAT" ucd="undefined"/>
+<FIELD arraysize="*" datatype="char" name="QCLK_URL" ucd="undefined"/>
+<FIELD arraysize="*" datatype="char" name="QCLK_FNAME" ucd="undefined"/>
+<FIELD datatype="int" name="ID_AR" ucd="meta.id"/>
+<FIELD datatype="int" name="NOAA_NUMBER" ucd="meta.id.cross">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="FEAT_X_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="FEAT_Y_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="FEAT_X_ARCSEC" ucd="pos.cartesian.x;pos.heliocentric"/>
+<FIELD datatype="double" name="FEAT_Y_ARCSEC" ucd="pos.cartesian.y;pos.heliocentric"/>
+<FIELD datatype="float" name="FEAT_HG_LONG_DEG" ucd="pos.heliographic;pos.bodyrc.long"/>
+<FIELD datatype="float" name="FEAT_HG_LAT_DEG" ucd="pos.heliographic;pos.bodyrc.lat"/>
+<FIELD datatype="float" name="FEAT_CARR_LONG_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_CARR_LAT_DEG" ucd="undefined"/>
+<FIELD datatype="int" name="BR_X0_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_Y0_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_X1_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_Y1_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_X2_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_Y2_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_X3_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="BR_Y3_PIX" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="BR_X0_ARCSEC" ucd="pos.cartesian.x;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_Y0_ARCSEC" ucd="pos.cartesian.y;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_X1_ARCSEC" ucd="pos.cartesian.x;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_Y1_ARCSEC" ucd="pos.cartesian.y;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_X2_ARCSEC" ucd="pos.cartesian.x;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_Y2_ARCSEC" ucd="pos.cartesian.y;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_X3_ARCSEC" ucd="pos.cartesian.x;pos.heliocentric"/>
+<FIELD datatype="double" name="BR_Y3_ARCSEC" ucd="pos.cartesian.y;pos.heliocentric"/>
+<FIELD datatype="float" name="BR_HG_LONG0_DEG" ucd="pos.heliographic;pos.bodyrc.long"/>
+<FIELD datatype="float" name="BR_HG_LAT0_DEG" ucd="pos.heliographic;pos.bodyrc.lat"/>
+<FIELD datatype="float" name="BR_HG_LONG1_DEG" ucd="pos.heliographic;pos.bodyrc.long"/>
+<FIELD datatype="float" name="BR_HG_LAT1_DEG" ucd="pos.heliographic;pos.bodyrc.lat"/>
+<FIELD datatype="float" name="BR_HG_LONG2_DEG" ucd="pos.heliographic;pos.bodyrc.long"/>
+<FIELD datatype="float" name="BR_HG_LAT2_DEG" ucd="pos.heliographic;pos.bodyrc.lat"/>
+<FIELD datatype="float" name="BR_HG_LONG3_DEG" ucd="pos.heliographic;pos.bodyrc.long"/>
+<FIELD datatype="float" name="BR_HG_LAT3_DEG" ucd="pos.heliographic;pos.bodyrc.lat"/>
+<FIELD datatype="float" name="BR_CARR_LONG0_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LAT0_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LONG1_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LAT1_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LONG2_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LAT2_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LONG3_DEG" ucd="undefined"/>
+<FIELD datatype="float" name="BR_CARR_LAT3_DEG" ucd="undefined"/>
+<FIELD datatype="int" name="FEAT_AREA_PIX" ucd="meta.number;phys.area"/>
+<FIELD datatype="float" name="FEAT_AREA_DEG2" ucd="phys.area"/>
+<FIELD datatype="float" name="FEAT_AREA_MM2" ucd="phys.area"/>
+<FIELD datatype="float" name="FEAT_MAX_INT" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_MIN_INT" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_MEAN_INT" ucd="undefined"/>
+<FIELD datatype="double" name="FEAT_MEAN2QSUN" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_MIN_BZ" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_MAX_BZ" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_MEAN_BZ" ucd="undefined"/>
+<FIELD datatype="float" name="FEAT_MEAN_GRAD" ucd="arith.grad;stat.mean"/>
+<FIELD datatype="float" name="FEAT_MEDIAN_GRAD" ucd="arith.grad;stat.median"/>
+<FIELD datatype="float" name="FEAT_MAX_GRAD" ucd="arith.grad;stat.max"/>
+<FIELD datatype="float" name="FEAT_LENGTH_NL" ucd="phys.size"/>
+<FIELD datatype="float" name="FEAT_LENGTH_SG" ucd="arith.grad;phys.size"/>
+<FIELD datatype="int" name="CC_X_PIX" ucd="undefined"/>
+<FIELD datatype="int" name="CC_Y_PIX" ucd="undefined"/>
+<FIELD datatype="double" name="CC_X_ARCSEC" ucd="pos.cartesian.x;pos.heliocentric"/>
+<FIELD datatype="double" name="CC_Y_ARCSEC" ucd="pos.cartesian.y;pos.heliocentric"/>
+<FIELD arraysize="*" datatype="char" name="CC" ucd="undefined"/>
+<FIELD datatype="int" name="CC_LENGTH" ucd="undefined">
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SNAPSHOT" ucd="undefined"/>
+<DATA>
+<TABLEDATA>
+  <TR>
+    <TD>OBSPM</TD>
+    <TD>SPOCA-AR</TD>
+    <TD>2.0</TD>
+    <TD>ACTIVE REGIONS</TD>
+    <TD>CHAINCODE</TD>
+    <TD>Xavier Bonnin</TD>
+    <TD>('xavier.bonnin@obspm.fr',)</TD>
+    <TD>doi:10.1051/0004-6361/200811416</TD>
+    <TD>SoHO</TD>
+    <TD>EIT</TD>
+    <TD>EIT</TD>
+    <TD>Counts</TD>
+    <TD>17.1</TD>
+    <TD>17.1</TD>
+    <TD>Fe IX,X</TD>
+    <TD>nm</TD>
+    <TD>Extreme ultraviolet</TD>
+    <TD>Remote-sensing</TD>
+    <TD>1997-03-25T19:18:02</TD>
+    <TD>1997-03-25T19:18:02</TD>
+    <TD>2450533</TD>
+    <TD>0.30418981472</TD>
+    <TD>1920</TD>
+    <TD>efz19970325.191802</TD>
+    <TD>http://sohodata.nascom.nasa.gov/archive/soho/private/data/processed/eit/lz/1997/03/efz19970325.191802</TD>
+    <TD>2.629</TD>
+    <TD>2.629</TD>
+    <TD>1024</TD>
+    <TD>1024</TD>
+    <TD>507.2</TD>
+    <TD>516.34</TD>
+    <TD>369.12</TD>
+    <TD>-64</TD>
+    <TD>1.0</TD>
+    <TD>0.0</TD>
+    <TD>5.595</TD>
+    <TD>fits</TD>
+    <TD>ftp://ftpbass2000.obspm.fr/temp/qlk/soho/eit/1997</TD>
+    <TD>efz19970325.191802.png</TD>
+    <TD>825614</TD>
+    <TD>-2147483648</TD>
+    <TD>205</TD>
+    <TD>606</TD>
+    <TD>-795.431284604</TD>
+    <TD>236.331028184</TD>
+    <TD>-56.261</TD>
+    <TD>10.3116</TD>
+    <TD>-19.3422</TD>
+    <TD>10.3116</TD>
+    <TD>139</TD>
+    <TD>477</TD>
+    <TD>139</TD>
+    <TD>768</TD>
+    <TD>298</TD>
+    <TD>477</TD>
+    <TD>298</TD>
+    <TD>768</TD>
+    <TD>-967.9978</TD>
+    <TD>-103.42486</TD>
+    <TD>-967.9978</TD>
+    <TD>661.61414</TD>
+    <TD>-549.9868</TD>
+    <TD>-103.42486</TD>
+    <TD>-549.9868</TD>
+    <TD>661.61414</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>-35.2365</TD>
+    <TD>-11.7328</TD>
+    <TD>-46.1607</TD>
+    <TD>38.3267</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>1.6823</TD>
+    <TD>-11.7328</TD>
+    <TD>-9.24188</TD>
+    <TD>38.3267</TD>
+    <TD>15727</TD>
+    <TD/>
+    <TD/>
+    <TD>3567.0</TD>
+    <TD>1134.0</TD>
+    <TD>1497.7</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>138</TD>
+    <TD>539</TD>
+    <TD>-970.6268</TD>
+    <TD>59.57314</TD>
+    <TD>566623565533455656656656666666545666566770132220676666666766676766566656665656566565555665665666566656656654567575666656445565670576656565565656565666566565656566665666566656656565656556656656656565655655666565565565556222234434355544566566565666666666666755655555655555555222222121222232332222322223434334434444434444443444444332100000700100113344434233443444422223455676555675456767544443444454444443321322322121122122211120111001001000010670700000077677666706445657000110700676707707010110121212766670005556700001111123344222322122001222345422312122122222221212122121200010111201112112122122122222322112117111122223333223233234554444445455556556656665644323343434221122112010001222000101007677070111121221212222207111323122121122122234411233444412344434553223434443444443445342345577754545545633566765664567666544444431211122212222222233233233233342322222122221222221222222222212112212211211222122207671122312233434323223222007000712000700010110777770777677070100010121120771111210007700000111217667666767667170001010070101711201011222221200666710007666766666766654564556677670077666667012221666666666</TD>
+    <TD>1104</TD>
+    <TD/>
+  </TR>
+  <TR>
+    <TD>OBSPM</TD>
+    <TD>SPOCA-AR</TD>
+    <TD>2.0</TD>
+    <TD>ACTIVE REGIONS</TD>
+    <TD>CHAINCODE</TD>
+    <TD>Xavier Bonnin</TD>
+    <TD>('xavier.bonnin@obspm.fr',)</TD>
+    <TD>doi:10.1051/0004-6361/200811416</TD>
+    <TD>SoHO</TD>
+    <TD>EIT</TD>
+    <TD>EIT</TD>
+    <TD>Counts</TD>
+    <TD>17.1</TD>
+    <TD>17.1</TD>
+    <TD>Fe IX,X</TD>
+    <TD>nm</TD>
+    <TD>Extreme ultraviolet</TD>
+    <TD>Remote-sensing</TD>
+    <TD>1997-03-25T19:18:02</TD>
+    <TD>1997-03-25T19:18:02</TD>
+    <TD>2450533</TD>
+    <TD>0.30418981472</TD>
+    <TD>1920</TD>
+    <TD>efz19970325.191802</TD>
+    <TD>http://sohodata.nascom.nasa.gov/archive/soho/private/data/processed/eit/lz/1997/03/efz19970325.191802</TD>
+    <TD>2.629</TD>
+    <TD>2.629</TD>
+    <TD>1024</TD>
+    <TD>1024</TD>
+    <TD>507.2</TD>
+    <TD>516.34</TD>
+    <TD>369.12</TD>
+    <TD>-64</TD>
+    <TD>1.0</TD>
+    <TD>0.0</TD>
+    <TD>5.595</TD>
+    <TD>fits</TD>
+    <TD>ftp://ftpbass2000.obspm.fr/temp/qlk/soho/eit/1997</TD>
+    <TD>efz19970325.191802.png</TD>
+    <TD>825616</TD>
+    <TD>-2147483648</TD>
+    <TD>327</TD>
+    <TD>584</TD>
+    <TD>-472.843445172</TD>
+    <TD>177.018869065</TD>
+    <TD>-29.1482</TD>
+    <TD>4.48505</TD>
+    <TD>7.7706</TD>
+    <TD>4.48505</TD>
+    <TD>278</TD>
+    <TD>549</TD>
+    <TD>278</TD>
+    <TD>644</TD>
+    <TD>383</TD>
+    <TD>549</TD>
+    <TD>383</TD>
+    <TD>644</TD>
+    <TD>-602.5668</TD>
+    <TD>85.86314</TD>
+    <TD>-602.5668</TD>
+    <TD>335.61814</TD>
+    <TD>-326.5218</TD>
+    <TD>85.86314</TD>
+    <TD>-326.5218</TD>
+    <TD>335.61814</TD>
+    <TD>-38.245</TD>
+    <TD>-0.33098</TD>
+    <TD>-39.862</TD>
+    <TD>14.9542</TD>
+    <TD>-19.59</TD>
+    <TD>-1.41506</TD>
+    <TD>-20.1901</TD>
+    <TD>13.7252</TD>
+    <TD>-1.32618</TD>
+    <TD>-0.33098</TD>
+    <TD>-2.94323</TD>
+    <TD>14.9542</TD>
+    <TD>17.3288</TD>
+    <TD>-1.41506</TD>
+    <TD>16.7287</TD>
+    <TD>13.7252</TD>
+    <TD>1401</TD>
+    <TD>23.3212</TD>
+    <TD>3.43637005E15</TD>
+    <TD>1926.0</TD>
+    <TD>1140.0</TD>
+    <TD>1358.48</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>277</TD>
+    <TD>585</TD>
+    <TD>-605.1958</TD>
+    <TD>180.50714</TD>
+    <TD>54444334343343232332212345664434454555555666566644444454555454544434321322200667010123221233233445444445553444445423321000700700001001200100110011000100670017000100001100000077012211006777700676766666667666766</TD>
+    <TD>209</TD>
+    <TD/>
+  </TR>
+  <TR>
+    <TD>OBSPM</TD>
+    <TD>SPOCA-AR</TD>
+    <TD>2.0</TD>
+    <TD>ACTIVE REGIONS</TD>
+    <TD>CHAINCODE</TD>
+    <TD>Xavier Bonnin</TD>
+    <TD>('xavier.bonnin@obspm.fr',)</TD>
+    <TD>doi:10.1051/0004-6361/200811416</TD>
+    <TD>SoHO</TD>
+    <TD>EIT</TD>
+    <TD>EIT</TD>
+    <TD>Counts</TD>
+    <TD>17.1</TD>
+    <TD>17.1</TD>
+    <TD>Fe IX,X</TD>
+    <TD>nm</TD>
+    <TD>Extreme ultraviolet</TD>
+    <TD>Remote-sensing</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>2450533</TD>
+    <TD>0.54181712959</TD>
+    <TD>1920</TD>
+    <TD>efz19970326.010013</TD>
+    <TD>http://sohodata.nascom.nasa.gov/archive/soho/private/data/processed/eit/lz/1997/03/efz19970326.010013</TD>
+    <TD>2.629</TD>
+    <TD>2.629</TD>
+    <TD>1024</TD>
+    <TD>1024</TD>
+    <TD>507.2</TD>
+    <TD>516.34</TD>
+    <TD>369.022</TD>
+    <TD>-64</TD>
+    <TD>1.0</TD>
+    <TD>0.0</TD>
+    <TD>5.595</TD>
+    <TD>fits</TD>
+    <TD>ftp://ftpbass2000.obspm.fr/temp/qlk/soho/eit/1997</TD>
+    <TD>efz19970326.010013.png</TD>
+    <TD>825642</TD>
+    <TD>-2147483648</TD>
+    <TD>158</TD>
+    <TD>519</TD>
+    <TD>-917.455098492</TD>
+    <TD>5.80813237061</TD>
+    <TD>-70.9586</TD>
+    <TD>-1.89289</TD>
+    <TD>-37.1736</TD>
+    <TD>-1.89289</TD>
+    <TD>139</TD>
+    <TD>474</TD>
+    <TD>139</TD>
+    <TD>568</TD>
+    <TD>187</TD>
+    <TD>474</TD>
+    <TD>187</TD>
+    <TD>568</TD>
+    <TD>-967.9978</TD>
+    <TD>-111.31186</TD>
+    <TD>-967.9978</TD>
+    <TD>135.81414</TD>
+    <TD>-841.8058</TD>
+    <TD>-111.31186</TD>
+    <TD>-841.8058</TD>
+    <TD>135.81414</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>-61.5526</TD>
+    <TD>-9.87896</TD>
+    <TD>-60.3602</TD>
+    <TD>4.68749</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>-27.7676</TD>
+    <TD>-9.87896</TD>
+    <TD>-26.5752</TD>
+    <TD>4.68749</TD>
+    <TD>1675</TD>
+    <TD/>
+    <TD/>
+    <TD>1773.0</TD>
+    <TD>1270.0</TD>
+    <TD>1417.19</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>138</TD>
+    <TD>538</TD>
+    <TD>-970.6268</TD>
+    <TD>56.94414</TD>
+    <TD>5666666432223555566566566565333433444344322711334222343344454455544233344344122222222121121200700776566716767701011212212212222222111233522222222223222122222222222222221110000110000676676677677766566656566455656676665666666701222226666666666565667666707676706711266666</TD>
+    <TD>268</TD>
+    <TD/>
+  </TR>
+  <TR>
+    <TD>OBSPM</TD>
+    <TD>SPOCA-AR</TD>
+    <TD>2.0</TD>
+    <TD>ACTIVE REGIONS</TD>
+    <TD>CHAINCODE</TD>
+    <TD>Xavier Bonnin</TD>
+    <TD>('xavier.bonnin@obspm.fr',)</TD>
+    <TD>doi:10.1051/0004-6361/200811416</TD>
+    <TD>SoHO</TD>
+    <TD>EIT</TD>
+    <TD>EIT</TD>
+    <TD>Counts</TD>
+    <TD>17.1</TD>
+    <TD>17.1</TD>
+    <TD>Fe IX,X</TD>
+    <TD>nm</TD>
+    <TD>Extreme ultraviolet</TD>
+    <TD>Remote-sensing</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>2450533</TD>
+    <TD>0.54181712959</TD>
+    <TD>1920</TD>
+    <TD>efz19970326.010013</TD>
+    <TD>http://sohodata.nascom.nasa.gov/archive/soho/private/data/processed/eit/lz/1997/03/efz19970326.010013</TD>
+    <TD>2.629</TD>
+    <TD>2.629</TD>
+    <TD>1024</TD>
+    <TD>1024</TD>
+    <TD>507.2</TD>
+    <TD>516.34</TD>
+    <TD>369.022</TD>
+    <TD>-64</TD>
+    <TD>1.0</TD>
+    <TD>0.0</TD>
+    <TD>5.595</TD>
+    <TD>fits</TD>
+    <TD>ftp://ftpbass2000.obspm.fr/temp/qlk/soho/eit/1997</TD>
+    <TD>efz19970326.010013.png</TD>
+    <TD>825643</TD>
+    <TD>-2147483648</TD>
+    <TD>239</TD>
+    <TD>553</TD>
+    <TD>-705.872026379</TD>
+    <TD>96.8930979468</TD>
+    <TD>-46.5348</TD>
+    <TD>1.0281</TD>
+    <TD>-12.7498</TD>
+    <TD>1.0281</TD>
+    <TD>191</TD>
+    <TD>514</TD>
+    <TD>191</TD>
+    <TD>588</TD>
+    <TD>273</TD>
+    <TD>514</TD>
+    <TD>273</TD>
+    <TD>588</TD>
+    <TD>-831.2898</TD>
+    <TD>-6.15186</TD>
+    <TD>-831.2898</TD>
+    <TD>188.39414</TD>
+    <TD>-615.7118</TD>
+    <TD>-6.15186</TD>
+    <TD>-615.7118</TD>
+    <TD>188.39414</TD>
+    <TD>-59.0089</TD>
+    <TD>-3.89363</TD>
+    <TD>-59.6969</TD>
+    <TD>7.78005</TD>
+    <TD>-39.4785</TD>
+    <TD>-5.64517</TD>
+    <TD>-39.5067</TD>
+    <TD>5.91663</TD>
+    <TD>-25.2239</TD>
+    <TD>-3.89363</TD>
+    <TD>-25.9119</TD>
+    <TD>7.78005</TD>
+    <TD>-5.69353</TD>
+    <TD>-5.64517</TD>
+    <TD>-5.72167</TD>
+    <TD>5.91663</TD>
+    <TD>3838</TD>
+    <TD>134.241</TD>
+    <TD>1.9780401E16</TD>
+    <TD>3229.0</TD>
+    <TD>1212.0</TD>
+    <TD>1570.51</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>190</TD>
+    <TD>545</TD>
+    <TD>-833.9188</TD>
+    <TD>75.34714</TD>
+    <TD>5666556664334344556665656544445555655455556564576666564443434445455434344454555444234554454334444444342221222122322233223123222222222212121221222111120112111221212111211121010010007007070067767445656443344545565771000000700000101212000067011000007767070700676707706707077767</TD>
+    <TD>274</TD>
+    <TD/>
+  </TR>
+  <TR>
+    <TD>OBSPM</TD>
+    <TD>SPOCA-AR</TD>
+    <TD>2.0</TD>
+    <TD>ACTIVE REGIONS</TD>
+    <TD>CHAINCODE</TD>
+    <TD>Xavier Bonnin</TD>
+    <TD>('xavier.bonnin@obspm.fr',)</TD>
+    <TD>doi:10.1051/0004-6361/200811416</TD>
+    <TD>SoHO</TD>
+    <TD>EIT</TD>
+    <TD>EIT</TD>
+    <TD>Counts</TD>
+    <TD>17.1</TD>
+    <TD>17.1</TD>
+    <TD>Fe IX,X</TD>
+    <TD>nm</TD>
+    <TD>Extreme ultraviolet</TD>
+    <TD>Remote-sensing</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>2450533</TD>
+    <TD>0.54181712959</TD>
+    <TD>1920</TD>
+    <TD>efz19970326.010013</TD>
+    <TD>http://sohodata.nascom.nasa.gov/archive/soho/private/data/processed/eit/lz/1997/03/efz19970326.010013</TD>
+    <TD>2.629</TD>
+    <TD>2.629</TD>
+    <TD>1024</TD>
+    <TD>1024</TD>
+    <TD>507.2</TD>
+    <TD>516.34</TD>
+    <TD>369.022</TD>
+    <TD>-64</TD>
+    <TD>1.0</TD>
+    <TD>0.0</TD>
+    <TD>5.595</TD>
+    <TD>fits</TD>
+    <TD>ftp://ftpbass2000.obspm.fr/temp/qlk/soho/eit/1997</TD>
+    <TD>efz19970326.010013.png</TD>
+    <TD>825644</TD>
+    <TD>-2147483648</TD>
+    <TD>346</TD>
+    <TD>578</TD>
+    <TD>-424.755001172</TD>
+    <TD>161.532255479</TD>
+    <TD>-25.9143</TD>
+    <TD>3.41403</TD>
+    <TD>7.87068</TD>
+    <TD>3.41403</TD>
+    <TD>290</TD>
+    <TD>547</TD>
+    <TD>290</TD>
+    <TD>622</TD>
+    <TD>408</TD>
+    <TD>547</TD>
+    <TD>408</TD>
+    <TD>622</TD>
+    <TD>-571.0188</TD>
+    <TD>80.60514</TD>
+    <TD>-571.0188</TD>
+    <TD>277.78014</TD>
+    <TD>-260.7968</TD>
+    <TD>80.60514</TD>
+    <TD>-260.7968</TD>
+    <TD>277.78014</TD>
+    <TD>-35.9265</TD>
+    <TD>-0.777571</TD>
+    <TD>-36.7346</TD>
+    <TD>11.1473</TD>
+    <TD>-15.5391</TD>
+    <TD>-1.8331</TD>
+    <TD>-15.7802</TD>
+    <TD>10.0078</TD>
+    <TD>-2.14146</TD>
+    <TD>-0.777571</TD>
+    <TD>-2.9496</TD>
+    <TD>11.1473</TD>
+    <TD>18.2459</TD>
+    <TD>-1.8331</TD>
+    <TD>18.0048</TD>
+    <TD>10.0078</TD>
+    <TD>1787</TD>
+    <TD>28.7286</TD>
+    <TD>4.2331501E15</TD>
+    <TD>1742.0</TD>
+    <TD>1104.0</TD>
+    <TD>1370.65</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>301</TD>
+    <TD>571</TD>
+    <TD>-542.0998</TD>
+    <TD>143.70114</TD>
+    <TD>5666656666533432332334444444544555456555656444434444433323322223211321010101210111111122212107000010012010076570076676567007677777666666</TD>
+    <TD>136</TD>
+    <TD/>
+  </TR>
+  <TR>
+    <TD>OBSPM</TD>
+    <TD>SPOCA-AR</TD>
+    <TD>2.0</TD>
+    <TD>ACTIVE REGIONS</TD>
+    <TD>CHAINCODE</TD>
+    <TD>Xavier Bonnin</TD>
+    <TD>('xavier.bonnin@obspm.fr',)</TD>
+    <TD>doi:10.1051/0004-6361/200811416</TD>
+    <TD>SoHO</TD>
+    <TD>EIT</TD>
+    <TD>EIT</TD>
+    <TD>Counts</TD>
+    <TD>17.1</TD>
+    <TD>17.1</TD>
+    <TD>Fe IX,X</TD>
+    <TD>nm</TD>
+    <TD>Extreme ultraviolet</TD>
+    <TD>Remote-sensing</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>1997-03-26T01:00:13</TD>
+    <TD>2450533</TD>
+    <TD>0.54181712959</TD>
+    <TD>1920</TD>
+    <TD>efz19970326.010013</TD>
+    <TD>http://sohodata.nascom.nasa.gov/archive/soho/private/data/processed/eit/lz/1997/03/efz19970326.010013</TD>
+    <TD>2.629</TD>
+    <TD>2.629</TD>
+    <TD>1024</TD>
+    <TD>1024</TD>
+    <TD>507.2</TD>
+    <TD>516.34</TD>
+    <TD>369.022</TD>
+    <TD>-64</TD>
+    <TD>1.0</TD>
+    <TD>0.0</TD>
+    <TD>5.595</TD>
+    <TD>fits</TD>
+    <TD>ftp://ftpbass2000.obspm.fr/temp/qlk/soho/eit/1997</TD>
+    <TD>efz19970326.010013.png</TD>
+    <TD>825645</TD>
+    <TD>-2147483648</TD>
+    <TD>210</TD>
+    <TD>664</TD>
+    <TD>-780.608179013</TD>
+    <TD>387.633636704</TD>
+    <TD>-58.8135</TD>
+    <TD>20.0942</TD>
+    <TD>-25.0285</TD>
+    <TD>20.0942</TD>
+    <TD>151</TD>
+    <TD>558</TD>
+    <TD>151</TD>
+    <TD>778</TD>
+    <TD>311</TD>
+    <TD>558</TD>
+    <TD>311</TD>
+    <TD>778</TD>
+    <TD>-936.4498</TD>
+    <TD>109.52414</TD>
+    <TD>-936.4498</TD>
+    <TD>687.90414</TD>
+    <TD>-515.8098</TD>
+    <TD>109.52414</TD>
+    <TD>-515.8098</TD>
+    <TD>687.90414</TD>
+    <TD>-75.4976</TD>
+    <TD>4.80419</TD>
+    <TD/>
+    <TD/>
+    <TD>-31.9998</TD>
+    <TD>0.673178</TD>
+    <TD>-44.1502</TD>
+    <TD>40.3526</TD>
+    <TD>-41.7126</TD>
+    <TD>4.80419</TD>
+    <TD/>
+    <TD/>
+    <TD>1.78517</TD>
+    <TD>0.673178</TD>
+    <TD>-10.3652</TD>
+    <TD>40.3526</TD>
+    <TD>9399</TD>
+    <TD/>
+    <TD/>
+    <TD>2224.0</TD>
+    <TD>1124.0</TD>
+    <TD>1439.53</TD>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD/>
+    <TD>150</TD>
+    <TD>594</TD>
+    <TD>-939.0788</TD>
+    <TD>204.16814</TD>
+    <TD>54445666566656665556656766676644444565556566666566666666677666566565656563345656666667766656666666666556565653556555455555565565656656565655556666656765565556555622312222234544444565655456576666566666666656566565555555555555552122222222122223232322221221221232233444444444443434434344444544565444423434454444344344444443434343223222122177012133221212121201000070000664456656770116766666676676676770700107171010112122354441221011112344223322100666766767066657666677707101111121121176666670700071012010110010133345455444520012235422322211213344422121211122212211201010000100101001221222222222322322122222221232222231012222223433343453432121213434212677070101112122212211121122221222221211212221133212000700111112223222212270700000117667071112221667667070112066677700070706700766666657634566700670</TD>
+    <TD>794</TD>
+    <TD/>
+  </TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
+</helio:queryResponse>

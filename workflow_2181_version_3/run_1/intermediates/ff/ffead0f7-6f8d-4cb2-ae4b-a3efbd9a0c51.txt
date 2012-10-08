@@ -1,0 +1,137 @@
+<helio:queryResponse xmlns:helio="http://helio-vo.eu/xml/QueryService/v0.1"><VOTABLE version="1.1" xmlns="http://www.ivoa.net/xml/VOTable/v1.1">
+<RESOURCE>
+<DESCRIPTION/>
+<INFO name="QUERY_STATUS" value="OK"/>
+<INFO name="EXECUTED_AT" value="2012-10-05 09:40:21"/>
+<INFO name="MAX_RECORD_ALLOWED" value="20000"/>
+<INFO name="QUERY_STRING">SELECT hessi_flare.hef_id,hessi_flare.time_start,hessi_flare.time_peak,hessi_flare.time_end,hessi_flare.nar,hessi_flare.x_arcsec,hessi_flare.y_arcsec,hessi_flare.radial_arcsec,hessi_flare.duration,hessi_flare.count_sec_peak,hessi_flare.total_count,hessi_flare.energy_kev,hessi_flare.flare_number FROM hessi_flare WHERE   hessi_flare.time_start&lt;='2004-01-12T10:20:02' AND hessi_flare.time_end&gt;='2004-01-12T08:50:02' AND hessi_flare.x_arcsec BETWEEN 735.345 AND 935.345 AND hessi_flare.y_arcsec BETWEEN -259.984 AND -59.983994    LIMIT 20000</INFO>
+<INFO name="QUERY_URL">http://festung1.oats.inaf.it:8080/helio-hec/HelioQueryService?&amp;WHERE=hessi_flare.time_start,/2004-01-12T10:20:02;hessi_flare.time_end,2004-01-12T08:50:02/;hessi_flare.x_arcsec,735.345/935.345;hessi_flare.y_arcsec,-259.984/-59.983994&amp;FROM=hessi_flare</INFO>
+<TABLE name="hec-hessi_flare">
+<FIELD datatype="int" name="hef_id">
+<DESCRIPTION>Event identification number (HEC internal number)</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="time_start" xtype="iso8601">
+<DESCRIPTION>Start time determined from when the flux rate in the 6-12 keV band exceeds 3*sigma above the background level calcualted on a 60s running average.</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="time_peak" xtype="iso8601">
+<DESCRIPTION>The time of the peak flux for the flare in the energy range greater than 6 keV</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="time_end" xtype="iso8601">
+<DESCRIPTION>End time determined from when the flux rate in the 6-12 keV band drops below 3*sigma of the background level calcualted on a 60s running average.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="nar">
+<DESCRIPTION>The number for the closest NOAA active region index</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="x_arcsec">
+<DESCRIPTION>Position in arcsecs from centre of the sun.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="y_arcsec">
+<DESCRIPTION>Position in arcsecs from centre of the sun.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="radial_arcsec">
+<DESCRIPTION>Radial distance in arcsecs from the centre of the Sun.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="duration">
+<DESCRIPTION>Duration of the flare in seconds</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="count_sec_peak">
+<DESCRIPTION>Peak counts/second in energy range 12-25 keV</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="total_count">
+<DESCRIPTION>Total counts in energy range 12-25 keV integrated over duration of flare summed over all subcollimators</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="energy_kev">
+<DESCRIPTION>The highest energy band in which the flare was observed.</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="flare_number">
+<DESCRIPTION>An ID number</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<DATA>
+<TABLEDATA>
+  <TR>
+    <TD>22482</TD>
+    <TD>2004-01-12T09:04:48</TD>
+    <TD>2004-01-12T09:09:50</TD>
+    <TD>2004-01-12T09:13:52</TD>
+    <TD>536</TD>
+    <TD>845.0</TD>
+    <TD>-176.0</TD>
+    <TD>863.0</TD>
+    <TD>544</TD>
+    <TD>224</TD>
+    <TD>168912</TD>
+    <TD>12</TD>
+    <TD>4011205</TD>
+  </TR>
+  <TR>
+    <TD>22483</TD>
+    <TD>2004-01-12T09:13:52</TD>
+    <TD>2004-01-12T09:15:50</TD>
+    <TD>2004-01-12T09:20:08</TD>
+    <TD>536</TD>
+    <TD>833.0</TD>
+    <TD>-185.0</TD>
+    <TD>853.0</TD>
+    <TD>376</TD>
+    <TD>76</TD>
+    <TD>88248</TD>
+    <TD>6</TD>
+    <TD>4011267</TD>
+  </TR>
+  <TR>
+    <TD>22484</TD>
+    <TD>2004-01-12T09:36:04</TD>
+    <TD>2004-01-12T09:37:18</TD>
+    <TD>2004-01-12T09:39:48</TD>
+    <TD>536</TD>
+    <TD>841.0</TD>
+    <TD>-184.0</TD>
+    <TD>860.0</TD>
+    <TD>224</TD>
+    <TD>36</TD>
+    <TD>29352</TD>
+    <TD>6</TD>
+    <TD>4011233</TD>
+  </TR>
+  <TR>
+    <TD>22485</TD>
+    <TD>2004-01-12T09:48:36</TD>
+    <TD>2004-01-12T09:50:26</TD>
+    <TD>2004-01-12T09:55:04</TD>
+    <TD>536</TD>
+    <TD>848.0</TD>
+    <TD>-187.0</TD>
+    <TD>869.0</TD>
+    <TD>388</TD>
+    <TD>160</TD>
+    <TD>143184</TD>
+    <TD>12</TD>
+    <TD>4011234</TD>
+  </TR>
+  <TR>
+    <TD>22486</TD>
+    <TD>2004-01-12T09:55:04</TD>
+    <TD>2004-01-12T09:56:50</TD>
+    <TD>2004-01-12T09:58:32</TD>
+    <TD>536</TD>
+    <TD>839.0</TD>
+    <TD>-176.0</TD>
+    <TD>857.0</TD>
+    <TD>208</TD>
+    <TD>38</TD>
+    <TD>28608</TD>
+    <TD>6</TD>
+    <TD>4011268</TD>
+  </TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
+</helio:queryResponse>

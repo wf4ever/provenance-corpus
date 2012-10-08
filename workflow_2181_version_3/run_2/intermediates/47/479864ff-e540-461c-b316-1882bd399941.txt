@@ -1,0 +1,62 @@
+<helio:queryResponse xmlns:helio="http://helio-vo.eu/xml/QueryService/v0.1"><VOTABLE version="1.1" xmlns="http://www.ivoa.net/xml/VOTable/v1.1">
+<RESOURCE>
+<DESCRIPTION/>
+<INFO name="QUERY_STATUS" value="OK"/>
+<INFO name="EXECUTED_AT" value="2012-10-05 09:46:02"/>
+<INFO name="MAX_RECORD_ALLOWED" value="20000"/>
+<INFO name="QUERY_STRING">SELECT hessi_flare.hef_id,hessi_flare.time_start,hessi_flare.time_peak,hessi_flare.time_end,hessi_flare.nar,hessi_flare.x_arcsec,hessi_flare.y_arcsec,hessi_flare.radial_arcsec,hessi_flare.duration,hessi_flare.count_sec_peak,hessi_flare.total_count,hessi_flare.energy_kev,hessi_flare.flare_number FROM hessi_flare WHERE   hessi_flare.time_start&lt;='2005-02-12T02:24:02' AND hessi_flare.time_end&gt;='2005-02-12T00:54:02' AND hessi_flare.x_arcsec BETWEEN -904.622 AND -784.622 AND hessi_flare.y_arcsec BETWEEN -147.6051 AND -27.605103    LIMIT 20000</INFO>
+<INFO name="QUERY_URL">http://festung1.oats.inaf.it:8080/helio-hec/HelioQueryService?&amp;WHERE=hessi_flare.time_start,/2005-02-12T02:24:02;hessi_flare.time_end,2005-02-12T00:54:02/;hessi_flare.x_arcsec,-904.622/-784.622;hessi_flare.y_arcsec,-147.6051/-27.605103&amp;FROM=hessi_flare</INFO>
+<TABLE name="hec-hessi_flare">
+<FIELD datatype="int" name="hef_id">
+<DESCRIPTION>Event identification number (HEC internal number)</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="time_start" xtype="iso8601">
+<DESCRIPTION>Start time determined from when the flux rate in the 6-12 keV band exceeds 3*sigma above the background level calcualted on a 60s running average.</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="time_peak" xtype="iso8601">
+<DESCRIPTION>The time of the peak flux for the flare in the energy range greater than 6 keV</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="time_end" xtype="iso8601">
+<DESCRIPTION>End time determined from when the flux rate in the 6-12 keV band drops below 3*sigma of the background level calcualted on a 60s running average.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="nar">
+<DESCRIPTION>The number for the closest NOAA active region index</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="double" name="x_arcsec">
+<DESCRIPTION>Position in arcsecs from centre of the sun.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="y_arcsec">
+<DESCRIPTION>Position in arcsecs from centre of the sun.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="radial_arcsec">
+<DESCRIPTION>Radial distance in arcsecs from the centre of the Sun.</DESCRIPTION>
+</FIELD>
+<FIELD datatype="int" name="duration">
+<DESCRIPTION>Duration of the flare in seconds</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="count_sec_peak">
+<DESCRIPTION>Peak counts/second in energy range 12-25 keV</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="total_count">
+<DESCRIPTION>Total counts in energy range 12-25 keV integrated over duration of flare summed over all subcollimators</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="energy_kev">
+<DESCRIPTION>The highest energy band in which the flare was observed.</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<FIELD datatype="int" name="flare_number">
+<DESCRIPTION>An ID number</DESCRIPTION>
+<VALUES null="-2147483648"/>
+</FIELD>
+<DATA>
+<TABLEDATA>
+</TABLEDATA>
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>
+</helio:queryResponse>
