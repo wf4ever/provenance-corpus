@@ -1,0 +1,92 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_BPEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_BIMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_FAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_OUTPUTTDT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_PEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_OUTPUTTDTPERM>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "ParenTDT_Workflow" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/GIL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              """
+<p>This is variant of the basic family-based association testing for disease traits that also incorporates parental phenotype information, the ParenTDT function in PLINK.</p>
+
+<i>Input: [PEDFile], [MAPFile]</i><br />
+<i>Output: [OutputTDT], [OutputTDTPerm]</i><br />
+<br />
+
+<ul>
+
+<li><b>CreateBinaryPEDFile:</b>  This component converts hapmap format into efficient binary format used by Plink.
+<ul>
+<li>plink --file [InputPEDFile] --make-bed --out [OutputBPEDFile]</li>
+</ul>
+<br />
+</li>
+
+<li><b>ParenTDT:</b> This is the same as a basic TDT test except the permutation output is based not on the standard TDT, but the parenTDT.
+<ul>
+<li>plink --bed [BPEDFile] --bim [BIMFile] --fam [FAMFile] --parentdt1 --out [OutputTDT]</li>
+</ul>
+<br />
+</li>
+
+</ul>
+            """ ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/ParenTDT_Workflow.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/ParenTDT_Workflow.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/ParenTDT_Workflow.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875527527>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/PARENTDT_WORKFLOW_PARENTDTNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/PARENTDT_WORKFLOW_CREATE_BINARY_PEDFILENODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/PARENTDT_WORKFLOW_MAPFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PARENTDT_WORKFLOW> .

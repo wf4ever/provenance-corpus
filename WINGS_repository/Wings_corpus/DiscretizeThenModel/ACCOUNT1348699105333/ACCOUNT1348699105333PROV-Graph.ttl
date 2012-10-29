@@ -1,0 +1,292 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.w3.org/ns/prov#hadPrimarySource>
+      a       owl:DatatypeProperty .
+
+rdf:List
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource .
+
+<http://www.w3.org/ns/prov#Entity>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+rdf:first
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:List ;
+      rdfs:subPropertyOf rdf:first .
+
+rdfs:label
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:range rdfs:Literal .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/JAVAHEAPSIZE128M>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#value>
+              "128M" .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/DISCRETIZE1348699105333>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_classIndex>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CLASSINDEX20> ;
+      <http://www.opmw.org/ontology/usedAs_inputData>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CEF7A37DE0ED4952DF560550F46AB646> ;
+      <http://www.opmw.org/ontology/usedAs_numberOfBins>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/NUMBEROFBINS0> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/NUMBEROFBINS0> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CEF7A37DE0ED4952DF560550F46AB646> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CLASSINDEX20> , <http://www.opmw.org/export/resource/Discretize/COMPONENTDISCRETIZE1348699105333> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+<http://www.w3.org/ns/prov#value>
+      a       owl:DatatypeProperty .
+
+<http://www.w3.org/ns/prov#atLocation>
+      a       owl:DatatypeProperty .
+
+rdfs:Literal
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CLASSINDEX20>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#value>
+              "20" .
+
+<http://www.opmw.org/export/resource/Agent/DANIEL>
+      a       <http://www.w3.org/ns/prov#Agent> .
+
+owl:DatatypeProperty
+      a       rdfs:Resource , rdfs:Class .
+
+rdfs:comment
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:range rdfs:Literal .
+
+<http://www.opmw.org/ontology/usedAs_classIndex>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_classIndex> .
+
+<http://www.w3.org/ns/prov#wasInfluencedBy>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasInfluencedBy> .
+
+rdfs:Datatype
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Class , rdfs:Datatype .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/DE96279C1EFD22B1FD9EABE3A8106B2A>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_outputData>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/DISCRETIZE1348699105333> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/228/cc8b52de449ae42032a06c1adcc3b44e"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/DISCRETIZE1348699105333> .
+
+rdfs:Container
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/1738ABE929CBC7328DAD0756BB503426>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_model>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/MODELER1348699105333> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/228/a5c8a3955e1360eba66965cd2bec3efa"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/MODELER1348699105333> .
+
+rdf:rest
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:List ;
+      rdfs:range rdf:List ;
+      rdfs:subPropertyOf rdf:rest .
+
+rdf:Statement
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource .
+
+rdfs:isDefinedBy
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf rdfs:isDefinedBy , rdfs:seeAlso .
+
+rdfs:seeAlso
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf rdfs:seeAlso .
+
+<http://www.opmw.org/ontology/usedAs_numberOfBins>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_numberOfBins> .
+
+rdf:object
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Statement ;
+      rdfs:subPropertyOf rdf:object .
+
+rdf:XMLLiteral
+      a       rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+<http://www.w3.org/ns/prov#Plan>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+rdf:Seq
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container , rdf:Seq .
+
+<http://www.w3.org/ns/prov#wasGeneratedBy>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/NUMBEROFBINS0>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#value>
+              "0" .
+
+rdfs:domain
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Property ;
+      rdfs:range rdfs:Class .
+
+<http://www.w3.org/ns/prov#used>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> .
+
+()    a       rdf:List , rdfs:Resource .
+
+<http://www.w3.org/ns/prov#Bundle>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+<http://www.opmw.org/export/resource/ID3Modeler/COMPONENTID3MODELER1348699105333>
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/228/ID3Modeler.zip"^^xsd:anyURI .
+
+<http://www.opmw.org/ontology/usedAs_inputData>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_inputData> .
+
+<http://www.opmw.org/ontology/usedAs_javaHeapSize>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_javaHeapSize> .
+
+rdf:Bag
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container , rdf:Bag .
+
+rdf:subject
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Statement ;
+      rdfs:subPropertyOf rdf:subject .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CEF7A37DE0ED4952DF560550F46AB646>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/228/segment-2010-05-04-111347-100.arff"^^xsd:anyURI .
+
+rdfs:range
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Property ;
+      rdfs:range rdfs:Class .
+
+rdfs:subPropertyOf
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Property ;
+      rdfs:range rdf:Property .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348699105333>
+      a       <http://www.w3.org/ns/prov#Bundle> ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/DMDomain/runs/run_228.ttl"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              <http://www.opmw.org/export/resource/Agent/SHELL> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/DISCRETIZETHENMODEL> .
+
+<http://www.opmw.org/ontology/wasGeneratedByAs_model>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> , <http://www.opmw.org/ontology/wasGeneratedByAs_model> .
+
+<http://www.w3.org/ns/prov#Agent>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+rdf:Alt
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container , rdf:Alt .
+
+rdfs:subClassOf
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdfs:Class ;
+      rdfs:range rdfs:Class .
+
+<http://www.opmw.org/export/resource/Agent/SHELL>
+      a       <http://www.w3.org/ns/prov#Agent> .
+
+rdf:type
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:range rdfs:Class .
+
+<http://www.w3.org/ns/prov#wasAttributedTo>
+      a       rdf:Property , owl:DatatypeProperty , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasAttributedTo> .
+
+<http://www.opmw.org/ontology/usedAs_trainingData>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.opmw.org/ontology/usedAs_trainingData> , <http://www.w3.org/ns/prov#used> .
+
+<http://www.w3.org/ns/prov#Activity>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+owl:Class
+      a       rdfs:Resource , rdfs:Class .
+
+<http://www.opmw.org/export/resource/Discretize/COMPONENTDISCRETIZE1348699105333>
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/228/Discretize.zip"^^xsd:anyURI .
+
+rdfs:Resource
+      a       rdfs:Resource , rdfs:Class .
+
+rdfs:Class
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource , rdfs:Class .
+
+rdf:predicate
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Statement ;
+      rdfs:subPropertyOf rdf:predicate .
+
+<http://www.opmw.org/ontology/wasGeneratedByAs_outputData>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> , <http://www.opmw.org/ontology/wasGeneratedByAs_outputData> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/MODELER1348699105333>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_classIndex>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CLASSINDEX20> ;
+      <http://www.opmw.org/ontology/usedAs_javaHeapSize>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/JAVAHEAPSIZE128M> ;
+      <http://www.opmw.org/ontology/usedAs_trainingData>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/DE96279C1EFD22B1FD9EABE3A8106B2A> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/DE96279C1EFD22B1FD9EABE3A8106B2A> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/CLASSINDEX20> , <http://www.opmw.org/export/resource/ID3Modeler/COMPONENTID3MODELER1348699105333> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/JAVAHEAPSIZE128M> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+rdf:Property
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdf:Property , rdfs:Resource .
+
+rdfs:ContainerMembershipProperty
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdf:Property , rdfs:ContainerMembershipProperty .
+
+<http://www.w3.org/ns/prov#wasAssociatedWith>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasAssociatedWith> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/DISCRETIZETHENMODEL>
+      a       <http://www.w3.org/ns/prov#Plan> ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu"^^xsd:anyURI .

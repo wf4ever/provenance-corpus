@@ -1,0 +1,174 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875291053>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_STRATOUT0>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_OUTPUTBPEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_POPULATION_STRATIFICATION_ANALYSIS>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_STRATOUT1>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_OUTPUTMDIST>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_STRATOUT3>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_OUTPUTBIMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_OUTPUTFAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_MCPARAM>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_INPUTPEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_PPCPARAM>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "Association_Test_Conditional_On_Matching" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/DANIEL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              """
+<p>This kind of association does not require the removal of outliers.  It uses the Cochran-Mantel-Haenszel (CMH) association statistic to do an association test conditional on the matching done in the population stratification step.  The clustering uses Plink's IBS clustering.</p>
+
+<i>Input: [InputPEDFile]</i><br />
+<i>Output: [OutputAAC]</i><br />
+<br />
+
+<ul>
+<li><b>CreateBinaryPEDFile:</b>  This component converts hapmap format into efficient binary format used by Plink.
+<ul>
+<li>plink --file [InputPEDFile] --make-bed --out [OutputBPEDFile]</li>
+</ul>
+<br />
+</li>
+ 
+<li><b>PopulationStratificationAnalysis:</b>  This has two parameters: [m] and [p]
+<ul>
+<li>plink --bfile [OutputBPEDFile] -- cluster --mc [MCParam] --ppc [PPCParam] --out [StratOut2]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Association analysis:</b>  This component uses the CMH association statistic.
+<ul>
+<li>plink --bfile [OutputBPEDFile] --mh --within [StratOut2] --adjust --out [OutputAAC]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Generate Visualization:</b>  This component generates an mdist file (distance matrix)
+<ul>
+<li>plink --bfile [OutputBPEDFile] --cluster --distance-matrix --out [OutputMDist]</li>
+</ul>
+<br />
+</li>
+
+<li><b>R Create Mdist Plot</b>:  This component uses the R statistical package to show a multidimensional scaling plot to view the substructure of the sample.
+<ul>
+<li>R/as.matrix/cmdscale/c/plot</li>
+</ul>
+<br />
+</li>
+
+<li><b>Visualize association:</b>  This component uses Haploview software to show a visualization of the association. (coming soon)
+<ul>
+<li>Haploview [OutputAAC] (coming soon)</li>
+</ul>
+<br />
+</li>
+</ul>
+""" ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Association_Test_Conditional_On_Matching.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Association_Test_Conditional_On_Matching.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Association_Test_Conditional_On_Matching.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_STRATOUT2>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_MISSINGNESS>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_CREATE_BINARY_PEDFILE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_ASSOCIATION_ANALYSIS>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1349304008141>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875452474>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_INPUTMAPFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_AAC>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/DataVariable/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_OUTPUTJPGFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_GENERATE_VISUALIZATION>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING_R_CREATE_MDIST_PLOT>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/ASSOCIATION_TEST_CONDITIONAL_ON_MATCHING> .

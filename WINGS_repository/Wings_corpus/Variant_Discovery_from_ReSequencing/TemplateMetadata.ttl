@@ -1,0 +1,169 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTINDELS>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_CONVERT_BWA_TO_SAM_FORMATNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTSNPFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875434468>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTSAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_BWA_HUMANGENOME_ALIGNMENTSNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_INPUTSEQUENCE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "Variant_Discovery_from_ReSequencing" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/GIL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              """
+<p>This workflow discovers variants via re-sequencing.</p>
+
+<i>Input: [InputSequence]</i><br />
+<i>Output: [OutputSNPFile], [OutputFilteredIndels]</i><br />
+<br />
+
+<ul>
+<li><b>BWA_HumanGenome_Alignments:</b> This component output Alignments to the human genome via the \"bwa\" tool
+<ul>
+<li>bwa aln -o 2 -e 10 -i 2 -k 5 -t 4 hg18.fa [InputSequence] &gt; [OutputHGAlignments]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Convert_BWA_to_SAM_Format:</b> Convert BWA to SAM Format to be used by samtools
+<ul>
+<li>bwa samse hg18.fa [OutputHGAlignments] [InputSequence] &gt; [OutputSAMFile]</li>
+</ul>
+<br />
+</li>
+
+
+<li><b>Compress_SAM_into_BAM_Format:</b> Compress the SAM data into Binary (BAM) format.
+<ul>
+<li>samtools import hg18.fa.fai [OutputSAMFile] [OutputBAMFile]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Sort_BAM_Data:</b> Sort the Binary SAM Format data 
+<ul>
+<li>samtools sort [OutputBAMFile] [OutputSortedBAMFile]</li>
+</ul>
+<br />
+</li>
+
+
+<li><b>Predict_Indels_and_Consensus:</b> Predict indels and consensus sequence
+<ul>
+<li>samtools pileup -f hg18.fa [OutputSortedBAMFile] -c &gt; [OutputIndelsAndConsensus]</li>
+</ul>
+<br />
+</li>
+
+
+<li><b>Cleanup_Indels:</b> Cleanup indels
+<ul>
+<li>samtools pileup -f hg18.fa [OutputSortedBAMFile] -c -i &gt; [OutputIndels]</li>
+</ul>
+<br />
+</li>
+
+
+<li><b>Print_SNPs:</b> Print out SNPs
+<ul>
+<li>samtools.pl varFilter -d 10 [OutputIndelsAndConsensus] &gt; [OutputSNPs]</li>
+</ul>
+<br />
+</li>
+
+
+<li><b>Print_Indels:</b> Print out Filtered Indels
+<ul>
+<li>samtools.pl varFilter -d 10 [OutputIndels] &gt; [OutputFilteredIndels]</li>
+</ul>
+<br />
+</li>
+</ul>
+        """ ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Variant_Discovery_from_ReSequencing.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Variant_Discovery_from_ReSequencing.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Variant_Discovery_from_ReSequencing.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTSORTEDBAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_CLEANUP_INDELSNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTBAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_PRINT_SNPSNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTINDELSANDCONSENSUS>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTFILTEREDINDELS>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_PREDICT_INDELS_AND_CONSENSUSNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_SORT_BAM_DATANODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_PRINT_INDELSNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/DataVariable/VARIANT_DISCOVERY_FROM_RESEQUENCING_OUTPUTHGALIGNMENTS>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/VARIANT_DISCOVERY_FROM_RESEQUENCING_COMPRESS_SAM_INTO_BAM_FORMATNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/VARIANT_DISCOVERY_FROM_RESEQUENCING> .

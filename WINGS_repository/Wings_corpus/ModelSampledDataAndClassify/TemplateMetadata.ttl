@@ -1,0 +1,82 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/MODELSAMPLEDDATAANDCLASSIFY_CLASSIFIER>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/DataVariable/MODELSAMPLEDDATAANDCLASSIFY_TRAININGDATA>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/DataVariable/MODELSAMPLEDDATAANDCLASSIFY_INPUTDATA>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/MODELSAMPLEDDATAANDCLASSIFY_RANDOMSEED>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/DataVariable/MODELSAMPLEDDATAANDCLASSIFY_MODEL>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/MODELSAMPLEDDATAANDCLASSIFY_JAVAHEAPSIZE>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/DataVariable/MODELSAMPLEDDATAANDCLASSIFY_CLASSIFICATION>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/MODELSAMPLEDDATAANDCLASSIFY_NUMBERTOSAMPLE>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/MODELSAMPLEDDATAANDCLASSIFY_RESAMPLE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348699142253>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/MODELSAMPLEDDATAANDCLASSIFY_MODELER>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348699162518>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "ModelSampledDataAndClassify" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/DANIEL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              "Please see the documentation at <a href=\"http://seagull.isi.edu/wiki/wings/Weka_Data_Mining_Domain\">http://seagull.isi.edu/wiki/wings/Weka_Data_Mining_Domain</a><br><br>" ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/DMDomain/ontology/DMDomain/ModelSampledDataAndClassify.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/DMDomain/ontology/DMDomain/ModelSampledDataAndClassify.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/DMDomain/ontology/DMDomain/ModelSampledDataAndClassify.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/ParameterVariable/MODELSAMPLEDDATAANDCLASSIFY_CLASSINDEX>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/MODELSAMPLEDDATAANDCLASSIFY> .

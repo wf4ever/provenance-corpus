@@ -1,0 +1,92 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_BIMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "TDT_Workflow" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/GIL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              """
+<p>This is basic family-based association testing for disease traits, using the TDT function in PLINK.</p>
+
+<i>Input: [PEDFile], [MAPFile]</i><br />
+<i>Output: [OutputTDT], [OutputTDTPerm]</i><br />
+<br />
+
+<ul>
+
+<li><b>CreateBinaryPEDFile:</b>  This component converts hapmap format into efficient binary format used by Plink.
+<ul>
+<li>plink --file [InputPEDFile] --make-bed --out [OutputBPEDFile]</li>
+</ul>
+<br />
+</li>
+
+<li><b>TDT:</b> Run a basic TDT analysis for family data.
+<ul>
+<li>plink --bed [BPEDFile] --bim [BIMFile] --fam [FAMFile] --tdt --out [OutputTDT]</li>
+</ul>
+<br />
+</li>
+
+</ul>
+            """ ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/TDT_Workflow.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/TDT_Workflow.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/TDT_Workflow.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875583014>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_OUTPUTTDTPERM>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_OUTPUTTDT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_FAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_PEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_MAPFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/TDT_WORKFLOW_TDTNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/DataVariable/TDT_WORKFLOW_BPEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/TDT_WORKFLOW_CREATE_BINARY_PEDFILENODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/TDT_WORKFLOW> .

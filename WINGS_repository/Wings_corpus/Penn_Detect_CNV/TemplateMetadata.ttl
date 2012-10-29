@@ -1,0 +1,130 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_ANNOTATEDCNVOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/PENN_DETECT_CNV_CONVERT_TO_PN_AND_QT_FORMATSNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/PENN_DETECT_CNV_PENN_DETECT_CNVNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_QTFORMATOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875593502>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_PNFORMATOUTPUTS>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_FINALREPORT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/PENN_DETECT_CNV_REFORMAT_PENNCNVNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_REFORMATCNVOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_ANNOTATIONFILESINPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_CNVOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_GENESFILEINPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "Penn_Detect_CNV" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/GIL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              """
+<p>This workflow uses the PennCNV CNV detection algorithm to detect CNVs</p>
+
+<i>Input: [FinalReport[]]</i><br />
+<i>Output: [CNVOutput]</i><br />
+<br />
+
+<ul>
+<li><b>Convert_to_PN_and_QT_Formats:</b> This component converts FinalReports into PennCNV and QuantiSNP format.
+<ul>
+<li>CombinedCNV.pl --convert</li>
+</ul>
+<br />
+</li>
+
+<li><b>Penn_Detect_CNV:</b> Runs the PennCNV Detection Algorithm.
+<ul>
+<li>detect_cnv.pl -test -hmm <penndir>/lib/hhall.hmm -pfb <penndir>/lib/hhall.hg18.pfb [PNFormatOutputs] -log [LogOutput] -output [CNVOutput]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Reformat_PennCNV:</b> Reformat PennCNV results to merge input format.
+<ul>
+<li>CombinedCNV.pl --pnformat [CNVOutput]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Annotate_CNV:</b> Annotate which genes are present in and around the CNVs
+<ul>
+<li>CombinedCNV.pl --annotate --make_template [GenesFileInput] [DGVFileInput] [AnnotationFilesInput]</li>
+<li>CombinedCNV.pl --annotate [FormatedOutput]</li>
+</ul>
+<br />
+</li>
+
+</ul>
+""" ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Penn_Detect_CNV.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Penn_Detect_CNV.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Penn_Detect_CNV.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/PENN_DETECT_CNV_ANNOTATE_CNVNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_DGVFILEINPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_FORMATEDOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .
+
+<http://www.opmw.org/export/resource/DataVariable/PENN_DETECT_CNV_LOGOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/PENN_DETECT_CNV> .

@@ -1,0 +1,355 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.w3.org/ns/prov#hadPrimarySource>
+      a       owl:DatatypeProperty .
+
+rdf:List
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/GETSORTEDWORDSNODE_11349497700674>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_Input1TextFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/DB9F12180B29EFA2FB39C65704884BBF> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/getSortedWords/COMPONENTGETSORTEDWORDS1349497700674> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/DB9F12180B29EFA2FB39C65704884BBF> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+<http://www.w3.org/ns/prov#Entity>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/7372E995D419DE90FB4833AE856C29F8>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordListFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/GETSORTEDWORDSNODE1349497700674> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/4e9a640ec00ae2f003f1e769bacb39ae"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/GETSORTEDWORDSNODE1349497700674> .
+
+rdf:first
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:List ;
+      rdfs:subPropertyOf rdf:first .
+
+rdfs:label
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:range rdfs:Literal .
+
+<http://www.w3.org/ns/prov#value>
+      a       owl:DatatypeProperty .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/THRESHOLD24>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#value>
+              "4" .
+
+<http://www.w3.org/ns/prov#atLocation>
+      a       owl:DatatypeProperty .
+
+rdfs:Literal
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource .
+
+<http://www.opmw.org/export/resource/Agent/DANIEL>
+      a       <http://www.w3.org/ns/prov#Agent> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/COUNTDUPLICATESNODE1349497700674>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_Input1WordListFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/7372E995D419DE90FB4833AE856C29F8> ;
+      <http://www.opmw.org/ontology/usedAs_Param1threshold>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/THRESHOLD14> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/countDuplicates/COMPONENTCOUNTDUPLICATES1349497700674> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/7372E995D419DE90FB4833AE856C29F8> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/THRESHOLD14> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+owl:DatatypeProperty
+      a       rdfs:Resource , rdfs:Class .
+
+rdfs:comment
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:range rdfs:Literal .
+
+<http://www.w3.org/ns/prov#wasInfluencedBy>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasInfluencedBy> .
+
+rdfs:Datatype
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Class , rdfs:Datatype .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/THRESHOLD14>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#value>
+              "4" .
+
+rdf:rest
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:List ;
+      rdfs:range rdf:List ;
+      rdfs:subPropertyOf rdf:rest .
+
+rdfs:Container
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container .
+
+rdf:Statement
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource .
+
+rdfs:isDefinedBy
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf rdfs:isDefinedBy , rdfs:seeAlso .
+
+rdfs:seeAlso
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf rdfs:seeAlso .
+
+<http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordListFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> , <http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordListFile> .
+
+<http://www.opmw.org/export/resource/getSortedWords/COMPONENTGETSORTEDWORDS1349497700674>
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/getSortedWords.zip"^^xsd:anyURI .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/DB9F12180B29EFA2FB39C65704884BBF>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/N4fc38140490ffafef61e0e837fd84bc8"^^xsd:anyURI .
+
+rdf:object
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Statement ;
+      rdfs:subPropertyOf rdf:object .
+
+rdf:XMLLiteral
+      a       rdfs:Resource , rdfs:Class , rdfs:Datatype .
+
+<http://www.w3.org/ns/prov#Plan>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+<http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordCountFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> , <http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordCountFile> .
+
+rdf:Seq
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container , rdf:Seq .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/COUNTDUPLICATESNODE_11349497700674>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_Input1WordListFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/00D8A0FB05644E1947A3AD203F48425B> ;
+      <http://www.opmw.org/ontology/usedAs_Param1threshold>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/THRESHOLD24> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/THRESHOLD24> , <http://www.opmw.org/export/resource/countDuplicates/COMPONENTCOUNTDUPLICATES1349497700674> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/00D8A0FB05644E1947A3AD203F48425B> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+<http://www.w3.org/ns/prov#wasGeneratedBy>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> .
+
+rdfs:domain
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Property ;
+      rdfs:range rdfs:Class .
+
+<http://www.w3.org/ns/prov#used>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> .
+
+()    a       rdf:List , rdfs:Resource .
+
+<http://www.w3.org/ns/prov#Bundle>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/SIMPLE>
+      a       <http://www.w3.org/ns/prov#Plan> ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu"^^xsd:anyURI .
+
+<http://www.opmw.org/export/resource/compare/COMPONENTCOMPARE1349497700674>
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/compare.zip"^^xsd:anyURI .
+
+<http://www.opmw.org/ontology/usedAs_Input1TextFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_Input1TextFile> .
+
+rdf:Bag
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container , rdf:Bag .
+
+<http://www.opmw.org/export/resource/Agent/CONDOR>
+      a       <http://www.w3.org/ns/prov#Agent> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/COMPARENODE1349497700674>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_Input1WordCountFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/EC5684147473AAA4CDB00A8FF043B78C> ;
+      <http://www.opmw.org/ontology/usedAs_Input2WordCountFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/5C8B60EA2E64FE13D45D27C0B73C597D> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/compare/COMPONENTCOMPARE1349497700674> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/EC5684147473AAA4CDB00A8FF043B78C> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/5C8B60EA2E64FE13D45D27C0B73C597D> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+rdf:subject
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Statement ;
+      rdfs:subPropertyOf rdf:subject .
+
+<http://www.opmw.org/ontology/usedAs_Param1threshold>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_Param1threshold> .
+
+<http://www.opmw.org/ontology/usedAs_Input1WordListFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_Input1WordListFile> .
+
+rdfs:range
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Property ;
+      rdfs:range rdfs:Class .
+
+rdfs:subPropertyOf
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Property ;
+      rdfs:range rdf:Property .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/EC5684147473AAA4CDB00A8FF043B78C>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordCountFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/COUNTDUPLICATESNODE_11349497700674> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/eab07157cad3b9057c591b498fad8598"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/COUNTDUPLICATESNODE_11349497700674> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/00D8A0FB05644E1947A3AD203F48425B>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordListFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/GETSORTEDWORDSNODE_11349497700674> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/cd26a1c579774b3fc1b600c0e3c540ea"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/GETSORTEDWORDSNODE_11349497700674> .
+
+<http://www.w3.org/ns/prov#Agent>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+rdf:Alt
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Container , rdf:Alt .
+
+<http://www.opmw.org/ontology/wasGeneratedByAs_Output1LikelihoodFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasGeneratedBy> , <http://www.opmw.org/ontology/wasGeneratedByAs_Output1LikelihoodFile> .
+
+rdfs:subClassOf
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdfs:Class ;
+      rdfs:range rdfs:Class .
+
+<http://www.opmw.org/export/resource/countDuplicates/COMPONENTCOUNTDUPLICATES1349497700674>
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/countDuplicates.zip"^^xsd:anyURI .
+
+rdf:type
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:range rdfs:Class .
+
+<http://www.w3.org/ns/prov#wasAttributedTo>
+      a       rdf:Property , owl:DatatypeProperty , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasAttributedTo> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1349497700674>
+      a       <http://www.w3.org/ns/prov#Bundle> ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/wordbags/runs/run_285.ttl"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              <http://www.opmw.org/export/resource/Agent/PEGASUS> , <http://www.opmw.org/export/resource/Agent/CONDOR> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/SIMPLE> .
+
+<http://www.opmw.org/ontology/usedAs_Input1WordCountFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.opmw.org/ontology/usedAs_Input1WordCountFile> , <http://www.w3.org/ns/prov#used> .
+
+<http://www.w3.org/ns/prov#Activity>
+      a       owl:Class , rdfs:Resource , rdfs:Class .
+
+owl:Class
+      a       rdfs:Resource , rdfs:Class .
+
+rdfs:Resource
+      a       rdfs:Resource , rdfs:Class .
+
+rdfs:Class
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdfs:Resource , rdfs:Class .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionProcess/GETSORTEDWORDSNODE1349497700674>
+      a       <http://www.w3.org/ns/prov#Activity> ;
+      <http://www.opmw.org/ontology/usedAs_Input1TextFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/9CF79E574918F7F942DEDA71AFAC4BC0> ;
+      <http://www.w3.org/ns/prov#used>
+              <http://www.opmw.org/export/resource/getSortedWords/COMPONENTGETSORTEDWORDS1349497700674> , <http://www.opmw.org/export/resource/WorkflowExecutionArtifact/9CF79E574918F7F942DEDA71AFAC4BC0> ;
+      <http://www.w3.org/ns/prov#wasAssociatedWith>
+              <http://www.opmw.org/export/resource/Agent/DANIEL> .
+
+rdf:predicate
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:domain rdf:Statement ;
+      rdfs:subPropertyOf rdf:predicate .
+
+rdf:Property
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdf:Property , rdfs:Resource .
+
+<http://www.opmw.org/ontology/usedAs_Input2WordCountFile>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#used> , <http://www.opmw.org/ontology/usedAs_Input2WordCountFile> .
+
+rdfs:ContainerMembershipProperty
+      a       rdfs:Resource , rdfs:Class ;
+      rdfs:subClassOf rdf:Property , rdfs:ContainerMembershipProperty .
+
+<http://www.opmw.org/export/resource/Agent/PEGASUS>
+      a       <http://www.w3.org/ns/prov#Agent> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/7193E9D5379FD3A6AC68EFAFEBBCBF82>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_Output1LikelihoodFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/COMPARENODE1349497700674> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/fcf7f4eb06b4c2df8045cb1aa4ea8104"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/COMPARENODE1349497700674> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/5C8B60EA2E64FE13D45D27C0B73C597D>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.opmw.org/ontology/wasGeneratedByAs_Output1WordCountFile>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/COUNTDUPLICATESNODE1349497700674> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/f5a5a0a3a8c21ef8ae5d7ed435dd15af"^^xsd:anyURI ;
+      <http://www.w3.org/ns/prov#wasGeneratedBy>
+              <http://www.opmw.org/export/resource/WorkflowExecutionProcess/COUNTDUPLICATESNODE1349497700674> .
+
+<http://www.w3.org/ns/prov#wasAssociatedWith>
+      a       rdf:Property , rdfs:Resource ;
+      rdfs:subPropertyOf <http://www.w3.org/ns/prov#wasAssociatedWith> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionArtifact/9CF79E574918F7F942DEDA71AFAC4BC0>
+      a       <http://www.w3.org/ns/prov#Entity> ;
+      <http://www.w3.org/ns/prov#atLocation>
+              "http://www.opmw.org/datasets/resource/2/285/N4bd15b41f1d2ec494bb1a71c50729f1d"^^xsd:anyURI .

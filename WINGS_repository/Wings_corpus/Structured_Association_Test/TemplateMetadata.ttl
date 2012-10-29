@@ -1,0 +1,122 @@
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/STRUCTURED_ASSOCIATION_TEST_CONVERT_TO_STRUCTURE_FORMATNODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_BPEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1349304039182>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST>
+      a       "http://www.w3.org/ns/prov#Plan" , "http://www.opmw.org/ontology/WorkflowTemplate" ;
+      rdfs:label "Structured_Association_Test" ;
+      <http://purl.org/dc/elements/1.1/rights>
+              "http://creativecommons.org/licenses/by-sa/3.0/" ;
+      <http://purl.org/dc/terms/contributor>
+              "http://www.opmw.org/export/resource/Agent/DANIEL" ;
+      <http://www.opmw.org/ontology/createdInWorkflowSystem>
+              "http://wings.isi.edu" ;
+      <http://www.opmw.org/ontology/hasDocumentation>
+              """
+<p>This workflow converts Pedigree Data to Structure format, and then runs STRUCTURE on it.</p>
+
+<i>Input: [PEDFile], [MAPFile]</i><br />
+<i>Output: [StructureOutput]</i><br />
+<br />
+
+<ul>
+
+<li><b>CreateBinaryPEDFile:</b>  This component converts hapmap format into efficient binary format used by Plink.
+<ul>
+<li>plink --file [InputPEDFile] --make-bed --out [OutputBPEDFile]</li>
+</ul>
+<br />
+</li>
+
+<li><b>Convert_to_Structure_Format:</b> Convert Binary PED data to Structure Input
+<ul>
+<li>plink --bed [BPEDFile] --bim [BIMFile] --fam [FAMFile] --recode-structure --out [OutputStructureFormat]</li>
+<li>By running the above command, we figure out the NUMLOCI, and NUMINDS (number of individuals) parameters for structure and create the \"mainparams\" file from a skeletal file:
+<ul><li>
+sed \"s/XXNUMLOCIXX/$NUMLOCI/;s/XXNUMINDSXX/$NUMINDS/\" skeletal_mainparams > [OutputStructureParams]</li>
+</li></ul>
+</ul>
+<br />
+</li>
+
+
+<li><b>Structure:</b> Run STRUCTURE.
+<ul>
+<li>structure -i [OutputStructureFormat] -m [OutputStructureParams] -e extraparams -o [StructureOutput] -K [MaxPopulation]
+</ul>
+<br />
+</li>
+
+</ul>
+""" ;
+      <http://www.opmw.org/ontology/hasNativeSystemTemplate>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Structured_Association_Test.owl" ;
+      <http://www.opmw.org/ontology/hasTemplateDiagram>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Structured_Association_Test.owl.png" ;
+      <http://www.opmw.org/ontology/versionNumber>
+              "2" ;
+      <http://www.w3.org/ns/prov#hadPrimarySource>
+              "http://wind.isi.edu/marbles/assets/components/workflow_portal/users/2/genomics/ontology/genomics/Structured_Association_Test.owl" ;
+      <http://www.w3.org/ns/prov#wasAttributedTo>
+              "http://wings.isi.edu" .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_STRUCTUREOUTPUT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/WorkflowExecutionAccount/ACCOUNT1348875457262>
+      <http://www.opmw.org/ontology/correspondsToTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> ;
+      <http://www.w3.org/ns/prov#wasInfluencedBy>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_BIMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/STRUCTURED_ASSOCIATION_TEST_STRUCTURENODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_FAMFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/WorkflowTemplateProcess/STRUCTURED_ASSOCIATION_TEST_CREATE_BINARY_PEDFILENODE>
+      <http://www.opmw.org/ontology/isStepOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_OUTPUTSTRUCTUREPARAMS>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/ParameterVariable/STRUCTURED_ASSOCIATION_TEST_MAXPOPULATION>
+      <http://www.opmw.org/ontology/isParameterOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_OUTPUTSTRUCTUREFORMAT>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_MAPFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
+
+<http://www.opmw.org/export/resource/DataVariable/STRUCTURED_ASSOCIATION_TEST_PEDFILE>
+      <http://www.opmw.org/ontology/isVariableOfTemplate>
+              <http://www.opmw.org/export/resource/WorkflowTemplate/STRUCTURED_ASSOCIATION_TEST> .
