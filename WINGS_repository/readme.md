@@ -2,7 +2,7 @@ Provenance Corpus (WINGS)
 =================
 
 This is the WINGS Provenance corpus. The corpus is a partial snapshot taken from the 
-WINGS endpoint(http://wind.isi.edu:8890/sparql) the 29-10-2012. The corpus is 
+WINGS endpoint(http://opmw.org/sparql) the 29-10-2012. The corpus is 
 [maintained at GitHub]. For more information, read about the 
 [Provenance corpus in the Wf4Ever wiki](http://www.wf4ever-project.org/wiki/display/docs/Provenance+corpus).
 
@@ -43,7 +43,7 @@ Do you want more traces? Check the endpoint!
 ---------
 Since this is a snapshot of the repository, new traces may have been added.
 Check them out!
-Go to http://wind.isi.edu:8890/sparql
+Go to http://opmw.org/sparql
 and try this query: 
 select distinct ?template where {?template a <http://www.opmw.org/ontology/WorkflowTemplate>}
 
