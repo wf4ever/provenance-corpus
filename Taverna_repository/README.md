@@ -8,7 +8,7 @@ wiki](http://www.wf4ever-project.org/wiki/display/docs/Provenance+corpus).
 
 Each of the folders represent a [Taverna](http://www.taverna.org.uk/) 
 workflow from [myExperiment](http://www.myexperiment.org/). The folders
-are called for instance `2759-v2` representing version _2_ of workflow
+are called for instance `workflow_2759-version_2` representing version _2_ of workflow
 _2759_on myExperiment - ie.
 http://www.myexperiment.org/workflows/2759/versions/2
 
