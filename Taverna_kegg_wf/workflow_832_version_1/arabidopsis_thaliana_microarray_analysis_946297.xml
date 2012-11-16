@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:D3NM0VIZOZ0" author="Paul Fisher" title="Arabidopsis thaliana Microarray Analysis">This workflow searches for genes which are found to be differentially expressed in a microarray study using Arabidopsis thaliana. The workflow requires an input of a list of differentially expressed AffyMetrix Probeset identifiers. Data is then extracted from BioMart to annotate each of the genes. The UniProt identifiers are then sent to KEGG to obtain KEGG gene identifiers. The KEGG gene identifiers are then used to searcg for pathways in the KEGG pathway database.</s:workflowdescription>
+  <s:processor name="remove_pathway_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="kegg_pathway_release" boring="true">
+    <s:stringconstant>kegg pathway</s:stringconstant>
+  </s:processor>
+  <s:processor name="merge_pathway_list_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_kegg_references">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_gene_desc">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="split_for_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="merge_uniprot_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_duplicate_kegg_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_and_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_and_pathways_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_and_pathways_3">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_list_1">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_desc">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="regex_2" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="remove_uniprot_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="split_gene_ids">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split("\t");
+	if (trimmedSplit.length &gt; 2)
+	{
+	    nonEmpty.add(trimmedSplit[1].trim());	
+	}
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="add_uniprot_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "uniprot:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_nulls_3">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="gene_descriptions">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="binfo">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>binfo</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Get_pathways">
+    <s:description>This workflow removes any null values from a list of strings</s:description>
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="Paul Fisher / Jun Zhao" title="Remove null values">This workflow removes any null values from a list of strings</s:workflowdescription>
+        <s:processor name="regex" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="Merge_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="Merge_gene_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="split_by_regex">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Merge_pathway_desc">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="concat_ids">
+          <s:beanshell>
+            <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\t");
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="concat_gene_pathway_ids">
+          <s:beanshell>
+            <s:scriptvalue>String pathway_id_input = pathway_ids.trim();
+String gene_id_input = gene_id.trim();
+
+String output = "";
+
+output = gene_id_input + "\t" + pathway_id_input;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">pathway_ids</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_id</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="lister">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://phoebus.cs.man.ac.uk:8081/axis/EnsemblListner.jws?wsdl</s:wsdl>
+            <s:operation>lister</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="get_pathways_by_genes1">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_pathways_by_genes</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="pathway_desc">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>btit</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="gene_ids" sink="split_by_regex:string" />
+        <s:link source="Merge_pathways:concatenated" sink="concat_ids:input" />
+        <s:link source="Merge_pathways:concatenated" sink="pathway_desc:string" />
+        <s:link source="concat_gene_pathway_ids:output" sink="Merge_gene_pathways:stringlist" />
+        <s:link source="concat_ids:output" sink="concat_gene_pathway_ids:pathway_ids" />
+        <s:link source="get_pathways_by_genes1:return" sink="Merge_pathways:stringlist" />
+        <s:link source="lister:listerReturn" sink="concat_gene_pathway_ids:gene_id" />
+        <s:link source="lister:listerReturn" sink="get_pathways_by_genes1:genes_id_list" />
+        <s:link source="pathway_desc:return" sink="Merge_pathway_desc:stringlist" />
+        <s:link source="regex:value" sink="split_by_regex:regex" />
+        <s:link source="split_by_regex:split" sink="lister:file" />
+        <s:link source="Merge_gene_pathways:concatenated" sink="pathway_genes" />
+        <s:link source="Merge_pathway_desc:concatenated" sink="pathway_desc" />
+        <s:link source="Merge_pathways:concatenated" sink="pathway_ids" />
+        <s:source name="gene_ids" />
+        <s:sink name="pathway_genes" />
+        <s:sink name="pathway_desc" />
+        <s:sink name="pathway_ids" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="athaliana_microarray">
+    <s:description>Arabidopsis thaliana genes</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Arabidopsis thaliana genes" name="athaliana_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2009-03-23 16:42:54">
+          <biomart:MartURLLocation database="ensembl_mart_52" default="1" displayName="GRAMENE 29 GENES (CSHL US)" host="dev.gramene.org" includeDatasets="" martUser="" name="ENSEMBL_MART_ENSEMBL" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="1" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" uniqueRows="0" softwareVersion="0.7" requestId="taverna">
+          <biomart:Dataset name="athaliana_gene_ensembl">
+            <biomart:Attribute name="ensembl_gene_id" />
+            <biomart:Filter name="affy_ath1" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="athaliana_gene_ensembl">
+    <s:description>Arabidopsis thaliana genes</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Arabidopsis thaliana genes" name="athaliana_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2009-03-23 16:42:54">
+          <biomart:MartURLLocation database="ensembl_mart_52" default="1" displayName="GRAMENE 29 GENES (CSHL US)" host="dev.gramene.org" includeDatasets="" martUser="" name="ENSEMBL_MART_ENSEMBL" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="1" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" uniqueRows="0" softwareVersion="0.7" requestId="taverna">
+          <biomart:Dataset name="athaliana_gene_ensembl">
+            <biomart:Attribute name="uniprot_swissprot" />
+            <biomart:Filter name="ensembl_gene_id" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="merge_pathway_descriptions">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="split_pathway_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="remove_duplicate_pathway_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:link source="Get_pathways:pathway_desc" sink="merge_pathway_descriptions:stringlist" />
+  <s:link source="Get_pathways:pathway_genes" sink="merge_genes_and_pathways:stringlist" />
+  <s:link source="Get_pathways:pathway_ids" sink="merge_pathway_list_1:stringlist" />
+  <s:link source="Kegg_gene_ids:return" sink="merge_kegg_references:stringlist" />
+  <s:link source="Kegg_gene_ids:return" sink="split_gene_ids:input" />
+  <s:link source="add_uniprot_to_string:output" sink="Kegg_gene_ids:string" />
+  <s:link source="athaliana_gene_ensembl:athaliana_gene_ensembl.uniprot_swissprot" sink="remove_uniprot_duplicates:stringlist" />
+  <s:link source="athaliana_microarray:athaliana_gene_ensembl.ensembl_gene_id" sink="athaliana_gene_ensembl:athaliana_gene_ensembl.ensembl_gene_id_filter" />
+  <s:link source="differentially_expressed_probesets" sink="athaliana_microarray:athaliana_gene_ensembl.affy_ath1_filter" />
+  <s:link source="gene_descriptions:return" sink="merge_gene_desc:stringlist" />
+  <s:link source="kegg_pathway_release:value" sink="binfo:db" />
+  <s:link source="merge_gene_desc:concatenated" sink="remove_nulls_3:input" />
+  <s:link source="merge_genes_and_pathways:concatenated" sink="merge_genes_and_pathways_2:stringlist" />
+  <s:link source="merge_genes_and_pathways_2:concatenated" sink="merge_genes_and_pathways_3:stringlist" />
+  <s:link source="merge_pathway_desc:concatenated" sink="remove_pathway_nulls:input" />
+  <s:link source="merge_pathway_descriptions:concatenated" sink="split_pathway_duplicates:string" />
+  <s:link source="merge_pathway_list_1:concatenated" sink="remove_duplicate_pathway_ids:stringlist" />
+  <s:link source="regex_2:value" sink="split_pathway_duplicates:regex" />
+  <s:link source="remove_duplicate_pathway_ids:strippedlist" sink="merge_pathway_list_2:stringlist" />
+  <s:link source="split_pathway_duplicates:split" sink="remove_pathway_duplicates:stringlist" />
+  <s:link source="binfo:return" sink="kegg_pathway_release" />
+  <s:link source="merge_genes_and_pathways_3:concatenated" sink="merged_pathways" />
+  <s:link source="merge_kegg_references:concatenated" sink="kegg_external_gene_reference" />
+  <s:link source="merge_pathway_list_2:concatenated" sink="remove_pathway_nulls_2:input" />
+  <s:link source="merge_uniprot_ids:concatenated" sink="remove_nulls:input" />
+  <s:link source="regex_2:value" sink="split_for_duplicates:regex" />
+  <s:link source="remove_duplicate_kegg_genes:strippedlist" sink="Get_pathways:gene_ids" />
+  <s:link source="remove_duplicate_kegg_genes:strippedlist" sink="gene_descriptions:string" />
+  <s:link source="remove_nulls:output" sink="add_uniprot_to_string:input" />
+  <s:link source="remove_nulls_3:output" sink="gene_descriptions" />
+  <s:link source="remove_pathway_duplicates:strippedlist" sink="merge_pathway_desc:stringlist" />
+  <s:link source="remove_pathway_nulls:output" sink="pathway_descriptions" />
+  <s:link source="remove_pathway_nulls_2:output" sink="pathway_ids" />
+  <s:link source="remove_uniprot_duplicates:strippedlist" sink="merge_uniprot_ids:stringlist" />
+  <s:link source="split_for_duplicates:split" sink="remove_duplicate_kegg_genes:stringlist" />
+  <s:link source="split_gene_ids:output" sink="split_for_duplicates:string" />
+  <s:source name="differentially_expressed_probesets">
+    <s:metadata>
+      <s:description>This port requires a list of differentially expressed probeset identifiers from the affymetrix ATH1 microarray chip</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="merged_pathways" />
+  <s:sink name="gene_descriptions" />
+  <s:sink name="pathway_descriptions" />
+  <s:sink name="kegg_pathway_release" />
+  <s:sink name="kegg_external_gene_reference" />
+  <s:sink name="pathway_ids" />
+</s:scufl>
+

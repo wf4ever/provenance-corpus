@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:D3NM0VIZOZ0" author="Paul Fisher" title="Pathways and Gene annotations for QTL region">This workflow searches for genes which reside in a QTL (Quantitative Trait Loci) region in the Pig, Sus scrofa. The workflow requires an input of: a chromosome name or number; a QTL start base pair position; QTL end base pair position. Data is then extracted from BioMart to annotate each of the genes found in this region. The Entrez and UniProt identifiers are then sent to KEGG to obtain KEGG gene identifiers. The KEGG gene identifiers are then used to searcg for pathways in the KEGG pathway database.</s:workflowdescription>
+  <s:processor name="regex_2" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="kegg_pathway_release" boring="true">
+    <s:stringconstant>kegg pathway</s:stringconstant>
+  </s:processor>
+  <s:processor name="remove_uniprot_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_and_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_pathway_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="remove_duplicate_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="merge_reports">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_duplicate_kegg_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="remove_entrez_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_desc">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_and_pathways_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_patwhay_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_and_pathways_3">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_kegg_references">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_list_1">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="split_for_duplicate_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="merge_gene_desc">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_uniprot_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_list_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_entrez_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="concat_kegg_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+  </s:processor>
+  <s:processor name="split_for_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="remove_nulls_3">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="add_uniprot_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "uniprot:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_Nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="split_gene_ids">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split("\t");
+	if (trimmedSplit.length &gt; 2)
+	{
+	    nonEmpty.add(trimmedSplit[1].trim());	
+	}
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="add_ncbi_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "ncbi-geneid:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="REMOVE_NULLS_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="flatten_pathway_files">
+    <s:description>This service flattens a list of KEGG output files to provide a list of KEGG pathways names and their associated gene names</s:description>
+    <s:soaplabwsdl>http://phoebus.cs.man.ac.uk:1977/axis/services/qtl_analysis.flatten_pathway_files</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="create_report">
+    <s:beanshell>
+      <s:scriptvalue>result = ensemblGene_Id + "," + entrezGeneId + "," + externalGeneId + "," + chromoName + "," + geneStart + "," + geneEnd + "," + ensemblTranscriptId + "," + uniprotAcc;</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">ensemblGene_Id</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">entrezGeneId</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">externalGeneId</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">chromoName</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">geneStart</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">geneEnd</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">ensemblTranscriptId</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">uniprotAcc</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">result</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="ensemblGene_Id" />
+        <i:iterator name="entrezGeneId" />
+        <i:iterator name="externalGeneId" />
+        <i:iterator name="chromoName" />
+        <i:iterator name="geneStart" />
+        <i:iterator name="geneEnd" />
+        <i:iterator name="ensemblTranscriptId" />
+        <i:iterator name="uniprotAcc" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="pathway_descriptions">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="gene_descriptions">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="binfo">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>binfo</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids_2">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Get_pathways">
+    <s:description>This workflow removes any null values from a list of strings</s:description>
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="Paul Fisher / Jun Zhao" title="Remove null values">This workflow removes any null values from a list of strings</s:workflowdescription>
+        <s:processor name="regex" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="Merge_gene_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="Merge_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="split_by_regex">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="concat_gene_pathway_ids">
+          <s:beanshell>
+            <s:scriptvalue>String pathway_id_input = pathway_ids.trim();
+String gene_id_input = gene_id.trim();
+
+String output = "";
+
+output = gene_id_input + "\t" + pathway_id_input;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">pathway_ids</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_id</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="concat_ids">
+          <s:beanshell>
+            <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\t");
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="get_pathways_by_genes1">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_pathways_by_genes</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="lister">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://phoebus.cs.man.ac.uk:8081/axis/EnsemblListner.jws?wsdl</s:wsdl>
+            <s:operation>lister</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="gene_ids" sink="split_by_regex:string" />
+        <s:link source="Merge_gene_pathways:concatenated" sink="pathway_genes" />
+        <s:link source="Merge_pathways:concatenated" sink="concat_ids:input" />
+        <s:link source="Merge_pathways:concatenated" sink="pathway_ids" />
+        <s:link source="concat_gene_pathway_ids:output" sink="Merge_gene_pathways:stringlist" />
+        <s:link source="concat_ids:output" sink="concat_gene_pathway_ids:pathway_ids" />
+        <s:link source="get_pathways_by_genes1:return" sink="Merge_pathways:stringlist" />
+        <s:link source="lister:listerReturn" sink="concat_gene_pathway_ids:gene_id" />
+        <s:link source="lister:listerReturn" sink="get_pathways_by_genes1:genes_id_list" />
+        <s:link source="regex:value" sink="split_by_regex:regex" />
+        <s:link source="split_by_regex:split" sink="lister:file" />
+        <s:source name="gene_ids" />
+        <s:sink name="pathway_genes" />
+        <s:sink name="pathway_ids" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="genes_in_qtl">
+    <s:description>Sus scrofa genes (Sscrofa9)</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Sus scrofa genes (Sscrofa9)" name="sscrofa_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2009-09-23 12:11:10">
+          <biomart:MartURLLocation database="ensembl_mart_56" default="1" displayName="ENSEMBL 56 GENES (SANGER UK)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" uniqueRows="0" softwareVersion="0.7" requestId="taverna">
+          <biomart:Dataset name="sscrofa_gene_ensembl">
+            <biomart:Attribute name="ensembl_gene_id" />
+            <biomart:Filter name="chromosome_name" value="1" />
+            <biomart:Filter name="end" value="10000000" />
+            <biomart:Filter name="start" value="1" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="sscrofa_gene_ensembl">
+    <s:description>Sus scrofa genes (Sscrofa9)</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Sus scrofa genes (Sscrofa9)" name="sscrofa_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2009-09-23 12:11:10">
+          <biomart:MartURLLocation database="ensembl_mart_56" default="1" displayName="ENSEMBL 56 GENES (SANGER UK)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" uniqueRows="0" softwareVersion="0.7" requestId="taverna">
+          <biomart:Dataset name="sscrofa_gene_ensembl">
+            <biomart:Attribute name="ensembl_gene_id" />
+            <biomart:Attribute name="ensembl_transcript_id" />
+            <biomart:Attribute name="chromosome_name" />
+            <biomart:Attribute name="start_position" />
+            <biomart:Attribute name="external_gene_id" />
+            <biomart:Attribute name="entrezgene" />
+            <biomart:Attribute name="uniprot_swissprot_accession" />
+            <biomart:Attribute name="end_position" />
+            <biomart:Filter name="ensembl_gene_id" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:link source="Get_pathways:pathway_genes" sink="merge_genes_and_pathways:stringlist" />
+  <s:link source="Get_pathways:pathway_ids" sink="merge_pathway_list_1:stringlist" />
+  <s:link source="Kegg_gene_ids:return" sink="concat_kegg_genes:string1" />
+  <s:link source="Kegg_gene_ids_2:return" sink="concat_kegg_genes:string2" />
+  <s:link source="REMOVE_NULLS_2:output" sink="add_uniprot_to_string:input" />
+  <s:link source="add_ncbi_to_string:output" sink="Kegg_gene_ids_2:string" />
+  <s:link source="add_uniprot_to_string:output" sink="Kegg_gene_ids:string" />
+  <s:link source="chromosome_name" sink="genes_in_qtl:sscrofa_gene_ensembl.chromosome_name_filter" />
+  <s:link source="concat_kegg_genes:output" sink="merge_kegg_references:stringlist" />
+  <s:link source="concat_kegg_genes:output" sink="split_gene_ids:input" />
+  <s:link source="create_report:result" sink="merge_reports:stringlist" />
+  <s:link source="end_position" sink="genes_in_qtl:sscrofa_gene_ensembl.end_filter" />
+  <s:link source="gene_descriptions:return" sink="merge_gene_desc:stringlist" />
+  <s:link source="genes_in_qtl:sscrofa_gene_ensembl.ensembl_gene_id" sink="sscrofa_gene_ensembl:sscrofa_gene_ensembl.ensembl_gene_id_filter" />
+  <s:link source="kegg_pathway_release:value" sink="binfo:db" />
+  <s:link source="merge_entrez_genes:concatenated" sink="remove_Nulls:input" />
+  <s:link source="merge_gene_desc:concatenated" sink="remove_nulls_3:input" />
+  <s:link source="merge_genes_and_pathways:concatenated" sink="merge_genes_and_pathways_2:stringlist" />
+  <s:link source="merge_genes_and_pathways_2:concatenated" sink="merge_genes_and_pathways_3:stringlist" />
+  <s:link source="merge_genes_and_pathways_3:concatenated" sink="flatten_pathway_files:merged_pathways_direct_data" />
+  <s:link source="merge_pathway_desc:concatenated" sink="remove_pathway_nulls:input" />
+  <s:link source="merge_pathway_list_1:concatenated" sink="merge_pathway_list_2:stringlist" />
+  <s:link source="merge_pathway_list_2:concatenated" sink="split_for_duplicate_pathways:string" />
+  <s:link source="merge_patwhay_ids:concatenated" sink="remove_pathway_nulls_2:input" />
+  <s:link source="merge_uniprot_ids:concatenated" sink="REMOVE_NULLS_2:input" />
+  <s:link source="pathway_descriptions:return" sink="remove_pathway_duplicates:stringlist" />
+  <s:link source="regex_2:value" sink="split_for_duplicate_pathways:regex" />
+  <s:link source="regex_2:value" sink="split_for_duplicates:regex" />
+  <s:link source="remove_Nulls:output" sink="add_ncbi_to_string:input" />
+  <s:link source="remove_duplicate_ids:strippedlist" sink="merge_patwhay_ids:stringlist" />
+  <s:link source="remove_duplicate_ids:strippedlist" sink="pathway_descriptions:string" />
+  <s:link source="remove_duplicate_kegg_genes:strippedlist" sink="Get_pathways:gene_ids" />
+  <s:link source="remove_duplicate_kegg_genes:strippedlist" sink="gene_descriptions:string" />
+  <s:link source="start_position" sink="genes_in_qtl:sscrofa_gene_ensembl.start_filter" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.chromosome_name" sink="create_report:chromoName" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.end_position" sink="create_report:geneEnd" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.ensembl_gene_id" sink="create_report:ensemblGene_Id" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.ensembl_transcript_id" sink="create_report:ensemblTranscriptId" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.entrezgene" sink="create_report:entrezGeneId" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.entrezgene" sink="remove_entrez_duplicates:stringlist" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.external_gene_id" sink="create_report:externalGeneId" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.start_position" sink="create_report:geneStart" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.uniprot_swissprot_accession" sink="create_report:uniprotAcc" />
+  <s:link source="sscrofa_gene_ensembl:sscrofa_gene_ensembl.uniprot_swissprot_accession" sink="remove_uniprot_duplicates:stringlist" />
+  <s:link source="binfo:return" sink="kegg_pathway_release" />
+  <s:link source="flatten_pathway_files:output" sink="genes_pathways" />
+  <s:link source="merge_genes_and_pathways_3:concatenated" sink="merged_pathways" />
+  <s:link source="merge_kegg_references:concatenated" sink="kegg_external_gene_reference" />
+  <s:link source="merge_reports:concatenated" sink="report" />
+  <s:link source="remove_entrez_duplicates:strippedlist" sink="merge_entrez_genes:stringlist" />
+  <s:link source="remove_nulls_3:output" sink="flatten_pathway_files:gene_descriptions_direct_data" />
+  <s:link source="remove_nulls_3:output" sink="gene_descriptions" />
+  <s:link source="remove_pathway_duplicates:strippedlist" sink="merge_pathway_desc:stringlist" />
+  <s:link source="remove_pathway_nulls:output" sink="flatten_pathway_files:pathway_descriptions_direct_data" />
+  <s:link source="remove_pathway_nulls:output" sink="pathway_descriptions" />
+  <s:link source="remove_pathway_nulls_2:output" sink="pathway_ids" />
+  <s:link source="remove_uniprot_duplicates:strippedlist" sink="merge_uniprot_ids:stringlist" />
+  <s:link source="split_for_duplicate_pathways:split" sink="remove_duplicate_ids:stringlist" />
+  <s:link source="split_for_duplicates:split" sink="remove_duplicate_kegg_genes:stringlist" />
+  <s:link source="split_gene_ids:output" sink="split_for_duplicates:string" />
+  <s:source name="chromosome_name" />
+  <s:source name="start_position" />
+  <s:source name="end_position" />
+  <s:sink name="merged_pathways" />
+  <s:sink name="gene_descriptions" />
+  <s:sink name="pathway_descriptions" />
+  <s:sink name="kegg_pathway_release" />
+  <s:sink name="report" />
+  <s:sink name="kegg_external_gene_reference" />
+  <s:sink name="pathway_ids" />
+  <s:sink name="genes_pathways" />
+</s:scufl>
+
