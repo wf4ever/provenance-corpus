@@ -7,7 +7,7 @@ Provenance Plugin:  Taverna PROV Plugin v 2.0
 
 WF Executor:  Jun Zhao
 
-Execution Date and Notes:  15.11.2012, The workflow succeeded.
+Execution Date and Notes:  17.11.2012, The workflow succeeded.
 
 
 

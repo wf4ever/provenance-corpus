@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:b4cfe95b-d105-4d5f-a8b3-37fda854f409" author="Katy Wolstencroft (with a nested workflow from Paul Fisher)" title="omim and pathways">This workflow searches OMIM for entries associated with MArfan syndrome, returns the IDs and maps them to Kegg Gene IDs. For each gene, it then gets the description and any corresponding pathways those genes are involved with</s:workflowdescription>
+  <s:processor name="Remove_duplicate_strings">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="Filter_KeggGenes">
+    <s:defaults>
+      <s:default name="regex">hsa:*\w*</s:default>
+      <s:default name="group">0</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.RegularExpressionStringList</s:local>
+  </s:processor>
+  <s:processor name="Filter_list_of_strings_extracting_match_to_a_regex">
+    <s:defaults>
+      <s:default name="regex">[0-9]+</s:default>
+      <s:default name="group">0</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.RegularExpressionStringList</s:local>
+  </s:processor>
+  <s:processor name="Split_string_into_string_list_by_regular_expression">
+    <s:defaults>
+      <s:default name="regex">\n</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="Concatenate_two_strings">
+    <s:defaults>
+      <s:default name="string1">omim:</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+  </s:processor>
+  <s:processor name="bconv">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="KeggGenestoPathways">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="Paul Fisher" title="Get Kegg Gene information">This workflow gets a series of information relating to a list of KEGG genes supplied to it. It also removes any null values from a list of strings.</s:workflowdescription>
+        <s:processor name="merge_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="merge_descriptions">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="merge_pathways_2">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="Remove_duplicate_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="split_by_regex">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="btit">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>btit</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="btit1">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>btit</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="regex" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="get_pathways_by_genes">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_pathways_by_genes</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="remove_Nulls">
+          <s:beanshell>
+            <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="remove_nulls_2">
+          <s:beanshell>
+            <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:link source="Remove_duplicate_pathways:strippedlist" sink="merge_pathways_2:stringlist" />
+        <s:link source="btit:return" sink="merge_descriptions:stringlist" />
+        <s:link source="get_pathways_by_genes:return" sink="merge_pathways:stringlist" />
+        <s:link source="kegg_gene_id_list" sink="btit:string" />
+        <s:link source="kegg_gene_id_list" sink="split_by_regex:string" />
+        <s:link source="merge_descriptions:concatenated" sink="remove_Nulls:input" />
+        <s:link source="merge_pathways:concatenated" sink="Remove_duplicate_pathways:stringlist" />
+        <s:link source="merge_pathways:concatenated" sink="btit1:string" />
+        <s:link source="merge_pathways_2:concatenated" sink="remove_nulls_2:input" />
+        <s:link source="regex:value" sink="split_by_regex:regex" />
+        <s:link source="btit1:return" sink="pathway_descriptions" />
+        <s:link source="remove_Nulls:output" sink="gene_descriptions" />
+        <s:link source="remove_nulls_2:output" sink="pathway_by_genes" />
+        <s:link source="split_by_regex:split" sink="get_pathways_by_genes:genes_id_list" />
+        <s:source name="kegg_gene_id_list" />
+        <s:sink name="gene_descriptions" />
+        <s:sink name="pathway_by_genes" />
+        <s:sink name="pathway_descriptions" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="OMIM">
+    <s:description>get Keyword</s:description>
+    <s:defaults>
+      <s:default name="keyword">marfan</s:default>
+    </s:defaults>
+    <s:arbitrarywsdl>
+      <s:wsdl>http://xml.nig.ac.jp/wsdl/OMIM.wsdl</s:wsdl>
+      <s:operation>search</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="Concatenate_two_strings:output" sink="bconv:string" />
+  <s:link source="Filter_KeggGenes:filteredlist" sink="KeggGenestoPathways:kegg_gene_id_list" />
+  <s:link source="Filter_list_of_strings_extracting_match_to_a_regex:filteredlist" sink="Concatenate_two_strings:string2" />
+  <s:link source="KeggGenestoPathways:gene_descriptions" sink="geneDescriptions" />
+  <s:link source="KeggGenestoPathways:pathway_by_genes" sink="pathways" />
+  <s:link source="KeggGenestoPathways:pathway_descriptions" sink="pathwayDescriptions" />
+  <s:link source="OMIM:Result" sink="Split_string_into_string_list_by_regular_expression:string" />
+  <s:link source="Remove_duplicate_strings:strippedlist" sink="Filter_KeggGenes:stringlist" />
+  <s:link source="Split_string_into_string_list_by_regular_expression:split" sink="Filter_list_of_strings_extracting_match_to_a_regex:stringlist" />
+  <s:link source="bconv:return" sink="KeggGenes" />
+  <s:link source="bconv:return" sink="Remove_duplicate_strings:stringlist" />
+  <s:sink name="KeggGenes" />
+  <s:sink name="geneDescriptions" />
+  <s:sink name="pathways" />
+  <s:sink name="pathwayDescriptions" />
+</s:scufl>
+

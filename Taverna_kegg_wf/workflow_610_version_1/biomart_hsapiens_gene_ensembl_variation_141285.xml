@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:f8173a30-74a0-41ce-add5-b7471c2f1f3d" author="" title="BioMart_hsapiens_gene_ensembl_variation" />
+  <s:processor name="REG_Split_by_C" boring="true">
+    <s:stringconstant>,</s:stringconstant>
+  </s:processor>
+  <s:processor name="REG_Merge_by_C" boring="true">
+    <s:stringconstant>,</s:stringconstant>
+  </s:processor>
+  <s:processor name="Flatten_list">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="Flatten_Ensembl_report">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="Flatten_Entrez_ID">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="Flatten_GO_report">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="Remove_dup_ID">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="Split_EnsemblID">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="Merge_EnsemblID">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="Nested_GO">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:51ca044a-37bd-4f3e-b627-89199bc6b020" author="" title="GeneOntologyInformation" />
+        <s:processor name="REG_Split_by_N" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="Split_ensembl_ID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Remove_duplicate_strings">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="hsapiens_gene_GO">
+          <s:description>Homo sapiens genes (NCBI36)</s:description>
+          <s:biomart>
+            <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+              <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+              <biomart:MartDataset displayName="Homo sapiens genes (NCBI36)" name="hsapiens_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2007-08-03 16:38:20">
+                <biomart:MartURLLocation database="ensembl_mart_46" default="1" displayName="ENSEMBL 46 GENES (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+              </biomart:MartDataset>
+              <biomart:Query virtualSchemaName="default" count="0" uniqueRows="1" softwareVersion="0.6" requestId="taverna">
+                <biomart:Dataset name="hsapiens_gene_ensembl">
+                  <biomart:Attribute name="go" />
+                  <biomart:Attribute name="evidence_code" />
+                  <biomart:Attribute name="go_description" />
+                  <biomart:Attribute name="ensembl_gene_id" />
+                  <biomart:Filter name="ensembl_gene_id" value="" list="true" />
+                </biomart:Dataset>
+              </biomart:Query>
+            </biomart:MartQuery>
+          </s:biomart>
+        </s:processor>
+        <s:processor name="Make_GO_report">
+          <s:beanshell>
+            <s:scriptvalue>GO_information = gene_id + "," + go + "," + go_des + "," + evi</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_id</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">go</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">go_des</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">evi</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">GO_information</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="evi" />
+              <i:iterator name="go_des" />
+              <i:iterator name="go" />
+              <i:iterator name="gene_id" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:link source="ensemblID" sink="Split_ensembl_ID:string" />
+        <s:link source="REG_Split_by_N:value" sink="Split_ensembl_ID:regex" />
+        <s:link source="Remove_duplicate_strings:strippedlist" sink="hsapiens_gene_GO:hsapiens_gene_ensembl.ensembl_gene_id_filter" />
+        <s:link source="Split_ensembl_ID:split" sink="Remove_duplicate_strings:stringlist" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.ensembl_gene_id" sink="Make_GO_report:gene_id" />
+        <s:link source="Make_GO_report:GO_information" sink="GO_information" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.ensembl_gene_id" sink="ensemblGeneID" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.evidence_code" sink="Make_GO_report:evi" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.evidence_code" sink="go_evidence" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.go" sink="Make_GO_report:go" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.go" sink="go" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.go_description" sink="Make_GO_report:go_des" />
+        <s:link source="hsapiens_gene_GO:hsapiens_gene_ensembl.go_description" sink="go_des" />
+        <s:source name="ensemblID">
+          <s:metadata>
+            <s:description>ENSG00000117242
+ENSG00000158828
+ENSG00000117242</s:description>
+          </s:metadata>
+        </s:source>
+        <s:sink name="go" />
+        <s:sink name="go_des" />
+        <s:sink name="go_evidence" />
+        <s:sink name="ensemblGeneID" />
+        <s:sink name="GO_information" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="Nested_EnsemblGeneInformation">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:0dffe5cb-48eb-4b6e-9bc3-1d69e391007a" author="" title="EnsemblGeneInformation" />
+        <s:processor name="REG_Split_by_C" boring="true">
+          <s:stringconstant>,</s:stringconstant>
+        </s:processor>
+        <s:processor name="REG_Split_by_N" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="REG_Merge_by_C" boring="true">
+          <s:stringconstant>,</s:stringconstant>
+        </s:processor>
+        <s:processor name="Split_entrezID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Remove_duplicate_ID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="Remove_dup_entrezID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="Merge_entrezID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="Split_EnsemblID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="hsapiens_gene_ensembl">
+          <s:description>Homo sapiens genes (NCBI36)</s:description>
+          <s:biomart>
+            <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+              <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+              <biomart:MartDataset displayName="Homo sapiens genes (NCBI36)" name="hsapiens_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2007-08-03 16:38:20">
+                <biomart:MartURLLocation database="ensembl_mart_46" default="1" displayName="ENSEMBL 46 GENES (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+              </biomart:MartDataset>
+              <biomart:Query virtualSchemaName="default" count="0" uniqueRows="1" softwareVersion="0.6" requestId="taverna">
+                <biomart:Dataset name="hsapiens_gene_ensembl">
+                  <biomart:Attribute name="ensembl_gene_id" />
+                  <biomart:Attribute name="description" />
+                  <biomart:Attribute name="chromosome_name" />
+                  <biomart:Attribute name="start_position" />
+                  <biomart:Attribute name="end_position" />
+                  <biomart:Attribute name="strand" />
+                  <biomart:Attribute name="external_gene_id" />
+                  <biomart:Attribute name="entrezgene" />
+                  <biomart:Attribute name="band" />
+                  <biomart:Filter name="ensembl_gene_id" value="" list="true" />
+                </biomart:Dataset>
+              </biomart:Query>
+            </biomart:MartQuery>
+          </s:biomart>
+        </s:processor>
+        <s:processor name="Make_hsapiens_report">
+          <s:beanshell>
+            <s:scriptvalue>ensemblInfo = geneEnsembl_id + "," + entrezGeneID + "," + gene_name + "," + gene_des + "," + gene_chr + "," + gene_start + "," + gene_stop + "," + gene_stand + "," + band</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">geneEnsembl_id</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_des</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_chr</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_start</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_stop</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_stand</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_name</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">entrezGeneID</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">band</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">ensemblInfo</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="band" />
+              <i:iterator name="entrezGeneID" />
+              <i:iterator name="gene_name" />
+              <i:iterator name="gene_stand" />
+              <i:iterator name="gene_stop" />
+              <i:iterator name="gene_start" />
+              <i:iterator name="gene_chr" />
+              <i:iterator name="gene_des" />
+              <i:iterator name="geneEnsembl_id" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:link source="Make_hsapiens_report:ensemblInfo" sink="EnsemblGene_Information" />
+        <s:link source="Merge_entrezID:concatenated" sink="Split_entrezID:string" />
+        <s:link source="REG_Merge_by_C:value" sink="Merge_entrezID:seperator" />
+        <s:link source="REG_Split_by_C:value" sink="Split_entrezID:regex" />
+        <s:link source="REG_Split_by_N:value" sink="Split_EnsemblID:regex" />
+        <s:link source="Remove_dup_entrezID:strippedlist" sink="Unique_EntrezID" />
+        <s:link source="Remove_duplicate_ID:strippedlist" sink="hsapiens_gene_ensembl:hsapiens_gene_ensembl.ensembl_gene_id_filter" />
+        <s:link source="Split_EnsemblID:split" sink="Remove_duplicate_ID:stringlist" />
+        <s:link source="Split_entrezID:split" sink="Remove_dup_entrezID:stringlist" />
+        <s:link source="ensembleID" sink="Split_EnsemblID:string" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.band" sink="Make_hsapiens_report:band" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.band" sink="band" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.chromosome_name" sink="Make_hsapiens_report:gene_chr" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.chromosome_name" sink="gene_chr" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.description" sink="Make_hsapiens_report:gene_des" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.description" sink="gene_des" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.end_position" sink="Make_hsapiens_report:gene_stop" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.end_position" sink="gene_stop" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.ensembl_gene_id" sink="Make_hsapiens_report:geneEnsembl_id" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.ensembl_gene_id" sink="geneEnsembl_id" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.entrezgene" sink="Make_hsapiens_report:entrezGeneID" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.entrezgene" sink="Merge_entrezID:stringlist" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.entrezgene" sink="entrezGeneID" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.external_gene_id" sink="Make_hsapiens_report:gene_name" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.external_gene_id" sink="gene_name" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.start_position" sink="Make_hsapiens_report:gene_start" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.start_position" sink="gene_start" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.strand" sink="Make_hsapiens_report:gene_stand" />
+        <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.strand" sink="gene_stand" />
+        <s:source name="ensembleID">
+          <s:metadata>
+            <s:description>ENSG00000117242
+ENSG00000117242
+ENSG00000158828
+ENSG00000158828</s:description>
+          </s:metadata>
+        </s:source>
+        <s:sink name="gene_des" />
+        <s:sink name="geneEnsembl_id" />
+        <s:sink name="gene_chr" />
+        <s:sink name="gene_start" />
+        <s:sink name="gene_stop" />
+        <s:sink name="gene_stand" />
+        <s:sink name="gene_name" />
+        <s:sink name="entrezGeneID" />
+        <s:sink name="band" />
+        <s:sink name="EnsemblGene_Information" />
+        <s:sink name="Unique_EntrezID" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="Nested_hsapiens_SNP">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:f8173a30-74a0-41ce-add5-b7471c2f1f3d" author="" title="BioMart_hsapiens_gene_ensembl variation" />
+        <s:processor name="REG_Split_by_N" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="REG_C2" boring="true">
+          <s:stringconstant>,</s:stringconstant>
+        </s:processor>
+        <s:processor name="REG_C1" boring="true">
+          <s:stringconstant>,</s:stringconstant>
+        </s:processor>
+        <s:processor name="Split_rsID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Rem_dup_Ensembl">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="Split_ensemblID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Merge_string_ensemblID">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="hsapiens_snp">
+          <s:description>Homo sapiens SNPs (dbSNP127;ENSEMBL;TSC1;HGVbase15)</s:description>
+          <s:biomart>
+            <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+              <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+              <biomart:MartDataset displayName="Homo sapiens SNPs (dbSNP127;ENSEMBL;TSC1;HGVbase15)" name="hsapiens_snp" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2008-07-08 14:03:15">
+                <biomart:MartURLLocation database="snp_mart_50" default="0" displayName="ENSEMBL 50 VARIATION  (SANGER UK)" host="www.biomart.org" includeDatasets="" martUser="" name="snp" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+              </biomart:MartDataset>
+              <biomart:Query virtualSchemaName="default" count="0" uniqueRows="1" softwareVersion="0.6" requestId="taverna">
+                <biomart:Dataset name="hsapiens_snp">
+                  <biomart:Attribute name="refsnp_id" />
+                  <biomart:Attribute name="chr_name" />
+                  <biomart:Attribute name="chrom_start" />
+                  <biomart:Attribute name="allele" />
+                  <biomart:Attribute name="chrom_strand" />
+                  <biomart:Attribute name="validated" />
+                  <biomart:Attribute name="ensembl_gene_stable_id" />
+                  <biomart:Attribute name="ensembl_type" />
+                  <biomart:Attribute name="ensembl_peptide_shift" />
+                  <biomart:Filter name="refsnp" value="" list="true" />
+                </biomart:Dataset>
+              </biomart:Query>
+            </biomart:MartQuery>
+          </s:biomart>
+        </s:processor>
+        <s:processor name="Merge_infomation">
+          <s:beanshell>
+            <s:scriptvalue>hsapien = snpID + "," + ensemblID + "," + chr_name + "," + chrom_start + "," + allele + "," + chrom_stand + "," + ensembl_type + "," + validated + "," + peptide_shift</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">snpID</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">chr_name</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">ensemblID</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">chrom_start</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">allele</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">chrom_stand</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">ensembl_type</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">validated</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">peptide_shift</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">hsapien</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="peptide_shift" />
+              <i:iterator name="validated" />
+              <i:iterator name="ensembl_type" />
+              <i:iterator name="chrom_stand" />
+              <i:iterator name="allele" />
+              <i:iterator name="chrom_start" />
+              <i:iterator name="ensemblID" />
+              <i:iterator name="chr_name" />
+              <i:iterator name="snpID" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:link source="rsID_in" sink="Split_rsID:string" />
+        <s:link source="Merge_string_ensemblID:concatenated" sink="Split_ensemblID:string" />
+        <s:link source="REG_C1:value" sink="Merge_string_ensemblID:seperator" />
+        <s:link source="REG_C2:value" sink="Split_ensemblID:regex" />
+        <s:link source="REG_Split_by_N:value" sink="Split_rsID:regex" />
+        <s:link source="Split_ensemblID:split" sink="Rem_dup_Ensembl:stringlist" />
+        <s:link source="Split_rsID:split" sink="hsapiens_snp:hsapiens_snp.refsnp_filter" />
+        <s:link source="hsapiens_snp:hsapiens_snp.chrom_start" sink="Merge_infomation:chrom_start" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_gene_stable_id" sink="Merge_string_ensemblID:stringlist" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_type" sink="Merge_infomation:ensembl_type" />
+        <s:link source="hsapiens_snp:hsapiens_snp.refsnp_id" sink="Merge_infomation:snpID" />
+        <s:link source="Merge_infomation:hsapien" sink="SNP_Information" />
+        <s:link source="Rem_dup_Ensembl:strippedlist" sink="Unique_ensemblID" />
+        <s:link source="hsapiens_snp:hsapiens_snp.allele" sink="Merge_infomation:allele" />
+        <s:link source="hsapiens_snp:hsapiens_snp.allele" sink="allele" />
+        <s:link source="hsapiens_snp:hsapiens_snp.chr_name" sink="Chr" />
+        <s:link source="hsapiens_snp:hsapiens_snp.chr_name" sink="Merge_infomation:chr_name" />
+        <s:link source="hsapiens_snp:hsapiens_snp.chrom_start" sink="start" />
+        <s:link source="hsapiens_snp:hsapiens_snp.chrom_strand" sink="Merge_infomation:chrom_stand" />
+        <s:link source="hsapiens_snp:hsapiens_snp.chrom_strand" sink="stand" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_gene_stable_id" sink="Merge_infomation:ensemblID" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_gene_stable_id" sink="ensemblID" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_peptide_shift" sink="Merge_infomation:peptide_shift" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_peptide_shift" sink="peptide_shift" />
+        <s:link source="hsapiens_snp:hsapiens_snp.ensembl_type" sink="Type" />
+        <s:link source="hsapiens_snp:hsapiens_snp.refsnp_id" sink="rsID" />
+        <s:link source="hsapiens_snp:hsapiens_snp.validated" sink="Merge_infomation:validated" />
+        <s:link source="hsapiens_snp:hsapiens_snp.validated" sink="validated" />
+        <s:source name="rsID_in">
+          <s:metadata>
+            <s:description>rs1043502
+rs10799658</s:description>
+          </s:metadata>
+        </s:source>
+        <s:sink name="SNP_Information" />
+        <s:sink name="Unique_ensemblID" />
+        <s:sink name="ensemblID" />
+        <s:sink name="rsID" />
+        <s:sink name="Type" />
+        <s:sink name="Chr" />
+        <s:sink name="start" />
+        <s:sink name="allele" />
+        <s:sink name="stand" />
+        <s:sink name="validated" />
+        <s:sink name="peptide_shift" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="Nested_KEGG">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:7529217f-d4ef-4b28-8fa6-0774cd3ac7b0" author="" title="get_image_from_URL_Pathways" />
+        <s:processor name="hsa" boring="true">
+          <s:stringconstant>hsa:</s:stringconstant>
+        </s:processor>
+        <s:processor name="BaseURL" boring="true">
+          <s:stringconstant>http://www.genome.jp</s:stringconstant>
+        </s:processor>
+        <s:processor name="REG_C" boring="true">
+          <s:stringconstant>,</s:stringconstant>
+        </s:processor>
+        <s:processor name="REG_N" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="add_hsa">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+        </s:processor>
+        <s:processor name="Get_image_from_URL">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.WebImageFetcher</s:local>
+        </s:processor>
+        <s:processor name="Split_string">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Merge_string_list_to_string1">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="Remove_duplicate">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="prepare_getKEGGid">
+          <s:beanshell>
+            <s:scriptvalue>trim1 = in.trim();
+out = trim1.replace("path:hsa","");</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">in</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">out</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="concat_id_with_URL">
+          <s:beanshell>
+            <s:scriptvalue>url = "kegg/pathway/hsa/hsa" + id + ".gif";</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">id</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">url</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="Lister_by_NUM">
+          <s:beanshell>
+            <s:scriptvalue>// Create the list
+    List list = new LinkedList();    // Doubly-linked list
+    list = new ArrayList();          // List implemented as growable array
+    
+    // Append an element to the list
+    list.add(word);
+
+output = list;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">word</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="prepare_EntrezID_with_KEGG_ID">
+          <s:beanshell>
+            <s:scriptvalue>id_result = result.replace("path",id + "-path");</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">id</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">result</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">id_result</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="result" />
+              <i:iterator name="id" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:processor name="btit">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>btit</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="get_pathways_by_genes">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_pathways_by_genes</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="BaseURL:value" sink="Get_image_from_URL:base" />
+        <s:link source="EntrezID" sink="Split_string:string" />
+        <s:link source="Get_image_from_URL:image" sink="image" />
+        <s:link source="Lister_by_NUM:output" sink="get_pathways_by_genes:genes_id_list" />
+        <s:link source="Lister_by_NUM:output" sink="prepare_EntrezID_with_KEGG_ID:id" />
+        <s:link source="Merge_string_list_to_string1:concatenated" sink="prepare_EntrezID_with_KEGG_ID:result" />
+        <s:link source="REG_C:value" sink="Merge_string_list_to_string1:seperator" />
+        <s:link source="REG_N:value" sink="Split_string:regex" />
+        <s:link source="Remove_duplicate:strippedlist" sink="add_hsa:string2" />
+        <s:link source="Split_string:split" sink="Remove_duplicate:stringlist" />
+        <s:link source="add_hsa:output" sink="Lister_by_NUM:word" />
+        <s:link source="add_hsa:output" sink="btit:string" />
+        <s:link source="btit:return" sink="KEGG_Gene_description" />
+        <s:link source="concat_id_with_URL:url" sink="Get_image_from_URL:url" />
+        <s:link source="get_pathways_by_genes:return" sink="Merge_string_list_to_string1:stringlist" />
+        <s:link source="get_pathways_by_genes:return" sink="prepare_getKEGGid:in" />
+        <s:link source="hsa:value" sink="add_hsa:string1" />
+        <s:link source="prepare_getKEGGid:out" sink="concat_id_with_URL:id" />
+        <s:link source="get_pathways_by_genes:return" sink="KEGG_ID" />
+        <s:link source="prepare_EntrezID_with_KEGG_ID:id_result" sink="EntrezID_with_KEGG_ID" />
+        <s:source name="EntrezID">
+          <s:metadata>
+            <s:description>24
+7167</s:description>
+          </s:metadata>
+        </s:source>
+        <s:sink name="image">
+          <s:metadata>
+            <s:mimeTypes>
+              <s:mimeType>png/*</s:mimeType>
+            </s:mimeTypes>
+          </s:metadata>
+        </s:sink>
+        <s:sink name="KEGG_Gene_description" />
+        <s:sink name="KEGG_ID" />
+        <s:sink name="EntrezID_with_KEGG_ID" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="Nested_OMIM">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:0dffe5cb-48eb-4b6e-9bc3-1d69e391007a" author="Ekawat Pasomsub" title="Entrez_ID_to_OMIM_Phenotype">Input as the entrez gene ID from NCBI and the out put is the OMIM ID and the OMIM description</s:workflowdescription>
+        <s:processor name="String_list_difference">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringSetDifference</s:local>
+        </s:processor>
+        <s:processor name="substring">
+          <s:beanshell>
+            <s:scriptvalue>String tmp = new String(in);
+x = in.indexOf("OMIM NO");
+y = in.indexOf("TITLE");
+out = in.substring(x+8,y-x);</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">in</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">out</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="remove_null">
+          <s:beanshell>
+            <s:scriptvalue>length = in.length();
+if (length &gt; 2 ){
+out = in ;
+} else {
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">in</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">out</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="Flatten_list">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.FlattenList
+            <s:extensions>
+              <s:flattenlist s:depth="2" />
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="null" boring="true">
+          <s:stringconstant />
+        </s:processor>
+        <s:processor name="Beanshell_scripting_host">
+          <s:beanshell>
+            <s:scriptvalue>out = entrezid + "," + omimid</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">entrezid</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">omimid</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">out</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="entrezid" />
+              <i:iterator name="omimid" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:processor name="Database" boring="true">
+          <s:stringconstant>gene</s:stringconstant>
+        </s:processor>
+        <s:processor name="Split_string">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="REG_N" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="XPATH" boring="true">
+          <s:stringconstant>/*[local-name(.)='eFetchResult'] /*[local-name(.)='Entrezgene-Set'] /*[local-name(.)='Entrezgene'] /*[local-name(.)='Entrezgene_unique-keys'] /*[local-name(.)='Dbtag'] /*[local-name(.)='Dbtag_tag'] /*[local-name(.)='Object-id'] /*[local-name(.)='Object-id_id']</s:stringconstant>
+        </s:processor>
+        <s:processor name="get_OMIM_phenotype">
+          <s:description>get Info</s:description>
+          <s:arbitrarywsdl>
+            <s:wsdl>http://xml.nig.ac.jp/wsdl/OMIM.wsdl</s:wsdl>
+            <s:operation>get</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="XPath_From_Text">
+          <s:local>net.sourceforge.taverna.scuflworkers.xml.XPathTextWorker</s:local>
+        </s:processor>
+        <s:processor name="parametersXML">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="eFetchRequest" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}eFetchRequest">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="string" name="db" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;db" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="id" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;WebEnv" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="query_key" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;query_key" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="tool" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;tool" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="email" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;email" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="retstart" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;retstart" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="retmax" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;retmax" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="rettype" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;rettype" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="strand" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;strand" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="seq_start" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;seq_start" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="seq_stop" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;seq_stop" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="complexity" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;complexity" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="report" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;report" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="Remove_duplicate1">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+        </s:processor>
+        <s:processor name="run_eFetch">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://eutils.ncbi.nlm.nih.gov/entrez/eutils/soap/eutils.wsdl</s:wsdl>
+            <s:operation>run_eFetch</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="Beanshell_scripting_host:out" sink="EntrezID_OmimID" />
+        <s:link source="Database:value" sink="parametersXML:db" />
+        <s:link source="Flatten_list:outputlist" sink="remove_null:in" />
+        <s:link source="REG_N:value" sink="Split_string:regex" />
+        <s:link source="Remove_duplicate1:strippedlist" sink="Beanshell_scripting_host:entrezid" />
+        <s:link source="Split_string:split" sink="Remove_duplicate1:stringlist" />
+        <s:link source="String_list_difference:difference" sink="Beanshell_scripting_host:omimid" />
+        <s:link source="String_list_difference:difference" sink="substring:in" />
+        <s:link source="XPATH:value" sink="XPath_From_Text:xpath" />
+        <s:link source="XPath_From_Text:nodelist" sink="get_OMIM_phenotype:id" />
+        <s:link source="entrezID" sink="Split_string:string" />
+        <s:link source="Remove_duplicate1:strippedlist" sink="parametersXML:id" />
+        <s:link source="get_OMIM_phenotype:Result" sink="Flatten_list:inputlist" />
+        <s:link source="null:value" sink="String_list_difference:list2" />
+        <s:link source="String_list_difference:difference" sink="OMIM_Phenotype" />
+        <s:link source="XPath_From_Text:nodelist" sink="OMIM_IDs_with_Others" />
+        <s:link source="parametersXML:output" sink="run_eFetch:parameters" />
+        <s:link source="remove_null:out" sink="String_list_difference:list1" />
+        <s:link source="run_eFetch:parameters" sink="XPath_From_Text:xml-text" />
+        <s:link source="run_eFetch:parameters" sink="eFetch_xml" />
+        <s:link source="substring:out" sink="OMIM_ID" />
+        <s:source name="entrezID">
+          <s:metadata>
+            <s:description>Input example:
+24
+7167
+1650
+65018</s:description>
+          </s:metadata>
+        </s:source>
+        <s:sink name="OMIM_Phenotype" />
+        <s:sink name="OMIM_ID" />
+        <s:sink name="OMIM_IDs_with_Others" />
+        <s:sink name="eFetch_xml" />
+        <s:sink name="EntrezID_OmimID" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="Nested_Motif">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:a6839975-2989-479a-9756-699af4e1a6c0" author="Ekawat Pasomsub" title="get_motif_by_KeggGeneID_NoomEdit">get_motifs_by_gene(string:genes_id, string:db) 
+Search motifs in the specified gene. The value of 'db' can be 'pfam' for Pfam, 'pspt' for PROSITE pattern, 'pspf' for PROSITE profile or 'all' for all the above.
+
+Return value:
+
+ArrayOfMotifResult
+Example:
+
+# Returns the all pfam motifs in the E. coli gene 'b0002'
+get_motifs_by_gene('eco:b0002', 'pfam')</s:workflowdescription>
+        <s:processor name="db_type" boring="true">
+          <s:stringconstant>all</s:stringconstant>
+        </s:processor>
+        <s:processor name="Split_string_motif">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="get_motifs_by_gene">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_motifs_by_gene</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="REG" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="Entrez_GeneID_Prepare">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+        </s:processor>
+        <s:processor name="hsa" boring="true">
+          <s:stringconstant>hsa:</s:stringconstant>
+        </s:processor>
+        <s:processor name="Create_Motif_Information">
+          <s:beanshell>
+            <s:scriptvalue>// Input คือ Unique_Entrez_ID ex. hsa:24
+//เอา output ทุกตัวจาก XML ยกเว้น evalue
+
+motif_info = motif_id +", " + definition + ", "+ genes_id + ", " + start_position + ", " + end_position + ", " + score;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">motif_id</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">definition</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">genes_id</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">start_position</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">end_position</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">score</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">motif_info</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="score" />
+              <i:iterator name="end_position" />
+              <i:iterator name="start_position" />
+              <i:iterator name="genes_id" />
+              <i:iterator name="definition" />
+              <i:iterator name="motif_id" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:processor name="returnXML">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+            <s:extensions>
+              <s:arraytype optional="false" unbounded="false" wrapped="false" typename="ArrayOfMotifResult" name="return" qname="{SOAP/KEGG}ArrayOfMotifResult">
+                <s:elementtype>
+                  <s:complextype optional="false" unbounded="false" typename="MotifResult" name="" qname="{SOAP/KEGG}MotifResult">
+                    <s:elements>
+                      <s:basetype optional="false" unbounded="false" typename="string" name="motif_id" qname="MotifResult&gt;motif_id" />
+                      <s:basetype optional="false" unbounded="false" typename="string" name="definition" qname="MotifResult&gt;definition" />
+                      <s:basetype optional="false" unbounded="false" typename="string" name="genes_id" qname="MotifResult&gt;genes_id" />
+                      <s:basetype optional="false" unbounded="false" typename="int" name="start_position" qname="MotifResult&gt;start_position" />
+                      <s:basetype optional="false" unbounded="false" typename="int" name="end_position" qname="MotifResult&gt;end_position" />
+                      <s:basetype optional="false" unbounded="false" typename="float" name="score" qname="MotifResult&gt;score" />
+                      <s:basetype optional="false" unbounded="false" typename="double" name="evalue" qname="MotifResult&gt;evalue" />
+                    </s:elements>
+                  </s:complextype>
+                </s:elementtype>
+              </s:arraytype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="returnXML1">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="MotifResult" name="" qname="{SOAP/KEGG}MotifResult">
+                <s:elements>
+                  <s:basetype optional="false" unbounded="false" typename="string" name="motif_id" qname="MotifResult&gt;motif_id" />
+                  <s:basetype optional="false" unbounded="false" typename="string" name="definition" qname="MotifResult&gt;definition" />
+                  <s:basetype optional="false" unbounded="false" typename="string" name="genes_id" qname="MotifResult&gt;genes_id" />
+                  <s:basetype optional="false" unbounded="false" typename="int" name="start_position" qname="MotifResult&gt;start_position" />
+                  <s:basetype optional="false" unbounded="false" typename="int" name="end_position" qname="MotifResult&gt;end_position" />
+                  <s:basetype optional="false" unbounded="false" typename="float" name="score" qname="MotifResult&gt;score" />
+                  <s:basetype optional="false" unbounded="false" typename="double" name="evalue" qname="MotifResult&gt;evalue" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:link source="Entrez_GeneID" sink="Split_string_motif:string" />
+        <s:link source="Entrez_GeneID_Prepare:output" sink="get_motifs_by_gene:genes_id" />
+        <s:link source="REG:value" sink="Split_string_motif:regex" />
+        <s:link source="Split_string_motif:split" sink="Entrez_GeneID_Prepare:string2" />
+        <s:link source="db_type:value" sink="get_motifs_by_gene:db" />
+        <s:link source="get_motifs_by_gene:return" sink="returnXML:input" />
+        <s:link source="hsa:value" sink="Entrez_GeneID_Prepare:string1" />
+        <s:link source="returnXML1:definition" sink="Create_Motif_Information:definition" />
+        <s:link source="returnXML1:end_position" sink="Create_Motif_Information:end_position" />
+        <s:link source="returnXML1:score" sink="Create_Motif_Information:score" />
+        <s:link source="returnXML1:start_position" sink="Create_Motif_Information:start_position" />
+        <s:link source="returnXML:return" sink="returnXML1:input" />
+        <s:link source="Create_Motif_Information:motif_info" sink="Motif_Information" />
+        <s:link source="get_motifs_by_gene:return" sink="Motif" />
+        <s:link source="returnXML1:genes_id" sink="Create_Motif_Information:genes_id" />
+        <s:link source="returnXML1:motif_id" sink="Create_Motif_Information:motif_id" />
+        <s:link source="returnXML1:motif_id" sink="Motif_id" />
+        <s:source name="Entrez_GeneID">
+          <s:metadata>
+            <s:description>Entrez gene ID ex.
+24
+7167
+24
+7167
+1650
+65018</s:description>
+          </s:metadata>
+        </s:source>
+        <s:sink name="Motif" />
+        <s:sink name="Motif_id" />
+        <s:sink name="Motif_Information" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:link source="Flatten_Entrez_ID:outputlist" sink="Nested_KEGG:EntrezID" />
+  <s:link source="Flatten_Entrez_ID:outputlist" sink="Nested_Motif:Entrez_GeneID" />
+  <s:link source="Flatten_Entrez_ID:outputlist" sink="Nested_OMIM:entrezID" />
+  <s:link source="Flatten_list:outputlist" sink="Merge_EnsemblID:stringlist" />
+  <s:link source="Merge_EnsemblID:concatenated" sink="Split_EnsemblID:string" />
+  <s:link source="Nested_EnsemblGeneInformation:EnsemblGene_Information" sink="Flatten_Ensembl_report:inputlist" />
+  <s:link source="Nested_GO:GO_information" sink="Flatten_GO_report:inputlist" />
+  <s:link source="Nested_Motif:Motif_Information" sink="Mofit_Information" />
+  <s:link source="Nested_OMIM:OMIM_Phenotype" sink="OMIM_Phenotype" />
+  <s:link source="Nested_hsapiens_SNP:SNP_Information" sink="SNP_Information" />
+  <s:link source="Nested_hsapiens_SNP:ensemblID" sink="Flatten_list:inputlist" />
+  <s:link source="REG_Merge_by_C:value" sink="Merge_EnsemblID:seperator" />
+  <s:link source="REG_Split_by_C:value" sink="Split_EnsemblID:regex" />
+  <s:link source="Remove_dup_ID:strippedlist" sink="Nested_EnsemblGeneInformation:ensembleID" />
+  <s:link source="Remove_dup_ID:strippedlist" sink="Nested_GO:ensemblID" />
+  <s:link source="rsID" sink="Nested_hsapiens_SNP:rsID_in" />
+  <s:link source="Flatten_Ensembl_report:outputlist" sink="Gene_Information" />
+  <s:link source="Flatten_Entrez_ID:outputlist" sink="Unique_Entrez_ID" />
+  <s:link source="Nested_EnsemblGeneInformation:Unique_EntrezID" sink="Flatten_Entrez_ID:inputlist" />
+  <s:link source="Remove_dup_ID:strippedlist" sink="Unique_Ensembl_ID" />
+  <s:link source="Split_EnsemblID:split" sink="Remove_dup_ID:stringlist" />
+  <s:link source="Flatten_GO_report:outputlist" sink="GO_information" />
+  <s:link source="Nested_KEGG:EntrezID_with_KEGG_ID" sink="EntrezID_with_KEGG_ID" />
+  <s:link source="Nested_KEGG:KEGG_Gene_description" sink="KEGG_Gene_description" />
+  <s:link source="Nested_KEGG:image" sink="KEGG_PathwayImage" />
+  <s:source name="rsID">
+    <s:metadata>
+      <s:description>rs1043502
+rs10799658</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="Gene_Information" />
+  <s:sink name="GO_information" />
+  <s:sink name="SNP_Information" />
+  <s:sink name="Unique_Ensembl_ID" />
+  <s:sink name="Unique_Entrez_ID" />
+  <s:sink name="EntrezID_with_KEGG_ID" />
+  <s:sink name="KEGG_PathwayImage" />
+  <s:sink name="KEGG_Gene_description" />
+  <s:sink name="OMIM_Phenotype" />
+  <s:sink name="Mofit_Information" />
+</s:scufl>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:83c6083b-d3fe-4686-bfba-6049e4265603" author="" title="Kegg_DrugID" />
+  <s:processor name="get_drugs_by_pathway">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_drugs_by_pathway</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="pathway Id" sink="get_drugs_by_pathway:pathway_id" />
+  <s:link source="get_drugs_by_pathway:attachmentList" sink="Drug Id" />
+  <s:source name="pathway Id" />
+  <s:sink name="Drug Id" />
+</s:scufl>
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:a4be20e7-0f94-4f35-a5ab-1435a725a6b4" author="" title="Retrieve Pathways and Compound information from KEGG" />
+  <s:processor name="bget">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bget</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="get_pathways_by_compounds">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_pathways_by_compounds</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Convert_list_of_KeggIDs_into_1element_list_of_lists">
+    <s:defaults>
+      <s:default name="regex">\n</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="Flatten_list">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="Flatten_list1">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+    <s:iterationstrategy>
+      <i:iterator xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10" name="inputlist" />
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="Remove_duplicate_strings">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="Split_string_into_string_list_by_regular_expression">
+    <s:defaults>
+      <s:default name="regex">\n</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="mark_pathway_by_objects">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>mark_pathway_by_objects</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Get_image_from_URL">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.WebImageFetcher</s:local>
+  </s:processor>
+  <s:link source="bget_in" sink="Convert_list_of_KeggIDs_into_1element_list_of_lists:string" />
+  <s:link source="bget_in" sink="bget:string" />
+  <s:link source="Convert_list_of_KeggIDs_into_1element_list_of_lists:split" sink="Flatten_list1:inputlist" />
+  <s:link source="Convert_list_of_KeggIDs_into_1element_list_of_lists:split" sink="get_pathways_by_compounds:compound_id_list" />
+  <s:link source="Flatten_list1:outputlist" sink="mark_pathway_by_objects:object_id_list" />
+  <s:link source="Flatten_list:outputlist" sink="Remove_duplicate_strings:stringlist" />
+  <s:link source="Get_image_from_URL:image" sink="KEGG_pathways" />
+  <s:link source="Remove_duplicate_strings:strippedlist" sink="Split_string_into_string_list_by_regular_expression:string" />
+  <s:link source="Split_string_into_string_list_by_regular_expression:split" sink="mark_pathway_by_objects:pathway_id" />
+  <s:link source="mark_pathway_by_objects:return" sink="Get_image_from_URL:url" />
+  <s:link source="bget:return" sink="KEGG_bget" />
+  <s:link source="get_pathways_by_compounds:return" sink="Flatten_list:inputlist" />
+  <s:source name="bget_in" />
+  <s:sink name="KEGG_bget" />
+  <s:sink name="KEGG_pathways" />
+</s:scufl>
+
