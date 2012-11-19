@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:0XYB476ROH0" author="Franck Tanoh" title="color_pathway_by_objects">Color  given objects on a pathway map with  specified colors and return the URL of the colored image. In the KEGG pathway maps, a gene or enzyme is represented by a rectangle and a compound is shown as a small circle. 
+Example of input: 
+
+pathway_id:
+path:eco00260
+
+object_list: 
+eco:b0514
+eco:b2913
+
+fg_color: 
+blue
+orange
+
+bg_color
+red
+orange</s:workflowdescription>
+  <s:processor name="Get_image_from_URL">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.WebImageFetcher</s:local>
+  </s:processor>
+  <s:processor name="color_pathway_by_objects">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>color_pathway_by_objects</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="bg_color" sink="color_pathway_by_objects:bg_color_list" />
+  <s:link source="fg_color" sink="color_pathway_by_objects:fg_color_list" />
+  <s:link source="object_list" sink="color_pathway_by_objects:object_id_list" />
+  <s:link source="pathway_id" sink="color_pathway_by_objects:pathway_id" />
+  <s:link source="color_pathway_by_objects:return" sink="Get_image_from_URL:url" />
+  <s:link source="Get_image_from_URL:image" sink="image" />
+  <s:link source="color_pathway_by_objects:return" sink="URL" />
+  <s:source name="pathway_id">
+    <s:metadata>
+      <s:description>path:eco00260</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="object_list">
+    <s:metadata>
+      <s:description>eco:b0514
+eco:b2913</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="fg_color">
+    <s:metadata>
+      <s:description>#ff0000
+#00ff00</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="bg_color">
+    <s:metadata>
+      <s:description>#ffff00 
+yellow</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="URL" />
+  <s:sink name="image" />
+</s:scufl>
+

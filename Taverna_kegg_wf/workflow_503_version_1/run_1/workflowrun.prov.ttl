@@ -1,0 +1,80 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_503_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T10:44:58.538Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc4358hx1 ;
+	prov:startedAtTime "2012-11-19T10:41:01.330Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/> .
+
+_:node17cc4358hx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/process/e94880fa-1b22-4ff9-bf69-7da2884e00a7/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of color_pathway_by_elements" ;
+	prov:endedAtTime "2012-11-19T10:39:20.271Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc4358hx2 ;
+	prov:startedAtTime "2012-11-19T10:39:13.654Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc4358hx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/> .
+
+<http://ns.taverna.org.uk/2011/run/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/process/e94880fa-1b22-4ff9-bf69-7da2884e00a7/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/processor/color_pathway_by_elements/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/> ;
+	rdfs:label "Processor execution color_pathway_by_elements (facade9:color_pathway_by_elements:color_pathway_by_elements)" ;
+	prov:endedAtTime "2012-11-19T10:39:16.962Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc4358hx3 ;
+	prov:startedAtTime "2012-11-19T10:39:15.646Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc4358hx3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/processor/color_pathway_by_elements/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/processor/color_pathway_by_elements/> rdfs:label "Processor color_pathway_by_elements" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/processor/color_pathway_by_elements/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/2b54b19c-a84f-465b-8f3b-d77c1501d78b/workflow/color_pathway_by_elements/processor/color_pathway_by_elements/> .
+
+<http://ns.taverna.org.uk/2011/data/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/ref/bc726693-0f81-400f-88a7-25d7b28e7635> tavernaprov:content <URL.txt> .
+
+<URL.txt> tavernaprov:sha1 "9fe7edb08fee2aa6d609fb0d892912b7ae9a4b39" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/ref/d2258e0d-20a4-4ccf-8383-3646c1f1b5c5> tavernaprov:content <fg_color_list.txt> .
+
+<fg_color_list.txt> tavernaprov:sha1 "3c7db0b2a82c81c6e234f6a62e2d21b9a024ee50" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/ref/8e0923a8-051e-4e98-b6b0-9d39548d43e1> tavernaprov:content <pathway_id.txt> .
+
+<pathway_id.txt> tavernaprov:sha1 "1228529f537dd178cb7e4cbccd69df13c756a1fd" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/ref/0950a976-869d-4487-b10d-fdaf82063266> tavernaprov:content <element_list.txt> .
+
+<element_list.txt> tavernaprov:sha1 "eb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/ref/8ee2013e-effa-44ab-ba58-5d03f61b56bd> tavernaprov:content <bg_color_list.txt> .
+
+<bg_color_list.txt> tavernaprov:sha1 "b590338282896cc9ede6786cff803a027ed6606d" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/c73b40a2-09e9-4f90-87d7-e2a8054aaaae/ref/255fcfcc-785e-44c2-9843-644e57643326> tavernaprov:content <image.png> .
+
+<image.png> tavernaprov:sha1 "9df5b19c798c892ebbcf890404b826b8e93c6a76" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

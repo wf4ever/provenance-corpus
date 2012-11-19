@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:4MN4WVK39917" author="Franck Tanoh" title="bget">Retrieve database entries specified by a list of entry_id. Number of entry_id retrieves at a time is restricted up to 100
+
+Example of input: 
+eco:b0002 hin:tRNA-Cys-1</s:workflowdescription>
+  <s:processor name="bget">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bget</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="entry" sink="bget:string" />
+  <s:link source="bget:return" sink="sequences" />
+  <s:source name="entry">
+    <s:metadata>
+      <s:description>eco:b0002 hin:tRNA-Cys-1</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="sequences" />
+</s:scufl>
+

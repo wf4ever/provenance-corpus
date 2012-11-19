@@ -1,0 +1,82 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_524_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T09:41:55.357Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc0kfagx1 ;
+	prov:startedAtTime "2012-11-19T09:40:28.448Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/a496a5af-e707-439f-9b48-225f460d15be/> .
+
+_:node17cc0kfagx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/a496a5af-e707-439f-9b48-225f460d15be/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/a496a5af-e707-439f-9b48-225f460d15be/process/1ec7a141-6f98-474a-acf0-1105c3748675/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of get_enzymes_by_compound" ;
+	prov:endedAtTime "2012-11-19T09:39:43.877Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc0kfagx2 ;
+	prov:startedAtTime "2012-11-19T09:39:40.685Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc0kfagx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/> .
+
+<http://ns.taverna.org.uk/2011/run/a496a5af-e707-439f-9b48-225f460d15be/process/1ec7a141-6f98-474a-acf0-1105c3748675/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/processor/get_enzymes_by_compound/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/a496a5af-e707-439f-9b48-225f460d15be/> ;
+	rdfs:label "Processor execution get_enzymes_by_compound (facade1:get_enzymes_by_compound:get_enzymes_by_compound)" ;
+	prov:endedAtTime "2012-11-19T09:39:43.821Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc0kfagx3 ;
+	prov:startedAtTime "2012-11-19T09:39:40.824Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc0kfagx3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/processor/get_enzymes_by_compound/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/processor/get_enzymes_by_compound/> rdfs:label "Processor get_enzymes_by_compound" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/processor/get_enzymes_by_compound/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/86e1b689-1bdd-4e0c-a417-72245cdfa702/workflow/get_enzymes_by_compound/processor/get_enzymes_by_compound/> .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/ref/5e585bb6-dfc1-48c6-a781-149c8ce43ad6> tavernaprov:content <enzymes_id/1.txt> .
+
+<enzymes_id/1.txt> tavernaprov:sha1 "19250915d81cf966b7d06230b165cc1d811eaa45" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/ref/4a45ceb4-2695-4a2e-8828-3d172d29882a> tavernaprov:content <enzymes_id/2.txt> .
+
+<enzymes_id/2.txt> tavernaprov:sha1 "3575d434b44a70faf6ccde876e09eeb2af8ffddf" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/ref/6ffd5f18-694b-4584-855e-ba09b48d986d> tavernaprov:content <enzymes_id/0.txt> .
+
+<enzymes_id/0.txt> tavernaprov:sha1 "bcdaf17952b488ff888572c060768e79138eec1b" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/ref/935c4db4-ade4-48f6-a71f-39a4bb406ac7> tavernaprov:content <compound_id.txt> .
+
+<compound_id.txt> tavernaprov:sha1 "fc7cd6c3f6d3375d0939555b9bdbeb38cd1ff0d5" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/ref/00f80e78-c08d-4e06-af74-5eb0469f9781> tavernaprov:content <enzymes_id/3.txt> .
+
+<enzymes_id/3.txt> tavernaprov:sha1 "6f16da5805037394dfd2b4228f16b84fcb119ed3" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/ref/37374e49-5f53-4a21-9556-a2bcef517c40> tavernaprov:content <enzymes_id/4.txt> .
+
+<enzymes_id/4.txt> tavernaprov:sha1 "3232e9f56637a92dfc68332415851261515a9d3d" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/a496a5af-e707-439f-9b48-225f460d15be/list/5cac3863-baaf-494e-9904-ac25016d92b3/false/1> tavernaprov:content <enzymes_id/> .

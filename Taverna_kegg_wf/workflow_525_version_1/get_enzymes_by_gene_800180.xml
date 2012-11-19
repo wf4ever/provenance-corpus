@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:05JTCI4JM111" author="Franck Tanoh" title="get_enzymes_by_gene">Retrieve all the EC numbers which are assigned to a given gene
+
+Input example: 
+eco:b0002</s:workflowdescription>
+  <s:processor name="get_enzymes_by_gene">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_enzymes_by_gene</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="gene_id" sink="get_enzymes_by_gene:genes_id" />
+  <s:link source="get_enzymes_by_gene:return" sink="enzyme_id" />
+  <s:source name="gene_id">
+    <s:metadata>
+      <s:description>eco:b0002</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="enzyme_id" />
+</s:scufl>
+

@@ -1,0 +1,117 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_520_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T10:04:20.294Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc1rmvqx1 ;
+	prov:startedAtTime "2012-11-19T10:01:54.884Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/> .
+
+_:node17cc1rmvqx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of get_drugs_by_pathways" ;
+	prov:endedAtTime "2012-11-19T09:59:49.854Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc1rmvqx2 ;
+	prov:qualifiedUsage _:node17cc1rmvqx3 ;
+	prov:startedAtTime "2012-11-19T09:59:46.618Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:used <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc1rmvqx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/> .
+
+_:node17cc1rmvqx3 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/in/pathway_id> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/in/pathway_id> rdfs:label "Workflow input pathway_id" .
+
+<http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> tavernaprov:content <pathway_id.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/in/pathway_id> , <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/in/pathway_id> .
+
+<http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/list/0b28f98f-6bd2-4fd5-a9e5-f0afe553eb32/false/1> tavernaprov:content <drug_ids/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/out/drug_ids> , <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/out/return> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/> , <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> ;
+	a prov:Collection ;
+	prov:hadMember <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/4752ff80-b70f-481f-92d4-05b3726d6f2a> , <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/88cc029c-f63c-40aa-a09f-27818d047c69> ;
+	prov:qualifiedGeneration _:node17cc1rmvqx4 , _:node17cc1rmvqx8 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/> , <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> .
+
+_:node17cc1rmvqx4 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/out/drug_ids> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/out/drug_ids> rdfs:label "Workflow output drug_ids" .
+
+<http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/> ;
+	rdfs:label "Processor execution get_drugs_by_pathway (facade4:get_drugs_by_pathways:get_drugs_by_pathway)" ;
+	prov:endedAtTime "2012-11-19T09:59:49.778Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc1rmvqx5 ;
+	prov:qualifiedUsage _:node17cc1rmvqx6 ;
+	prov:startedAtTime "2012-11-19T09:59:48.809Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:used <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> .
+
+_:node17cc1rmvqx5 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/> rdfs:label "Processor get_drugs_by_pathway" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/> .
+
+_:node17cc1rmvqx6 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/58ebcfb1-200c-4977-999f-eee4da479a3c> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/in/pathway_id> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/in/pathway_id> rdfs:label "get_drugs_by_pathway input pathway_id" .
+
+<http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/list/44214e47-59f3-41de-bcc0-969e14b7e0ac/false/1> tavernaprov:content <intermediates/44/44214e47-59f3-41de-bcc0-969e14b7e0ac.list> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/out/attachmentList> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> ;
+	a prov:Collection , prov:EmptyCollection ;
+	prov:qualifiedGeneration _:node17cc1rmvqx7 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> .
+
+_:node17cc1rmvqx7 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/out/attachmentList> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/out/attachmentList> rdfs:label "get_drugs_by_pathway output attachmentList" .
+
+_:node17cc1rmvqx8 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/process/9c14e526-4dec-4d3e-8927-940cf88ce8ff/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/out/return> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/36c15e5e-487c-44b8-b6ef-7a02104a8f0f/workflow/get_drugs_by_pathways/processor/get_drugs_by_pathway/out/return> rdfs:label "get_drugs_by_pathway output return" .
+
+<http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/4752ff80-b70f-481f-92d4-05b3726d6f2a> tavernaprov:content <drug_ids/1.txt> .
+
+<drug_ids/1.txt> tavernaprov:sha1 "0e1450afdd7f3d5c4ce82482adac2c392e53eacd" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/300f5a05-1bf0-4a0e-8fc6-d9def7b6fe06/ref/88cc029c-f63c-40aa-a09f-27818d047c69> tavernaprov:content <drug_ids/0.txt> .
+
+<drug_ids/0.txt> tavernaprov:sha1 "9901903d3a89aa3778e1cb0da8a84ba83785d840" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<pathway_id.txt> tavernaprov:sha1 "d7d75f82d995ef6487a7942dd603536689cb8472" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

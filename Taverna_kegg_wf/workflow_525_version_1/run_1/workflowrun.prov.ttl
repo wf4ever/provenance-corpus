@@ -1,0 +1,67 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_525_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T09:36:18.565Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc0a62dx1 ;
+	prov:startedAtTime "2012-11-19T09:34:51.846Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/67ba242d-b376-4213-b049-d02ec7fd8d04/> .
+
+_:node17cc0a62dx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/67ba242d-b376-4213-b049-d02ec7fd8d04/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/67ba242d-b376-4213-b049-d02ec7fd8d04/process/ffa9691b-e474-404a-a2a5-e131cc51faee/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of get_enzymes_by_gene" ;
+	prov:endedAtTime "2012-11-19T09:34:20.343Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc0a62dx2 ;
+	prov:startedAtTime "2012-11-19T09:34:16.445Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc0a62dx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/> .
+
+<http://ns.taverna.org.uk/2011/run/67ba242d-b376-4213-b049-d02ec7fd8d04/process/ffa9691b-e474-404a-a2a5-e131cc51faee/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/processor/get_enzymes_by_gene/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/67ba242d-b376-4213-b049-d02ec7fd8d04/> ;
+	rdfs:label "Processor execution get_enzymes_by_gene (facade0:get_enzymes_by_gene:get_enzymes_by_gene)" ;
+	prov:endedAtTime "2012-11-19T09:34:20.267Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc0a62dx3 ;
+	prov:startedAtTime "2012-11-19T09:34:18.827Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc0a62dx3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/processor/get_enzymes_by_gene/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/processor/get_enzymes_by_gene/> rdfs:label "Processor get_enzymes_by_gene" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/processor/get_enzymes_by_gene/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/77ac186a-64c7-4af3-8c2e-f61ba1b92bc4/workflow/get_enzymes_by_gene/processor/get_enzymes_by_gene/> .
+
+<http://ns.taverna.org.uk/2011/data/67ba242d-b376-4213-b049-d02ec7fd8d04/ref/1f85e791-bc2a-4761-ab28-d13007a543ee> tavernaprov:content <enzyme_id/1.txt> .
+
+<enzyme_id/1.txt> tavernaprov:sha1 "4d7f302ce8967408bb17d600d9e661b231cc8c1c" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/67ba242d-b376-4213-b049-d02ec7fd8d04/list/b64bddbd-05b0-4a92-ab66-11ae65d9ad45/false/1> tavernaprov:content <enzyme_id/> .
+
+<http://ns.taverna.org.uk/2011/data/67ba242d-b376-4213-b049-d02ec7fd8d04/ref/314ab2e6-d076-44c9-a4da-1ee8007fb8fd> tavernaprov:content <gene_id.txt> .
+
+<gene_id.txt> tavernaprov:sha1 "20f2f2c7b09d711af83aabdc01ff8d46ffd59d81" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/67ba242d-b376-4213-b049-d02ec7fd8d04/ref/34b39901-0acd-4322-af45-718d3fd4f667> tavernaprov:content <enzyme_id/0.txt> .
+
+<enzyme_id/0.txt> tavernaprov:sha1 "27a481ef84c5ef2dc459959b75c4602d0ad72693" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

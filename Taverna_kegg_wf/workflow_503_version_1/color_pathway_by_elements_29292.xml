@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:0XYB476ROH0" author="Franck Tanoh" title="color_pathway_by_elements">Color the objects (rectangles and circles on a pathway map) corresponding to the given 'element_id_list' with the specified colors and return the URL of the colored image. 
+
+Example of inputs:
+
+pathway_id: 
+path:bsu00010 
+
+element_list: 
+78 
+ 79
+
+pathway_id: 
+red
+red
+
+bg_color_list: 
+green
+green</s:workflowdescription>
+  <s:processor name="color_pathway_by_elements">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>color_pathway_by_elements</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="bg_color_list" sink="color_pathway_by_elements:bg_color_list" />
+  <s:link source="element_list" sink="color_pathway_by_elements:element_list" />
+  <s:link source="fg_color_list" sink="color_pathway_by_elements:fg_color_list" />
+  <s:link source="pathway_id" sink="color_pathway_by_elements:pathway_id" />
+  <s:link source="color_pathway_by_elements:return" sink="URL" />
+  <s:source name="pathway_id">
+    <s:metadata>
+      <s:description>path:bsu00010</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="element_list">
+    <s:metadata>
+      <s:description>78 
+ 79
+ 51
+ 47</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="fg_color_list">
+    <s:metadata>
+      <s:description>#ff0000
+#0000ff
+#ff0000
+#0000ff</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="bg_color_list">
+    <s:metadata>
+      <s:description>#ffff00
+#ffff00
+#ffcc00 
+#ffcc00</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="URL" />
+</s:scufl>
+

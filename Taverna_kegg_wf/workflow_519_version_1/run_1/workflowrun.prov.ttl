@@ -1,0 +1,82 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_529_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T10:12:51.184Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc2ca6px1 ;
+	prov:startedAtTime "2012-11-19T10:10:58.485Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/> .
+
+_:node17cc2ca6px1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/process/6f26c179-7785-4649-a13a-5be579e41d20/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of get_compounds_by_reaction" ;
+	prov:endedAtTime "2012-11-19T10:10:07.564Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc2ca6px2 ;
+	prov:startedAtTime "2012-11-19T10:10:04.552Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc2ca6px2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/> .
+
+<http://ns.taverna.org.uk/2011/run/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/process/6f26c179-7785-4649-a13a-5be579e41d20/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/processor/get_compounds_by_reaction/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/> ;
+	rdfs:label "Processor execution get_compounds_by_reaction (facade5:get_compounds_by_reaction:get_compounds_by_reaction)" ;
+	prov:endedAtTime "2012-11-19T10:10:07.509Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc2ca6px3 ;
+	prov:startedAtTime "2012-11-19T10:10:04.650Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc2ca6px3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/processor/get_compounds_by_reaction/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/processor/get_compounds_by_reaction/> rdfs:label "Processor get_compounds_by_reaction" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/processor/get_compounds_by_reaction/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/62173b34-ac66-4b2b-b758-071b6d65e77b/workflow/get_compounds_by_reaction/processor/get_compounds_by_reaction/> .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/ref/db9c8236-e793-44b3-b2a8-7ee62f28c8d2> tavernaprov:content <compounds_id/2.txt> .
+
+<compounds_id/2.txt> tavernaprov:sha1 "8854a1c7535a4c8bdd17b0521bb4f7a271f36a58" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/ref/71a18fa4-30d5-4fca-bb5e-40b1aa86c86d> tavernaprov:content <compounds_id/1.txt> .
+
+<compounds_id/1.txt> tavernaprov:sha1 "ca1ff9e532b76c128e7f47a325794075dda33700" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/list/769bc7fe-d365-4f08-adff-068d7ebf12fc/false/1> tavernaprov:content <compounds_id/> .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/ref/798d7c4e-892b-436a-87f2-7310dc6d6cae> tavernaprov:content <compounds_id/3.txt> .
+
+<compounds_id/3.txt> tavernaprov:sha1 "ac81ba2680cdcc8732b5f9ae8ae90ac3b422f8dc" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/ref/bfa70173-30a0-484b-847c-e607c9831ce5> tavernaprov:content <compounds_id/0.txt> .
+
+<compounds_id/0.txt> tavernaprov:sha1 "3ea278d7e3fcb8716037647dc0ffa41202f762ee" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/ref/6135884e-fa02-4dcb-815a-65697a7ff906> tavernaprov:content <reaction_id.txt> .
+
+<reaction_id.txt> tavernaprov:sha1 "5047f45763852ff2092120e013802ae904663143" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/b686b1f9-ac30-4536-bc2b-aaf6fe35aad4/ref/bbd9b2f0-e831-40ae-99ac-a10437a88fc6> tavernaprov:content <compounds_id/4.txt> .
+
+<compounds_id/4.txt> tavernaprov:sha1 "8c5f99738c716f0d7465d08ae66701a29a520bf5" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

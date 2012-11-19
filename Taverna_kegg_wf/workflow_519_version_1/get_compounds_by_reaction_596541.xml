@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:DI7P643SR969" author="Franck Tanoh" title="get_compounds_by_reaction">Retrieve all compounds which have a link to a given reaction_id
+
+Example on input: 
+rn:R00100</s:workflowdescription>
+  <s:processor name="get_compounds_by_reaction">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_compounds_by_reaction</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="reaction_id" sink="get_compounds_by_reaction:reaction_id" />
+  <s:link source="get_compounds_by_reaction:return" sink="compounds_id" />
+  <s:source name="reaction_id">
+    <s:metadata>
+      <s:description>rn:R00100</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="compounds_id" />
+</s:scufl>
+

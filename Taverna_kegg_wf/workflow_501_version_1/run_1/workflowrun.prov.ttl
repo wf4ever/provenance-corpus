@@ -1,0 +1,60 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_501_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T11:13:54.779Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc5n8bmx1 ;
+	prov:startedAtTime "2012-11-19T11:09:29.283Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/ff539ced-581f-4ded-8a17-8f833f0f3d1f/> .
+
+_:node17cc5n8bmx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/ff539ced-581f-4ded-8a17-8f833f0f3d1f/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/ff539ced-581f-4ded-8a17-8f833f0f3d1f/process/92493188-590f-49d7-8b4b-d4b47ef08cdb/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of binfo" ;
+	prov:endedAtTime "2012-11-19T11:07:35.726Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc5n8bmx2 ;
+	prov:startedAtTime "2012-11-19T11:07:32.631Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc5n8bmx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/> .
+
+<http://ns.taverna.org.uk/2011/run/ff539ced-581f-4ded-8a17-8f833f0f3d1f/process/92493188-590f-49d7-8b4b-d4b47ef08cdb/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/processor/binfo/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/ff539ced-581f-4ded-8a17-8f833f0f3d1f/> ;
+	rdfs:label "Processor execution binfo (facade11:binfo:binfo)" ;
+	prov:endedAtTime "2012-11-19T11:07:35.675Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc5n8bmx3 ;
+	prov:startedAtTime "2012-11-19T11:07:32.747Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc5n8bmx3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/processor/binfo/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/processor/binfo/> rdfs:label "Processor binfo" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/processor/binfo/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/9e79bdc0-4897-4080-be0d-3e1e084b4abf/workflow/binfo/processor/binfo/> .
+
+<http://ns.taverna.org.uk/2011/data/ff539ced-581f-4ded-8a17-8f833f0f3d1f/ref/b91cb40d-d220-4c9e-b7fc-c1c1b213196c> tavernaprov:content <database.txt> .
+
+<database.txt> tavernaprov:sha1 "61fc7bcf04ff146cac10c8334fa8324470f67d53" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/ff539ced-581f-4ded-8a17-8f833f0f3d1f/ref/2244ff0f-51b7-4fe9-be96-cb2c1373446e> tavernaprov:content <version.txt> .
+
+<version.txt> tavernaprov:sha1 "89bbc1412ccbe5d78b94805fae98e7d2eb9794e6" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:DI7P643SR947" author="Franck Tanoh" title="get_compounds_by_pathway">Retrieves all compounds on the specified pathway
+
+Example of input: 
+path:eco00020</s:workflowdescription>
+  <s:processor name="get_compounds_by_pathway">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_compounds_by_pathway</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="pathway_id" sink="get_compounds_by_pathway:pathway_id" />
+  <s:link source="get_compounds_by_pathway:return" sink="compounds_id" />
+  <s:source name="pathway_id">
+    <s:metadata>
+      <s:description>path:eco00020</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="compounds_id" />
+</s:scufl>
+

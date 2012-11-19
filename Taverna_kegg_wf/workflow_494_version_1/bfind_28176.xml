@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:QQ71HFWBOL25" author="Franck Tanoh" title="bfind">Used for searching entries by keywords. User needs to specify a database from those which are supported by DBGET system before keywords
+
+Example of input parameter: 
+gb E-cadherin human</s:workflowdescription>
+  <s:processor name="bfind">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bfind</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="string" sink="bfind:string" />
+  <s:link source="bfind:return" sink="ID_and_definitions" />
+  <s:source name="string">
+    <s:metadata>
+      <s:description>gb E-cadherin human</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="ID_and_definitions" />
+</s:scufl>
+

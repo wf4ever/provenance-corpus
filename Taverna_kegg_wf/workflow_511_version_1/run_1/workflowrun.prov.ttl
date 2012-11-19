@@ -1,0 +1,70 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_511_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T10:28:20.273Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc386chx1 ;
+	prov:startedAtTime "2012-11-19T10:26:13.652Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/45c0dcb0-9263-4642-a128-c4e028098bf7/> .
+
+_:node17cc386chx1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/45c0dcb0-9263-4642-a128-c4e028098bf7/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/45c0dcb0-9263-4642-a128-c4e028098bf7/process/5c067f98-d6c9-4515-a67a-e541639ef104/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of get_best_best_neighbors_by_gene" ;
+	prov:endedAtTime "2012-11-19T10:25:33.842Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc386chx2 ;
+	prov:startedAtTime "2012-11-19T10:25:28.122Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc386chx2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/> .
+
+<http://ns.taverna.org.uk/2011/run/45c0dcb0-9263-4642-a128-c4e028098bf7/process/5c067f98-d6c9-4515-a67a-e541639ef104/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/processor/get_best_best_neighbors_by_gene/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/45c0dcb0-9263-4642-a128-c4e028098bf7/> ;
+	rdfs:label "Processor execution get_best_best_neighbors_by_gene (facade7:get_best_best_neighbors_by_gene:get_best_best_neighbors_by_gene)" ;
+	prov:endedAtTime "2012-11-19T10:25:33.796Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc386chx3 ;
+	prov:startedAtTime "2012-11-19T10:25:30.039Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc386chx3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/processor/get_best_best_neighbors_by_gene/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/processor/get_best_best_neighbors_by_gene/> rdfs:label "Processor get_best_best_neighbors_by_gene" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/processor/get_best_best_neighbors_by_gene/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/3dfd5003-850c-4758-9fc2-803dd1e937a7/workflow/get_best_best_neighbors_by_gene/processor/get_best_best_neighbors_by_gene/> .
+
+<http://ns.taverna.org.uk/2011/data/45c0dcb0-9263-4642-a128-c4e028098bf7/ref/29f65579-f637-4356-af6f-73abd5d2fb83> tavernaprov:content <offset.txt> .
+
+<offset.txt> tavernaprov:sha1 "356a192b7913b04c54574d18c28d46e6395428ab" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/45c0dcb0-9263-4642-a128-c4e028098bf7/ref/48b49aaa-2678-480a-95e2-aa240859ecdc> tavernaprov:content <result.txt> .
+
+<result.txt> tavernaprov:sha1 "e76a4b6bdf386fc0635cfa8cb3862b9a1c32025c" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/45c0dcb0-9263-4642-a128-c4e028098bf7/ref/63d6f4ee-839c-4e75-9310-76fd4c8943fd> tavernaprov:content <limit.txt> .
+
+<limit.txt> tavernaprov:sha1 "b1d5781111d84f7b3fe45a0852e59758cd7a87e5" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/45c0dcb0-9263-4642-a128-c4e028098bf7/ref/329fd326-7f6e-450e-9e6d-ee1a2192de4c> tavernaprov:content <gene_id.txt> .
+
+<gene_id.txt> tavernaprov:sha1 "20f2f2c7b09d711af83aabdc01ff8d46ffd59d81" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

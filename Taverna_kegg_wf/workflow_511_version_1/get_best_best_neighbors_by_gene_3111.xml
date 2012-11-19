@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:S11N2ZNRL3121" author="Franck Tanoh" title="get_best_best_neighbors_by_gene">Search the best-best neighbor of a gene in all organisms. 
+
+Example of input: 
+
+gene_id: eco:b0002
+
+offset: 1
+
+limit: 10</s:workflowdescription>
+  <s:processor name="get_best_best_neighbors_by_gene">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_best_best_neighbors_by_gene</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="gene_id" sink="get_best_best_neighbors_by_gene:genes_id" />
+  <s:link source="limit" sink="get_best_best_neighbors_by_gene:limit" />
+  <s:link source="offset" sink="get_best_best_neighbors_by_gene:offset" />
+  <s:link source="get_best_best_neighbors_by_gene:return" sink="result" />
+  <s:source name="gene_id">
+    <s:metadata>
+      <s:description>eco:b0002</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="offset">
+    <s:metadata>
+      <s:description>1</s:description>
+    </s:metadata>
+  </s:source>
+  <s:source name="limit">
+    <s:metadata>
+      <s:description>10</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="result" />
+</s:scufl>
+

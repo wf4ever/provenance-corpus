@@ -1,0 +1,157 @@
+# @base <file:/Users/khalidbelhajjame/Documents/Kegg_provenance/workflow_518_version_1/workflowrun.prov.ttl> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:endedAtTime "2012-11-19T10:17:39.592Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc2l1e2x1 ;
+	prov:startedAtTime "2012-11-19T10:15:46.023Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/eb564423-869e-45ed-a503-f4d80ee25dcd/> .
+
+_:node17cc2l1e2x1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/eb564423-869e-45ed-a503-f4d80ee25dcd/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/eb564423-869e-45ed-a503-f4d80ee25dcd/process/fe80cb8f-43c2-4f93-8966-52588b665afc/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of get_compounds_by_pathway" ;
+	prov:endedAtTime "2012-11-19T10:14:22.462Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc2l1e2x2 ;
+	prov:startedAtTime "2012-11-19T10:14:18.080Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17cc2l1e2x2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/> .
+
+<http://ns.taverna.org.uk/2011/run/eb564423-869e-45ed-a503-f4d80ee25dcd/process/fe80cb8f-43c2-4f93-8966-52588b665afc/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/processor/get_compounds_by_pathway/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/eb564423-869e-45ed-a503-f4d80ee25dcd/> ;
+	rdfs:label "Processor execution get_compounds_by_pathway (facade6:get_compounds_by_pathway:get_compounds_by_pathway)" ;
+	prov:endedAtTime "2012-11-19T10:14:20.837Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+	prov:qualifiedAssociation _:node17cc2l1e2x3 ;
+	prov:startedAtTime "2012-11-19T10:14:19.760Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+_:node17cc2l1e2x3 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/processor/get_compounds_by_pathway/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/processor/get_compounds_by_pathway/> rdfs:label "Processor get_compounds_by_pathway" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/processor/get_compounds_by_pathway/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/4b79f98e-cc23-47ce-a775-6f0961185bbc/workflow/get_compounds_by_pathway/processor/get_compounds_by_pathway/> .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/613ba0e3-7eda-4af1-a13a-2956b8683652> tavernaprov:content <compounds_id/8.txt> .
+
+<compounds_id/8.txt> tavernaprov:sha1 "a12ad38cb5c23e461cab6b5c47446790a1ba197d" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/859301e2-dea9-4933-9d9b-a78584f7d99f> tavernaprov:content <compounds_id/3.txt> .
+
+<compounds_id/3.txt> tavernaprov:sha1 "84aaac7b4ab9ae39d84c93c2d34f58127f6022a9" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/925b9566-dfcd-46ad-967e-6d5b043e3c54> tavernaprov:content <pathway_id.txt> .
+
+<pathway_id.txt> tavernaprov:sha1 "d7d75f82d995ef6487a7942dd603536689cb8472" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/2f20c9dc-3d7a-40c7-9ca7-f15df1cd0628> tavernaprov:content <compounds_id/10.txt> .
+
+<compounds_id/10.txt> tavernaprov:sha1 "22bef2977f92ba8f47b7cad09e2d04fc829f3734" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/820ae6c0-b32c-423d-97b1-619d596ba7ab> tavernaprov:content <compounds_id/16.txt> .
+
+<compounds_id/16.txt> tavernaprov:sha1 "0ece4f8cfeeba82ed1faf9a565c97a2485e75e27" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/a2f7ae5c-0afb-4dd6-85fd-dda0187bba1a> tavernaprov:content <compounds_id/11.txt> .
+
+<compounds_id/11.txt> tavernaprov:sha1 "1a1bbc674bbf216bea887b7d5c104b6536d2faed" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/b996e1f5-4a83-4ef9-b7b4-d4f5d6909a2f> tavernaprov:content <compounds_id/12.txt> .
+
+<compounds_id/12.txt> tavernaprov:sha1 "51e9ec51b7c3c9f9cab25b8991e86b2bd9c309fd" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/03c6f3e1-7101-4623-8d15-d00271e1b0d3> tavernaprov:content <compounds_id/4.txt> .
+
+<compounds_id/4.txt> tavernaprov:sha1 "47e8e6c69d62c9657b9becb8c923afefa7e69a2a" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/484de293-cba4-4df7-89f7-5d0ccd14cf15> tavernaprov:content <compounds_id/15.txt> .
+
+<compounds_id/15.txt> tavernaprov:sha1 "dc0ae59af7bee6905903c9c05ee1e1c42213b889" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/988c9439-be9e-454d-ae0b-f48254eca283> tavernaprov:content <compounds_id/1.txt> .
+
+<compounds_id/1.txt> tavernaprov:sha1 "8356180e8fd03033e289cea0efdb559b2df76328" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/78980efb-fad9-41c7-b3d2-ccc95d282df9> tavernaprov:content <compounds_id/6.txt> .
+
+<compounds_id/6.txt> tavernaprov:sha1 "7e562eba093dd62944631146b93fa186cbe321e4" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/f04f6fa9-ea05-451a-bca5-8965db6e9c6c> tavernaprov:content <compounds_id/13.txt> .
+
+<compounds_id/13.txt> tavernaprov:sha1 "9c5a7f510466605bdb5ddbd500feb882f3ba7ae2" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/cfdd0e62-072a-40cf-9cba-64942fcb388c> tavernaprov:content <compounds_id/18.txt> .
+
+<compounds_id/18.txt> tavernaprov:sha1 "50ddabf402ef22aa771dd7c3e1e1ce41a6ebdec5" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/list/b93e7dc9-4096-4a14-a88a-face2582e06b/false/1> tavernaprov:content <compounds_id/> .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/7ea8a34f-53f4-4aac-83b5-abe53921c6fc> tavernaprov:content <compounds_id/19.txt> .
+
+<compounds_id/19.txt> tavernaprov:sha1 "73669af5f91a2dfb19327b8069c092dbf9d6b2b5" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/8a54915e-ba35-41da-a0d8-899cac0c83f4> tavernaprov:content <compounds_id/7.txt> .
+
+<compounds_id/7.txt> tavernaprov:sha1 "bf296e91e02304dcab8f160888add0f62661beff" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/2d2b4ba6-aa4f-486f-8724-7cb42b68c4f2> tavernaprov:content <compounds_id/0.txt> .
+
+<compounds_id/0.txt> tavernaprov:sha1 "985e905c8f39358786fc3972d449e5ab95ffce79" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/be1c17c2-bb85-4e6d-9fd1-b5f1309f8ed1> tavernaprov:content <compounds_id/14.txt> .
+
+<compounds_id/14.txt> tavernaprov:sha1 "e40b181836fa0a7d09c9b8cefec9762a681e4b5a" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/82164129-9773-41f7-b635-dfa7ea5afd7f> tavernaprov:content <compounds_id/17.txt> .
+
+<compounds_id/17.txt> tavernaprov:sha1 "f639b7cf98c8eff121082ded8eb6d264f763991c" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/1cb544a6-723c-4d48-ad48-3867087c17fa> tavernaprov:content <compounds_id/9.txt> .
+
+<compounds_id/9.txt> tavernaprov:sha1 "1b1ff7122d7b3d1fb35270de04a7f21207ec1d78" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/4bc56680-99a0-4464-843e-3c76fd3fd31f> tavernaprov:content <compounds_id/2.txt> .
+
+<compounds_id/2.txt> tavernaprov:sha1 "74837b3ac5120445a501aa0778376a4ff335d0ec" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/eb564423-869e-45ed-a503-f4d80ee25dcd/ref/7626a4c3-f96c-4c35-ad75-118491a086ed> tavernaprov:content <compounds_id/5.txt> .
+
+<compounds_id/5.txt> tavernaprov:sha1 "8621b6f030921052fad6d4dd8e080ca6bb0e714b" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .

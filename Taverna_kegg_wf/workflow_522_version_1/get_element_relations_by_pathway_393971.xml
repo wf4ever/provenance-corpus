@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:8MSVH69XE530" author="Franck Tanoh" title="get_element_relations_by_pathway">Retrieve all objects and relations on specified pathway 
+
+Input example: 
+path:bsu00010</s:workflowdescription>
+  <s:processor name="get_element_relations_by_pathway">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_element_relations_by_pathway</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="pathway_id" sink="get_element_relations_by_pathway:pathway_id" />
+  <s:link source="get_element_relations_by_pathway:return" sink="result" />
+  <s:source name="pathway_id">
+    <s:metadata>
+      <s:description>path:bsu00010</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="result" />
+</s:scufl>
+

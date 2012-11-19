@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:RFE5YQNB5G26" author="Franck Tanoh" title="btit">Retrieve definitions of given database entries available on GenomeNet database. 
+
+Example of input: 
+hsa:1798
+ mmu:13478</s:workflowdescription>
+  <s:processor name="btit">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="entry" sink="btit:string" />
+  <s:link source="btit:return" sink="result" />
+  <s:source name="entry">
+    <s:metadata>
+      <s:description>hsa:1798 mmu:13478</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="result">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>text/xml</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+</s:scufl>
+

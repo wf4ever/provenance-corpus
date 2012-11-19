@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:RFE5YQNB5G26" author="Franck Tanoh" title="binfo">Show the version information of a specificied database 
+Example of input: 
+"gb" for Genbank database
+"sp"for swissprot database
+"emb"for embl database</s:workflowdescription>
+  <s:processor name="binfo">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>binfo</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="database" sink="binfo:db" />
+  <s:link source="binfo:return" sink="version" />
+  <s:source name="database">
+    <s:metadata>
+      <s:description>"gb" for Genbank database
+"sp"for swissprot database
+"emb"for embl database</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="version">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>text/xml</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+</s:scufl>
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:DI7P643SR923" author="Franck Tanoh" title="get_enzymes_by_compound">Retrieve all enzymes which have a link to a given compound id
+
+Input example: 
+cpd:C00345</s:workflowdescription>
+  <s:processor name="get_enzymes_by_compound">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_enzymes_by_compound</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="compound_id" sink="get_enzymes_by_compound:compound_id" />
+  <s:link source="get_enzymes_by_compound:return" sink="enzymes_id" />
+  <s:source name="compound_id">
+    <s:metadata>
+      <s:description>cpd:C00345</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="enzymes_id" />
+</s:scufl>
+

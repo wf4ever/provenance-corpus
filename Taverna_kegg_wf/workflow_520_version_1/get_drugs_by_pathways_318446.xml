@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:967a344f-cd13-47be-a5b7-fed800b65019" author="Franck Tanoh" title="get_drugs_by_pathways">Retrieves all drugs on the specified pathway.
+input example: path:map07025 ;  path:eco00020</s:workflowdescription>
+  <s:processor name="get_drugs_by_pathway">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_drugs_by_pathway</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="pathway_id" sink="get_drugs_by_pathway:pathway_id" />
+  <s:link source="get_drugs_by_pathway:return" sink="drug_ids" />
+  <s:source name="pathway_id" />
+  <s:sink name="drug_ids" />
+</s:scufl>
+

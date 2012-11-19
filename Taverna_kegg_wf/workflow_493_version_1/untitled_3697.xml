@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:D9295O0GI90" author="" title="" />
+  <s:processor name="bconv">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="ID" sink="bconv:string" />
+  <s:link source="bconv:return" sink="Result" />
+  <s:source name="ID">
+    <s:metadata>
+      <s:description>ncbi-gi:10047090 
+ncbi-geneid:14751</s:description>
+    </s:metadata>
+  </s:source>
+  <s:sink name="Result" />
+</s:scufl>
+

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:NXIYI8FZ5K0" author="Paul Fisher" title="Entrez Gene to KEGG Pathway">This workflow takes in Entrez gene ids then adds the string "ncbi-geneid:" to the start of each gene id. These gene ids are then cross-referenced to KEGG gene ids. Each KEGG gene id is then sent to the KEGG pathway database and its relevant pathways returned.</s:workflowdescription>
+  <s:processor name="mergePathways_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="split_gene_ids">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split("\t");
+	if (trimmedSplit.length &gt; 2)
+	{
+	    nonEmpty.add(trimmedSplit[1].trim());	
+	}
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="Add_ncbi_to_string">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="" title="add_ncbi_to_string" />
+        <s:processor name="add_ncbi_to_string">
+          <s:beanshell>
+            <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "ncbi-geneid:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:link source="Gi_numbers" sink="add_ncbi_to_string:input" />
+        <s:link source="add_ncbi_to_string:output" sink="Kegg_strings" />
+        <s:source name="Gi_numbers" />
+        <s:sink name="Kegg_strings" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="get_pathways_by_genes">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_pathways_by_genes</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="lister">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://phoebus.cs.man.ac.uk:8081/axis/EnsemblListner.jws?wsdl</s:wsdl>
+      <s:operation>lister</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids_all_species">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="Add_ncbi_to_string:Kegg_strings" sink="Kegg_gene_ids_all_species:string" />
+  <s:link source="Kegg_gene_ids_all_species:return" sink="split_gene_ids:input" />
+  <s:link source="gene" sink="Add_ncbi_to_string:Gi_numbers" />
+  <s:link source="get_pathways_by_genes:return" sink="merge_pathways:stringlist" />
+  <s:link source="lister:listerReturn" sink="get_pathways_by_genes:genes_id_list" />
+  <s:link source="merge_pathways:concatenated" sink="mergePathways_2:stringlist" />
+  <s:link source="split_gene_ids:output" sink="lister:file" />
+  <s:link source="mergePathways_2:concatenated" sink="merged_kegg_pathways" />
+  <s:source name="gene" />
+  <s:sink name="merged_kegg_pathways" />
+</s:scufl>
+
