@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:f47cb19e-767f-456c-bd62-de9477eeb76c" author="" title="casimir_paper" />
+  <s:processor name="flattenList1">
+    <s:local critical="true">
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="4" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="flattenList2">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="3" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="mergeStringListToString3">
+    <s:defaults>
+      <s:default name="seperator">,</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="removeDupResults">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="flatten_list3">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="2" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="flattenList4">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.FlattenList
+      <s:extensions>
+        <s:flattenlist s:depth="4" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="splitStringByRegularExpression">
+    <s:defaults>
+      <s:default name="regex">\n</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="mergeStringListToString1">
+    <s:defaults>
+      <s:default name="seperator">;</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="mergeStringListToString2">
+    <s:defaults>
+      <s:default name="seperator">;</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+    <s:iterationstrategy>
+      <i:iterator xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10" name="stringlist" />
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="beanshellMergeSnps">
+    <s:beanshell>
+      <s:scriptvalue>mergedOutput = "ensembl_id snp_id rs_id chr observed gene_location\n";
+
+
+
+snpLine = "";
+
+internalID = "";
+
+for (i = 0; i &lt; snpID.split(";").length(); i++){
+
+	snpLine = snpID.split(";")[i];
+
+	if (!snpLine.equals("") &amp;&amp; !snpLine.equals("\n") &amp;&amp; snpLine != null) {
+		
+	
+	//mergedOutput = mergedOutput + ensemblGeneID + snpLine;
+	internalID = snpLine.split("\t")[12];
+
+	internalID = internalID.split("\n")[1];
+
+	mergedOutput = mergedOutput + ensemblGeneID + " " + internalID + " " + snpLine.split("\t")[15] + " " + snpLine.split("\t")[13] + " " 
+
+		+ snpLine.split("\t")[16] + " " + snpLine.split("\t")[22];
+
+	}
+	if (i &lt; snpID.split(";").length() - 1){
+
+		mergedOutput = mergedOutput + "\n";
+
+	}
+
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">ensemblGeneID</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">snpID</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">mergedOutput</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="snpID" />
+        <i:iterator name="ensemblGeneID" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="convBpToMb">
+    <s:beanshell>
+      <s:scriptvalue>mb = Double.parseDouble(bp) / 1000000</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">bp</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">mb</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="convBbToMb2">
+    <s:beanshell>
+      <s:scriptvalue>mb = Double.parseDouble(bp) / 1000000</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">bp</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">mb</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="beanshellMergePathways">
+    <s:beanshell>
+      <s:scriptvalue>mergedOutput = "";
+
+for (i = 0; i &lt; keggGeneID.split(";").length(); i++){
+	
+	if (!keggGeneID.equals("") &amp;&amp; !keggGeneID.equals("\n") &amp;&amp; keggGeneID != null){
+
+
+		mergedOutput = mergedOutput + ensemblGeneID + " " + keggGeneID.split(";")[i];
+	
+	
+	}
+	if (i &lt; keggGeneID.split(";").length() - 1){ 
+
+		mergedOutput = mergedOutput + "\n";
+
+	}
+
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">ensemblGeneID</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">keggGeneID</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">mergedOutput</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="keggGeneID" />
+        <i:iterator name="ensemblGeneID" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="beanshellCleanResults">
+    <s:beanshell>
+      <s:scriptvalue>output = "";
+
+for (int i = 0; i &lt; input.split("\n").length(); i++){
+	String line = input.split("\n")[i];
+	for (int j = 0; j &lt; line.split(",").length(); j++){
+		output = output + line.split(",")[j] + "\n"; 
+	} 
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="mouseEmblBioMart">
+    <s:description>Mus musculus genes (NCBIM37)</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Mus musculus genes (NCBIM37)" name="mmusculus_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2008-02-19 13:10:25">
+          <biomart:MartURLLocation database="ensembl_mart_49" default="1" displayName="ENSEMBL 49 GENES (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" uniqueRows="0" softwareVersion="0.6" requestId="taverna">
+          <biomart:Dataset name="mmusculus_gene_ensembl">
+            <biomart:Attribute name="embl" />
+            <biomart:Attribute name="ensembl_gene_id" />
+            <biomart:Filter name="ensembl_gene_id" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="mouseEnsemblBioMart">
+    <s:description>Mus musculus genes (NCBIM37)</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Mus musculus genes (NCBIM37)" name="mmusculus_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2007-12-11 11:42:43">
+          <biomart:MartURLLocation database="ensembl_mart_48" default="1" displayName="ENSEMBL 48 GENES (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" redirect="0" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" uniqueRows="1" softwareVersion="0.6" requestId="taverna">
+          <biomart:Dataset name="mmusculus_gene_ensembl">
+            <biomart:Attribute name="ensembl_gene_id" />
+            <biomart:Attribute name="chromosome_name" />
+            <biomart:Attribute name="start_position" />
+            <biomart:Attribute name="end_position" />
+            <biomart:Filter name="mgi_symbol" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="pathways" workers="12">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:07d6becf-d959-4f82-ac72-61b8870c3c0b" author="" title="test" />
+        <s:processor name="splitStringByRegularExpression2">
+          <s:defaults>
+            <s:default name="regex">\n</s:default>
+          </s:defaults>
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="concatenateTwoStrings">
+          <s:defaults>
+            <s:default name="string1">genbank:</s:default>
+          </s:defaults>
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+        </s:processor>
+        <s:processor name="splitStringByRegularExpression1">
+          <s:defaults>
+            <s:default name="regex">\n</s:default>
+          </s:defaults>
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="splitBeanShell">
+          <s:beanshell>
+            <s:scriptvalue>if (!"\n".equals(input)){
+
+	output = input.split("\t")[1];
+
+}
+
+else {
+	output = input;
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:iterator xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10" name="input" />
+          </s:iterationstrategy>
+        </s:processor>
+        <s:processor name="getPathwaysByGenes">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_pathways_by_genes</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="convToKeggIDs">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>bconv</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="getHtmlOfMarkedPathwayByObjects">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_html_of_marked_pathway_by_objects</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="concatenateTwoStrings:output" sink="convToKeggIDs:string" />
+        <s:link source="convToKeggIDs:return" sink="splitStringByRegularExpression1:string" />
+        <s:link source="getPathwaysByGenes:return" sink="getHtmlOfMarkedPathwayByObjects:pathway_id" />
+        <s:link source="input" sink="concatenateTwoStrings:string2" />
+        <s:link source="splitBeanShell:output" sink="getHtmlOfMarkedPathwayByObjects:object_id_list" />
+        <s:link source="splitBeanShell:output" sink="splitStringByRegularExpression2:string" />
+        <s:link source="splitStringByRegularExpression1:split" sink="splitBeanShell:input" />
+        <s:link source="splitStringByRegularExpression2:split" sink="getPathwaysByGenes:genes_id_list" />
+        <s:link source="getHtmlOfMarkedPathwayByObjects:return" sink="url_output" />
+        <s:link source="getPathwaysByGenes:return" sink="id_output" />
+        <s:source name="input" />
+        <s:sink name="url_output" />
+        <s:sink name="id_output" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="snpAlleles">
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:8f921cdc-5789-471a-b623-13bc29ba8703" author="" title="casimir_workflow_molgenis_mpd" />
+        <s:processor name="Beanshell_scripting_host">
+          <s:beanshell>
+            <s:scriptvalue>output = input;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="unlistSnps">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="findSnpCsvResponse" name="parameters" qname="{http://mpd/}findSnpCsvResponse">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="string" name="snpCsv" qname="findSnpCsvResponse&gt;snpCsv" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="unlistStrainSnps">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="findStrainSnpCsvResponse" name="parameters" qname="{http://mpd/}findStrainSnpCsvResponse">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="string" name="strainsnpCsv" qname="findStrainSnpCsvResponse&gt;strainsnpCsv" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="snpXmlList">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="findSnpsByLocationResponse" name="parameters" qname="{http://mpd/}findSnpsByLocationResponse">
+                <s:elements>
+                  <s:arraytype optional="true" unbounded="true" wrapped="false" typename="snp" name="return" qname="findSnpsByLocationResponse&gt;return">
+                    <s:elementtype>
+                      <s:complextype optional="false" unbounded="false" typename="snp" name="" qname="{http://mpd/}snp">
+                        <s:elements>
+                          <s:basetype optional="true" unbounded="false" typename="string" name="chr" qname="snp&gt;chr" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="dbsnp_ann" qname="snp&gt;dbsnp_ann" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="ensembl_ann" qname="snp&gt;ensembl_ann" />
+                          <s:basetype optional="true" unbounded="false" typename="int" name="id" qname="snp&gt;id" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="insertion" qname="snp&gt;insertion" />
+                          <s:basetype optional="true" unbounded="false" typename="double" name="loc" qname="snp&gt;loc" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="local_id" qname="snp&gt;local_id" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="mapinstance" qname="snp&gt;mapinstance" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="ncbi_ann" qname="snp&gt;ncbi_ann" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="observed" qname="snp&gt;observed" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="projsym" qname="snp&gt;projsym" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="rs" qname="snp&gt;rs" />
+                          <s:basetype optional="true" unbounded="false" typename="string" name="snpclass" qname="snp&gt;snpclass" />
+                        </s:elements>
+                      </s:complextype>
+                    </s:elementtype>
+                  </s:arraytype>
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="findSnpByLocationQuery">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="findSnpsByLocation" name="parameters" qname="{http://mpd/}findSnpsByLocation">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="string" name="chr" qname="findSnpsByLocation&gt;chr" />
+                  <s:basetype optional="true" unbounded="false" typename="double" name="fromMBloc" qname="findSnpsByLocation&gt;fromMBloc" />
+                  <s:basetype optional="true" unbounded="false" typename="double" name="toMBloc" qname="findSnpsByLocation&gt;toMBloc" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="findSnpCsvQuery">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="findSnpCsv" name="parameters" qname="{http://mpd/}findSnpCsv">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="int" name="id" qname="findSnpCsv&gt;id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="chr" qname="findSnpCsv&gt;chr" />
+                  <s:basetype optional="true" unbounded="false" typename="double" name="loc" qname="findSnpCsv&gt;loc" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="rs" qname="findSnpCsv&gt;rs" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="observed" qname="findSnpCsv&gt;observed" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="snpclass" qname="findSnpCsv&gt;snpclass" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="projsym" qname="findSnpCsv&gt;projsym" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="local_id" qname="findSnpCsv&gt;local_id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="mapinstance" qname="findSnpCsv&gt;mapinstance" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="dbsnp_ann" qname="findSnpCsv&gt;dbsnp_ann" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="ncbi_ann" qname="findSnpCsv&gt;ncbi_ann" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="ensembl_ann" qname="findSnpCsv&gt;ensembl_ann" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="insertion" qname="findSnpCsv&gt;insertion" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="findStrainSnpCsvQuery">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="findStrainSnpCsv" name="parameters" qname="{http://mpd/}findStrainSnpCsv">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="int" name="id" qname="findStrainSnpCsv&gt;id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="strain" qname="findStrainSnpCsv&gt;strain" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="strain_strainname" qname="findStrainSnpCsv&gt;strain_strainname" />
+                  <s:basetype optional="true" unbounded="false" typename="int" name="snp" qname="findStrainSnpCsv&gt;snp" />
+                  <s:basetype optional="true" unbounded="false" typename="int" name="snp_id" qname="findStrainSnpCsv&gt;snp_id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="snpvariant" qname="findStrainSnpCsv&gt;snpvariant" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="eachSnp">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="snp" name="" qname="{http://mpd/}snp">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="string" name="chr" qname="snp&gt;chr" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="dbsnp_ann" qname="snp&gt;dbsnp_ann" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="ensembl_ann" qname="snp&gt;ensembl_ann" />
+                  <s:basetype optional="true" unbounded="false" typename="int" name="id" qname="snp&gt;id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="insertion" qname="snp&gt;insertion" />
+                  <s:basetype optional="true" unbounded="false" typename="double" name="loc" qname="snp&gt;loc" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="local_id" qname="snp&gt;local_id" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="mapinstance" qname="snp&gt;mapinstance" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="ncbi_ann" qname="snp&gt;ncbi_ann" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="observed" qname="snp&gt;observed" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="projsym" qname="snp&gt;projsym" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="rs" qname="snp&gt;rs" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="snpclass" qname="snp&gt;snpclass" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="findSnpCsv">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://gbicserver1.biol.rug.nl:8080/molgenis4mpd/soap/api?wsdl</s:wsdl>
+            <s:operation>findSnpCsv</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="findSnpsByLocation">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://gbicserver1.biol.rug.nl:8080/molgenis4mpd/soap/api?wsdl</s:wsdl>
+            <s:operation>findSnpsByLocation</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="findStrainSnpCsv">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://gbicserver1.biol.rug.nl:8080/molgenis4mpd/soap/api?wsdl</s:wsdl>
+            <s:operation>findStrainSnpCsv</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="chr" sink="findSnpByLocationQuery:chr" />
+        <s:link source="eachSnp:id" sink="findSnpCsvQuery:id" />
+        <s:link source="eachSnp:id" sink="findStrainSnpCsvQuery:snp" />
+        <s:link source="findSnpByLocationQuery:output" sink="findSnpsByLocation:parameters" />
+        <s:link source="fromMB" sink="findSnpByLocationQuery:fromMBloc" />
+        <s:link source="toMB" sink="findSnpByLocationQuery:toMBloc" />
+        <s:link source="findSnpCsv:parameters" sink="unlistSnps:input" />
+        <s:link source="findSnpCsvQuery:output" sink="findSnpCsv:parameters" />
+        <s:link source="findSnpsByLocation:parameters" sink="snpXmlList:input" />
+        <s:link source="findStrainSnpCsv:parameters" sink="unlistStrainSnps:input" />
+        <s:link source="findStrainSnpCsvQuery:output" sink="findStrainSnpCsv:parameters" />
+        <s:link source="geneInput" sink="Beanshell_scripting_host:input" />
+        <s:link source="snpXmlList:return" sink="eachSnp:input" />
+        <s:link source="Beanshell_scripting_host:output" sink="geneOutput" />
+        <s:link source="unlistSnps:snpCsv" sink="snps" />
+        <s:link source="unlistStrainSnps:strainsnpCsv" sink="snpAllelePerStrain" />
+        <s:source name="chr" />
+        <s:source name="fromMB" />
+        <s:source name="toMB" />
+        <s:source name="geneInput" />
+        <s:sink name="snps">
+          <s:metadata>
+            <s:mimeTypes>
+              <s:mimeType>text/xml</s:mimeType>
+            </s:mimeTypes>
+          </s:metadata>
+        </s:sink>
+        <s:sink name="snpAllelePerStrain">
+          <s:metadata>
+            <s:mimeTypes>
+              <s:mimeType>text/xml</s:mimeType>
+            </s:mimeTypes>
+          </s:metadata>
+        </s:sink>
+        <s:sink name="geneOutput" />
+      </s:scufl>
+    </s:workflow>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="geneInput" />
+        <i:iterator name="toMB" />
+        <i:iterator name="fromMB" />
+        <i:iterator name="chr" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:link source="beanshellCleanResults:output" sink="splitStringByRegularExpression:string" />
+  <s:link source="beanshellMergePathways:mergedOutput" sink="mergeStringListToString3:stringlist" />
+  <s:link source="beanshellMergeSnps:mergedOutput" sink="flattenList1:inputlist" />
+  <s:link source="convBbToMb2:mb" sink="snpAlleles:toMB" />
+  <s:link source="convBpToMb:mb" sink="snpAlleles:fromMB" />
+  <s:link source="flatten_list3:outputlist" sink="mergeStringListToString2:stringlist" />
+  <s:link source="mergeStringListToString1:concatenated" sink="beanshellMergeSnps:snpID" />
+  <s:link source="mergeStringListToString2:concatenated" sink="beanshellMergePathways:keggGeneID" />
+  <s:link source="mergeStringListToString3:concatenated" sink="beanshellCleanResults:input" />
+  <s:link source="mgiSymbols" sink="mouseEnsemblBioMart:mmusculus_gene_ensembl.mgi_symbol_filter" />
+  <s:link source="mouseEmblBioMart:mmusculus_gene_ensembl.embl" sink="pathways:input" />
+  <s:link source="mouseEmblBioMart:mmusculus_gene_ensembl.ensembl_gene_id" sink="beanshellMergePathways:ensemblGeneID" />
+  <s:link source="mouseEnsemblBioMart:mmusculus_gene_ensembl.chromosome_name" sink="snpAlleles:chr" />
+  <s:link source="mouseEnsemblBioMart:mmusculus_gene_ensembl.end_position" sink="convBbToMb2:bp" />
+  <s:link source="mouseEnsemblBioMart:mmusculus_gene_ensembl.ensembl_gene_id" sink="beanshellMergeSnps:ensemblGeneID" />
+  <s:link source="mouseEnsemblBioMart:mmusculus_gene_ensembl.ensembl_gene_id" sink="mouseEmblBioMart:mmusculus_gene_ensembl.ensembl_gene_id_filter" />
+  <s:link source="mouseEnsemblBioMart:mmusculus_gene_ensembl.ensembl_gene_id" sink="snpAlleles:geneInput" />
+  <s:link source="mouseEnsemblBioMart:mmusculus_gene_ensembl.start_position" sink="convBpToMb:bp" />
+  <s:link source="pathways:id_output" sink="flatten_list3:inputlist" />
+  <s:link source="pathways:url_output" sink="flattenList2:inputlist" />
+  <s:link source="snpAlleles:snpAllelePerStrain" sink="flattenList4:inputlist" />
+  <s:link source="snpAlleles:snps" sink="mergeStringListToString1:stringlist" />
+  <s:link source="splitStringByRegularExpression:split" sink="removeDupResults:stringlist" />
+  <s:link source="flattenList1:outputlist" sink="snps" />
+  <s:link source="flattenList2:outputlist" sink="pathwayURLs" />
+  <s:link source="flattenList4:outputlist" sink="snpAllelePerStrain" />
+  <s:link source="removeDupResults:strippedlist" sink="pathways" />
+  <s:source name="mgiSymbols" />
+  <s:sink name="pathways" />
+  <s:sink name="snps" />
+  <s:sink name="snpAllelePerStrain" />
+  <s:sink name="pathwayURLs" />
+</s:scufl>
+

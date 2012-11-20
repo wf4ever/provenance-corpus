@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:O212J5USSV4" author="Peter Li" title="Gene annotation pipeline for the Graves disease scenario">This is a revised workflow for the Graves disease scenario gene annotation pipeline used in the myGrid project. The  workflow had to be re-written due to the loss of the services invoked in the original workflow.</s:workflowdescription>
+  <s:processor name="ProbeSetId" boring="true">
+    <s:stringconstant>1104_s_at</s:stringconstant>
+  </s:processor>
+  <s:processor name="removePrefix">
+    <s:defaults>
+      <s:default name="prefix">MEDLINE:</s:default>
+    </s:defaults>
+    <s:beanshell>
+      <s:scriptvalue>//Output
+String id;
+
+if(str.startsWith(prefix))
+{
+   id = str.substring(prefix.length());  
+}
+else
+{
+  str = "";
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">str</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">prefix</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">id</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="cleanGoIds">
+    <s:beanshell>
+      <s:scriptvalue>//Output
+ArrayList goIds = new ArrayList();
+
+String[] ids = inputStr.split(" /// ");
+for (int i = 0; i &lt; ids.length; i++)
+{
+  String[] moreIds = ids[i].split(" // ");
+  if(!goIds.contains(moreIds[0]))
+  {
+    String goId;
+    int x = moreIds[0].length();
+    if(x == 3)
+    {
+      goId = "GO:0000" + moreIds[0]; 
+    }
+    else if(x == 4)
+    {
+      goId = "GO:000" + moreIds[0]; 
+    }
+    else if(x == 5)
+    {
+      goId = "GO:00" + moreIds[0]; 
+    }
+
+    goIds.add(goId);
+  }
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">inputStr</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="l('text/plain')">goIds</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="cleanInterproIds">
+    <s:beanshell>
+      <s:scriptvalue>//Output
+ArrayList interproIds = new ArrayList();
+
+String[] ids = inputStr.split(" /// ");
+for (int i = 0; i &lt; ids.length; i++)
+{
+  String[] moreIds = ids[i].split(" // ");
+  if(!interproIds.contains(moreIds[0]))
+  {
+    interproIds.add(moreIds[0]);
+  }
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">inputStr</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="l('text/plain')">interproIds</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="splitString">
+    <s:defaults>
+      <s:default name="regex">\s///\s</s:default>
+    </s:defaults>
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="createVizSession">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://www.ebi.ac.uk/collab/mygrid/service1/goviz/GoViz.jws?wsdl</s:wsdl>
+      <s:operation>createSession</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="destroyVizSession">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://www.ebi.ac.uk/collab/mygrid/service1/goviz/GoViz.jws?wsdl</s:wsdl>
+      <s:operation>destroySession</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getInterProIds">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://dbk-ed.mib.man.ac.uk:8080/HumanAffymapper/services/HumanAffymapper?wsdl</s:wsdl>
+      <s:operation>getInterPro</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getEmblId">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://dbk-ed.mib.man.ac.uk:8080/HumanAffymapper/services/HumanAffymapper?wsdl</s:wsdl>
+      <s:operation>getRepresentativePublicId</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getSwissProtId">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://dbk-ed.mib.man.ac.uk:8080/HumanAffymapper/services/HumanAffymapper?wsdl</s:wsdl>
+      <s:operation>getSwissProt</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getMolFuncGoIds">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://dbk-ed.mib.man.ac.uk:8080/HumanAffymapper/services/HumanAffymapper?wsdl</s:wsdl>
+      <s:operation>getGeneOntologyMolecularFunction</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getDotFromViz">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://www.ebi.ac.uk/collab/mygrid/service1/goviz/GoViz.jws?wsdl</s:wsdl>
+      <s:operation>getDot</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="addTermToViz">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://www.ebi.ac.uk/collab/mygrid/service1/goviz/GoViz.jws?wsdl</s:wsdl>
+      <s:operation>addTerm</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getEC">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://dbk-ed.mib.man.ac.uk:8080/HumanAffymapper/services/HumanAffymapper?wsdl</s:wsdl>
+      <s:operation>getEC</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="cleanEcNumbers">
+    <s:beanshell>
+      <s:scriptvalue>//Output
+ArrayList ecNumbers = new ArrayList();
+
+String[] ids = inputStr.split(" /// ");
+for (int i = 0; i &lt; ids.length; i++)
+{
+  //Remove EC: prefix
+  String ecNumber = ids[i];
+  //ecNumber = ecNumber.substring(3);
+  ecNumber = ecNumber.toLowerCase();
+
+  if(!ecNumbers.contains(ecNumber))
+  {
+    ecNumbers.add(ecNumber);
+  }
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">inputStr</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="l('text/plain')">ecNumbers</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="getPathwaysByECNumbers">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_pathways_by_enzymes</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getMedlineIds">
+    <s:description>For cross-referencing between databanks</s:description>
+    <s:defaults>
+      <s:default name="databank">EMBL</s:default>
+      <s:default name="fieldname">acc</s:default>
+      <s:default name="xrefDatabank">MEDLINE</s:default>
+    </s:defaults>
+    <s:soaplabwsdl>http://dbk-ed.mib.man.ac.uk:8080/axis/services/srs_links.ebi_srslinks</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="getPathwayDiagrams">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.WebImageFetcher</s:local>
+  </s:processor>
+  <s:processor name="mark_pathway_by_objects">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>mark_pathway_by_objects</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="DDBJ_Blastn">
+    <s:description>This call to a Blastn service at the DDBJ is to check that the target sequence of the probe set is specific to the gene whose mRNA expression that the probe sequences have been designed to measure.</s:description>
+    <s:defaults>
+      <s:default name="program">blastn</s:default>
+      <s:default name="database">ddbjhum</s:default>
+    </s:defaults>
+    <s:arbitrarywsdl>
+      <s:wsdl>http://xml.nig.ac.jp/wsdl/Blast.wsdl</s:wsdl>
+      <s:operation>searchSimple</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="getTargetSequence">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://dbk-ed.mib.man.ac.uk:8080/HumanAffymapper/services/HumanAffymapper?wsdl</s:wsdl>
+      <s:operation>getTargetSequence</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="ebi_uniprot">
+    <s:description>The UniProt Knowledgebase is a central database of protein sequence and function created by joining the information contained in Swiss-Prot, TrEMBL, and PIR.</s:description>
+    <s:defaults>
+      <s:default name="fieldname">acc</s:default>
+    </s:defaults>
+    <s:soaplabwsdl>http://dbk-ed.mib.man.ac.uk:8080/axis/services/srs_ebi_uniprotsequence.ebi_uniprot</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="ebi_medline2007">
+    <s:description>MEDLINE is the NLM's premier bibliographic database covering the fields of medicine, nursing, dentistry, veterinary medicine, the health care system, and the preclinical sciences. MEDLINE contains bibliographic citations and author abstracts from more than 4,000 biomedical journals published in the United States and 70 other countries. The file contains over 12 million citations dating back to the mid-1960's. Coverage is worldwide, but most records are from English-language sources or have English abstracts.</s:description>
+    <s:defaults>
+      <s:default name="fieldname">all</s:default>
+    </s:defaults>
+    <s:soaplabwsdl>http://dbk-ed.mib.man.ac.uk:8080/axis/services/srs_ebi_literature.ebi_medline2007</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="ebi_embl">
+    <s:description>The European Bioinformatics Institute (EBI) maintains and distributes the EMBL Nucleotide Sequence database, Europe's primary nucleotide sequence data resource. The EBI also maintains and distributes the Swiss-Prot Protein Sequence database, in collaboration with Amos Bairoch of the University of Geneva. Over fifty additional specialist molecular biology databases, as well as software and documentation of interest to molecular biologists are available. The EBI network services include database searching and sequence similarity searching facilities.</s:description>
+    <s:defaults>
+      <s:default name="fieldname">acc</s:default>
+    </s:defaults>
+    <s:soaplabwsdl>http://dbk-ed.mib.man.ac.uk:8080/axis/services/srs_ebi_dnasequence.ebi_embl</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="calcMeltTemp">
+    <s:description>Calculates DNA RNA/DNA melting temperature</s:description>
+    <s:soaplabwsdl>http://www.ebi.ac.uk/soaplab/services/nucleic_composition.dan</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="UniprotAndPdb">
+    <s:description>UniprotAndPDB</s:description>
+    <s:workflow>
+      <s:xscufllocation>file:/D:/terrybiteImport/examples/examples/testworkflows/uniprotandPDBxml.xml</s:xscufllocation>
+    </s:workflow>
+  </s:processor>
+  <s:link source="ProbeSetId:value" sink="getEC:probeSetId" />
+  <s:link source="ProbeSetId:value" sink="getEmblId:probeSetId" />
+  <s:link source="ProbeSetId:value" sink="getInterProIds:probeSetId" />
+  <s:link source="ProbeSetId:value" sink="getMolFuncGoIds:probeSetId" />
+  <s:link source="ProbeSetId:value" sink="getSwissProtId:probeSetId" />
+  <s:link source="ProbeSetId:value" sink="getTargetSequence:probeSetId" />
+  <s:link source="cleanEcNumbers:ecNumbers" sink="getPathwaysByECNumbers:enzyme_id_list" />
+  <s:link source="cleanEcNumbers:ecNumbers" sink="mark_pathway_by_objects:object_id_list" />
+  <s:link source="cleanGoIds:goIds" sink="addTermToViz:geneOntologyID" />
+  <s:link source="createVizSession:createSessionReturn" sink="addTermToViz:sessionID" />
+  <s:link source="createVizSession:createSessionReturn" sink="destroyVizSession:sessionID" />
+  <s:link source="createVizSession:createSessionReturn" sink="getDotFromViz:sessionID" />
+  <s:link source="ebi_embl:result" sink="calcMeltTemp:sequence_direct_data" />
+  <s:link source="getEC:getECReturn" sink="cleanEcNumbers:inputStr" />
+  <s:link source="getEmblId:getRepresentativePublicIdReturn" sink="ebi_embl:searchterm" />
+  <s:link source="getEmblId:getRepresentativePublicIdReturn" sink="getMedlineIds:searchterm" />
+  <s:link source="getInterProIds:getInterProReturn" sink="cleanInterproIds:inputStr" />
+  <s:link source="getMedlineIds:result" sink="removePrefix:str" />
+  <s:link source="DDBJ_Blastn:Result" sink="blastReport" />
+  <s:link source="UniprotAndPdb:pdbFlatFile" sink="PDBStructure" />
+  <s:link source="getMolFuncGoIds:getGeneOntologyMolecularFunctionReturn" sink="cleanGoIds:inputStr" />
+  <s:link source="mark_pathway_by_objects:return" sink="getPathwayDiagrams:url" />
+  <s:link source="removePrefix:id" sink="ebi_medline2007:searchterm" />
+  <s:link source="splitString:split" sink="UniprotAndPdb:ids" />
+  <s:link source="splitString:split" sink="ebi_uniprot:searchterm" />
+  <s:link source="calcMeltTemp:outfile" sink="meltTemp" />
+  <s:link source="cleanEcNumbers:ecNumbers" sink="ecNumbers" />
+  <s:link source="cleanInterproIds:interproIds" sink="interproIds" />
+  <s:link source="ebi_embl:result" sink="embl" />
+  <s:link source="ebi_medline2007:result" sink="medline" />
+  <s:link source="ebi_uniprot:result" sink="swissprot" />
+  <s:link source="getDotFromViz:getDotReturn" sink="goDiagram" />
+  <s:link source="getMedlineIds:result" sink="medlineIds" />
+  <s:link source="getPathwayDiagrams:image" sink="pathways" />
+  <s:link source="getPathwaysByECNumbers:return" sink="mark_pathway_by_objects:pathway_id" />
+  <s:link source="getSwissProtId:getSwissProtReturn" sink="splitString:string" />
+  <s:link source="getTargetSequence:getTargetSequenceReturn" sink="DDBJ_Blastn:query" />
+  <s:link source="getTargetSequence:getTargetSequenceReturn" sink="targetSequence" />
+  <s:sink name="swissprot">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>chemical/x-swissprot</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+  <s:sink name="embl">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>chemical/x-embl-dl-nucleotide</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+  <s:sink name="medlineIds" />
+  <s:sink name="medline">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>text/xml</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+  <s:sink name="interproIds" />
+  <s:sink name="goDiagram">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>text/x-graphviz</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+  <s:sink name="ecNumbers" />
+  <s:sink name="pathways" />
+  <s:sink name="meltTemp">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>application/octet-stream</s:mimeType>
+        <s:mimeType>image/png</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+  <s:sink name="targetSequence" />
+  <s:sink name="blastReport" />
+  <s:sink name="PDBStructure">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>chemical/x-pdb</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+  <s:coordination name="getDotFromViz_BLOCKON_addTermToViz">
+    <s:condition>
+      <s:state>Completed</s:state>
+      <s:target>addTermToViz</s:target>
+    </s:condition>
+    <s:action>
+      <s:target>getDotFromViz</s:target>
+      <s:statechange>
+        <s:from>Scheduled</s:from>
+        <s:to>Running</s:to>
+      </s:statechange>
+    </s:action>
+  </s:coordination>
+  <s:coordination name="destroyVizSession_BLOCKON_getDotFromViz">
+    <s:condition>
+      <s:state>Completed</s:state>
+      <s:target>getDotFromViz</s:target>
+    </s:condition>
+    <s:action>
+      <s:target>destroyVizSession</s:target>
+      <s:statechange>
+        <s:from>Scheduled</s:from>
+        <s:to>Running</s:to>
+      </s:statechange>
+    </s:action>
+  </s:coordination>
+</s:scufl>
+

@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:d93a16c9-b599-48b4-b2c8-562127456fa3" author="Saeedeh Maleki-Dizaji and Paul Fisher" title="Escherichia coli : From cDNA Microarray Raw Data to Pathways and Published Abstracts">This workflow takes in a CDNA raw file and a normalisation method then returns a series of images/graphs which represent the same output obtained using the R and bioconductor.  Also retruned by this workflow are a list of the top differentialy expressed genes (size dependant on the number specified as input - geneNumber), which are then used to find the candidate pathways which may be influencing the observed changes in the microarray data. By identifying the candidate pathways, more detailed insights into the gene expression data can be obtained.  These pathways are subsequently used to obtain a corpus of published abstracts (from the PubMed database) relating to each biological pathway identified. These pathways are subsequently used to obtain a corpus of published abstracts (from the PubMed database) relating to each biological pathway identified. 
+Also it generates a  pie chart which, indicates the number of genes in a dataset that are regulated by a known transcriptional regulator, or by combination of regulators, and can suggest previously unknown regulatory interactions. The information for each regulon comes from files that are created manually from the EcoCyc database.
+
+
+
+
+
+NOTE - You will also need to install R and Rserv on your machine and install the libaries required by the R script into you R library directory 
+
+The example inputs for this workflow are as follows:
+
+
+geneNumber = the number of differentialy expressed gene to be returned above a given p-value, e.g. 20
+path = the direct path to the raw data file location, e.g. C:/Microarray_Data/FILES/ - note the forward slashes
+p-value = the p-value cut-off value for the array data, e.g. 0.05
+foldChange = the fold change value for the microarray data, e.g. 1 (means greater than 1 or less than -1)
+regulonDir =  the direct path to the regulon file.</s:workflowdescription>
+  <s:processor name="regex" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="merge_pathway_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_desc_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="megre_pathway_desc_1">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="split_by_regex_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="split_search_terms">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="merge_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="split_by_regex">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="merge_outputs_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_descriptions">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="removeEcofromGeneId">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String mytext = split[i].substring((split[i].indexOf("eco:") +4));
+	nonEmpty.add(mytext);
+}
+
+String output = "";
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i));
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="merge_genes_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="regular_exp" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="pathway_and_abstract">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = abstracts.split("\n");
+String pathway_name = pathway;
+
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "&gt;&gt; " +  pathway_name + "\n";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">pathway</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">abstracts</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="pathway" />
+        <i:iterator name="abstracts" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="extract_kegg_gene_id">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split(" ");
+Vector nonEmpty = new Vector();
+
+String trimmed = split[0].trim();
+String output = trimmed + "\n";</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="extract_terms">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String mytext = split[i].substring(split[i].indexOf(" "), split[i].indexOf(" - "));
+	nonEmpty.add(mytext);
+}
+
+String output = "";
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="concat_pathway_ids">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\t");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="add_eco_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+String  output2 = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "eco:" + (String) (nonEmpty.elementAt(i) + "\n");
+        output2 = output2  + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output2</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_gene_nulls_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="add_MeSH_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + " AND \"Metabolic Networks and Pathways\"[MeSH Terms]" + " AND \"Escherichia coli\"" + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="split_by_regex_3">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="concat_gene_pathways">
+    <s:beanshell>
+      <s:scriptvalue>String pathway_id_input = pathway_ids.trim();
+String gene_id_input = gene_ids.trim();
+String output = "";
+
+if(!(pathway_id_input.equals("")))
+{
+	output = gene_id_input + "\t" + pathway_id_input;
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">pathway_ids</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">gene_ids</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="pathway_ids" />
+        <i:iterator name="gene_ids" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="merge_GeneID">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_gene_nulls_1">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_gene_pathway_nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+      <s:dependencies s:classloader="iteration" />
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="cDNADataAnalysis">
+    <s:rshell s:hostname="localhost" s:port="6311" s:username="" s:password="" s:keepSessionAlive="false">
+      library(Biobase)
+library(vsn)
+library(limma) 
+library(genefilter) 
+library(arrayMagic)
+
+###### dirPath comes as an input dirPath
+
+#gNum=100
+#FCVal=1
+#pVal=0.05
+
+arrayType=NULL
+
+#setwd("C:/SUMO biological data/ecoli matt exp 1/Timeseries")
+
+
+setwd(dirPath)
+
+
+
+fileName &lt;- "expDetail.txt"
+
+
+
+description &lt;- readpDataSlides(fileName)
+
+
+files = description[,c("FileNameCy5","FileNameCy3")]
+
+########loading data based on description info file
+RG = read.imagene(files = files)
+
+
+
+#read.imagene(files = files, path = path, ext = ext, names = names, columns = columns, wt.fun = wt.fun,
+
+
+########Normalization 
+RG.norm=backgroundCorrect(RG)
+RG.normlg=normalizeWithinArrays(RG.norm,method="loess")
+
+RG.norml=normalizeWithinArrays(RG.norm)
+
+ summary(RG$R)
+ MA = normalizeWithinArrays(RG, method="none")
+
+ rawImagePlot = 'rawImagePlot.png' 
+ png(rawImagePlot)
+ par(mfrow=c(1,2))
+ imageplot(MA$M[,1], RG$printer, zlim=c(-3,3))
+ plotMA(MA)
+ dev.off()
+
+
+#------------- create print tip plot
+ printTipPlot = 'printTipPlot.png' 
+ png(printTipPlot)
+ plotPrintTipLoess(MA)
+ dev.off()
+
+
+
+ MA.l&lt;- normalizeBetweenArrays(MA)
+
+# create box plot
+ boxNormPlot = 'boxNormPlot.png' 
+    png(boxNormPlot)
+
+
+ par(mfrow=c(1,2))
+ boxplot(MA$M,main="Before lowess",col=rainbow(30))
+ boxplot(MA.l$M,main="After lowess",col=rainbow(30))
+
+ dev.off()
+
+
+
+imageplot(log2(RG$Rb[,1]), RG$printer, low="white", high="red")
+imageplot(MA$M[,1], RG$printer, zlim=c(-3,3))
+
+
+write.table(cbind(MA$genes,MA$M,MA$A), file = 'resultNorm.csv', sep = ',',row.names = FALSE)
+
+MA=MA.l
+
+
+## limma test
+
+ group1=description[,c("FileNameCy5","FileNameCy3")]
+ cl = c(rep(1, dim(group1)[1])) #====number of rows
+ fit = lmFit(MA,design = cl)
+ efit &lt;- eBayes(fit)
+
+ 
+
+tops = topTable(efit,coef=1,adjust='fdr',sort.by='B',number = 50000)
+  
+  ID = substr(tops$Gene.ID,1,10)
+  P = tops$P.Value
+  T = tops$t
+  M = tops$logFC
+  A= tops$AveExpr
+  B = tops$B
+
+# result file name should be same as workflow output
+  result2 = 'testResult.txt'
+  write.table(cbind(ID,A,M,T,P,B), file =  "resultTest.csv",sep = ',',row.names = FALSE)
+
+
+
+ # filtering
+
+
+  #tops = topTable(efit,coef=1,adjust="fdr",sort.by="B",number=gNum)
+tops = topTable(efit,coef=1,adjust="fdr",sort.by="M",number=gNum)
+  filter = tops[tops$P.Value &lt;pVal &amp; (tops$logFC &gt; FCVal| tops$logFC &lt;  (-1*FCVal) ) ,]
+  write.table(filter, file =  "resultFilter.csv",sep = ',',row.names = FALSE)
+  
+
+  affyID1 = filter[1:gNum,]$Gene.ID
+  affyID1 = substr(affyID1,1,9)
+ 
+  
+
+
+
+
+
+
+
+
+
+
+
+##############  sorting Normalized file baes on M value
+
+
+#Awork=MA$A
+#Mwork=MA$M
+#GeneID=MA$genes
+
+#annot=hu10ken[select,]
+ng=20000
+ 
+
+#ng=min(ng,dim(Mwork)[1])  #  
+
+#sd.order=order(Mwork,decreasing=T)
+
+#Awork=Awork[sd.order[1:ng]]
+#Mwork=Mwork[sd.order[1:ng]]
+#annot=annot[sd.order[1:ng]]
+#GeneID=GeneID[sd.order[1:ng],]
+
+#ta = cbind(GeneID,Mwork,Awork)
+
+
+#write.table(ta, file = 'resultNormOrdered3.csv', sep = ',',row.names = FALSE)
+ 
+
+
+########## getting the list of gene : based on gene number
+#x = ta[,6]
+#x = substr(x,1,8)
+
+#gNum = 10   ###### comes as an input gNum
+#geneList = x[1:gNum]
+
+#affyID1 = geneList
+      <s:rshellInputPortList>
+        <s:rshellInputPort s:syntacticType="l('text/plain')" s:symanticType="STRING_LIST">dirPath</s:rshellInputPort>
+        <s:rshellInputPort s:syntacticType="l('text/plain')" s:symanticType="INTEGER_LIST">gNum</s:rshellInputPort>
+        <s:rshellInputPort s:syntacticType="l('text/plain')" s:symanticType="DOUBLE_LIST">pVal</s:rshellInputPort>
+        <s:rshellInputPort s:syntacticType="l('text/plain')" s:symanticType="DOUBLE_LIST">FCVal</s:rshellInputPort>
+      </s:rshellInputPortList>
+      <s:rshellOutputPortList>
+        <s:rshellOutputPort s:syntacticType="'image/png'" s:symanticType="PNG_FILE">boxNormPlot</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="l('text/plain')" s:symanticType="STRING_LIST">affyID1</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="'image/png'" s:symanticType="PNG_FILE">rawImagePlot</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="'image/png'" s:symanticType="PNG_FILE">printTipPlot</s:rshellOutputPort>
+      </s:rshellOutputPortList>
+    </s:rshell>
+  </s:processor>
+  <s:processor name="pieChart">
+    <s:rshell s:hostname="localhost" s:port="6311" s:username="" s:password="" s:keepSessionAlive="false">
+      library(tools)
+library( splines)
+library(survival)
+
+library(preprocessCore)
+library(Biobase)
+
+
+library(affyio)
+library(affy)
+library(limma) 
+library(vsn)
+library(genefilter) 
+library(arrayMagic)
+
+
+library(scatterplot3d)
+library(ade4)
+library(made4)
+########## Calculate size function
+
+PieList = trimWhiteSpace(GeneList)
+
+
+
+cal_size &lt;- function(data) {
+
+size = 0
+n=length(data)
+for (i in 1:n) { if (!data[i]=="")  size=size +1 }
+
+return (size)
+}
+
+
+
+
+remove_null &lt;- function(data1) {
+
+newData = NULL
+n=length(data1)
+for (i in 1:n) { if (!data1[i]=="")  newData = c(newData,data1[i]) }
+
+return (newData)
+}
+
+###### dirPath comes as an input dirPath
+
+
+
+#setwd("C:/SUMO biological data/ecoli matt exp 1/Regulon")
+
+
+setwd(regulonDir)
+
+
+
+fileName &lt;- "regulon_2.txt"
+
+description &lt;- readpDataSlides(fileName)
+
+#GeneList= as.character(description[,"GeneIDAll"])
+#GeneList= as.character(description[,"GeneID"])
+
+#GeneList &lt;- NULL
+#m=length(PieList)
+#for (i in 1:m) {  GeneList = c(GeneList, PieList[i])}
+
+#GeneList= as.character(description[,"GeneID"])
+
+
+
+Size_GeneList= (cal_size(GeneList))
+
+
+
+# get list from external file
+Fnr_reg = remove_null(as.character(description[,"Fnr"]))
+
+ArcA_reg = remove_null(as.character(description[,"ArcA"]))
+PdhR_reg = remove_null(as.character(description[,"PdhR"]))
+
+
+
+
+#calculate intersections
+
+
+Gene_Fnr_reg_Inter = comparelists(GeneList,Fnr_reg)$intersect
+
+ 
+Size_Gene_Fnr_reg = length(Gene_Fnr_reg_Inter)
+
+
+
+Gene_ArcA_reg_Inter = comparelists(GeneList,ArcA_reg)$intersect
+ 
+Size_Gene_ArcA_reg = length(Gene_ArcA_reg_Inter)
+
+
+
+Gene_PdhR_reg_Inter = comparelists(GeneList,PdhR_reg)$intersect
+ 
+Size_Gene_PdhR_reg = length(Gene_PdhR_reg_Inter)
+
+
+Gene_Fnr_ArcA_reg_Inter = comparelists(Gene_Fnr_reg_Inter,Gene_ArcA_reg_Inter)$intersect
+ 
+Size_Gene_Fnr_ArcA_reg = length(Gene_Fnr_ArcA_reg_Inter)
+
+
+
+
+
+
+Size_Unknown = (Size_GeneList) - (Size_Gene_Fnr_reg) - (Size_Gene_ArcA_reg)- (Size_Gene_PdhR_reg) + (Size_Gene_Fnr_ArcA_reg)
+
+
+
+################### Pie chart
+# calculate %
+Size_Gene_Fnr_reg_per = (Size_Gene_Fnr_reg *100)/Size_GeneList
+#Size_Gene_Fnr_reg_per = (Size_GeneList*100)/Size_Gene_Fnr_reg
+
+Size_Gene_ArcA_reg_per = (Size_Gene_ArcA_reg *100)/Size_GeneList
+#Size_Gene_ArcA_reg_per = (Size_Gene_ArcA_reg *100)/Size_Gene_ArcA_reg
+
+Size_Gene_PdhR_reg_per = (Size_Gene_PdhR_reg *100)/Size_GeneList
+#Size_Gene_PdhR_reg_per = (Size_GeneList *100)/Size_Gene_PdhR_reg
+
+Size_Gene_Fnr_ArcA_reg_per = (Size_Gene_Fnr_ArcA_reg*100)/Size_GeneList
+#Size_Gene_Fnr_ArcA_reg_per = (Size_GeneList*100)/Size_Gene_Fnr_ArcA_reg
+
+Size_Unknown_per = (Size_Unknown *100)/Size_GeneList
+#Size_Unknown_per = (Size_GeneList *100)/Size_Unknown
+
+pieChart = 'pieChart.png' 
+png(pieChart)
+pie.reg &lt;- c(Size_Gene_Fnr_reg_per,Size_Gene_ArcA_reg_per,Size_Gene_Fnr_ArcA_reg_per,Size_Gene_PdhR_reg_per,Size_Unknown_per)
+
+names(pie.reg) &lt;- c("Fnr", "ArcA","Fnr&amp;ArcA", "PhdR", "Other")
+pie(pie.reg,col=c("purple","violetred1","green3","cornsilk","cyan"))
+title(main="Regulon", cex.main=1.8, font.main=1)
+#title(xlab="(Don't try this at home kids)", cex.lab=0.8, font.lab=3)
+
+
+dev.off()
+      <s:rshellInputPortList>
+        <s:rshellInputPort s:syntacticType="'text/plain'" s:symanticType="STRING">regulonDir</s:rshellInputPort>
+        <s:rshellInputPort s:syntacticType="l('text/plain')" s:symanticType="STRING_LIST">GeneList</s:rshellInputPort>
+      </s:rshellInputPortList>
+      <s:rshellOutputPortList>
+        <s:rshellOutputPort s:syntacticType="'image/png'" s:symanticType="PNG_FILE">pieChart</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="l('text/plain')" s:symanticType="STRING_LIST">PieList</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="l('text/plain')" s:symanticType="STRING_LIST">GeneList</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="'text/plain'" s:symanticType="INTEGER">Size_Gene_ArcA_reg</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="'text/plain'" s:symanticType="INTEGER">Size_GeneList</s:rshellOutputPort>
+        <s:rshellOutputPort s:syntacticType="'text/plain'" s:symanticType="INTEGER">Size_Gene_Fnr_reg</s:rshellOutputPort>
+      </s:rshellOutputPortList>
+    </s:rshell>
+  </s:processor>
+  <s:processor name="gene_descriptons">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="get_pathways_by_genes">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_pathways_by_genes</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="pathway_desc">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Search_PubMed">
+    <s:description>This workflow takes in a list of KEGG pathway descriptions and a stop_list of KEGG pathway descriptions. These patwhays are then compared, and those in the stop list are removed. The workflow then extracts the pathway process from the KEGG formatted pathway descriptions output. It takes in a list of KEGG pathway descriptions and returns a list of pathways, without the KEGG pathway identifier or the species from which it came (e.g. - mus musculus (mouse) ). These are passed to the eSearch function and searched for in PubMed. Those abstracts found are returned to the user</s:description>
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:cb167580-7e96-4651-afef-a0a16d1d2f97" author="Paul Fisher" title="Pathway to PubMed">This workflow takes in a list of KEGG pathway descriptions and a stop_list of KEGG pathway descriptions. These patwhays are then compared, and those in the stop list are removed. The workflow then extracts the pathway process from the KEGG formatted pathway descriptions output. It takes in a list of KEGG pathway descriptions and returns a list of pathways, without the KEGG pathway identifier or the species from which it came (e.g. - mus musculus (mouse) ). These are passed to the eSearch function and searched for in PubMed. Those abstracts found are returned to the user</s:workflowdescription>
+        <s:processor name="xpath" boring="true">
+          <s:stringconstant>/*[local-name(.)='eSearchResult']/*[local-name(.)='IdList']/*[local-name(.)='Id']</s:stringconstant>
+        </s:processor>
+        <s:processor name="extractPMID">
+          <s:local>net.sourceforge.taverna.scuflworkers.xml.XPathTextWorker</s:local>
+        </s:processor>
+        <s:processor name="merge_dates">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="max_return" boring="true">
+          <s:stringconstant>500</s:stringconstant>
+        </s:processor>
+        <s:processor name="concat_abstract_ids">
+          <s:beanshell>
+            <s:scriptvalue>String id = id.trim();
+String abstract_text = abstract_text.trim();
+String date_text = date_text.trim();
+
+String output = "";
+
+output = id + "\t" + date_text + "\t" + abstract_text;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">id</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">abstract_text</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">date_text</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+            <s:dependencies s:classloader="iteration" />
+          </s:beanshell>
+          <s:iterationstrategy>
+            <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+              <i:iterator name="id" />
+              <i:iterator name="abstract_text" />
+              <i:iterator name="date_text" />
+            </i:dot>
+          </s:iterationstrategy>
+        </s:processor>
+        <s:processor name="pubmed_database" boring="true">
+          <s:stringconstant>pubmed</s:stringconstant>
+        </s:processor>
+        <s:processor name="merge_abstract_ids">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="merge_abstracts">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="parametersXML_eFecth">
+          <s:local>
+            org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+            <s:extensions>
+              <s:complextype optional="false" unbounded="false" typename="eSearchRequest" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/esearch}eSearchRequest">
+                <s:elements>
+                  <s:basetype optional="true" unbounded="false" typename="string" name="db" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="term" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="QueryKey" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="usehistory" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="tool" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="email" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="field" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="reldate" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="mindate" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="maxdate" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="datetype" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="RetStart" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="RetMax" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="rettype" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                  <s:basetype optional="true" unbounded="false" typename="string" name="sort" qname="{http://www.w3.org/2001/XMLSchema}string" />
+                </s:elements>
+              </s:complextype>
+            </s:extensions>
+          </s:local>
+        </s:processor>
+        <s:processor name="run_eSearch">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://eutils.ncbi.nlm.nih.gov/entrez/eutils/soap/eutils.wsdl</s:wsdl>
+            <s:operation>run_eSearch</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="Retrive_abstracts">
+          <s:description>This workflow takes in a number of search terms (as used in the normal PubMed interface) and retrieves a list of PubMed ids in a list format.</s:description>
+          <s:workflow>
+            <s:scufl version="0.2" log="0">
+              <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:SOWUXPE5TJ0" author="Paul Fisher" title="XPath Pubmed Ids">This workflow takes in a number of search terms (as used in the normal PubMed interface) and retrieves a list of PubMed ids in a list format.</s:workflowdescription>
+              <s:processor name="extractAbstract">
+                <s:local>net.sourceforge.taverna.scuflworkers.xml.XPathTextWorker</s:local>
+              </s:processor>
+              <s:processor name="database" boring="true">
+                <s:stringconstant>pubmed</s:stringconstant>
+              </s:processor>
+              <s:processor name="xpath" boring="true">
+                <s:stringconstant>/*[local-name(.)='eFetchResult']/*[local-name(.)='PubmedArticleSet']/*[local-name(.)='PubmedArticle']/*[local-name(.)='MedlineCitation']/*[local-name(.)='Article']/*[local-name(.)='Abstract']/*[local-name(.)='AbstractText']</s:stringconstant>
+              </s:processor>
+              <s:processor name="extractDates">
+                <s:local>net.sourceforge.taverna.scuflworkers.xml.XPathTextWorker</s:local>
+              </s:processor>
+              <s:processor name="xpath_2" boring="true">
+                <s:stringconstant>/*[local-name(.)='eFetchResult']/*[local-name(.)='PubmedArticleSet']/*[local-name(.)='PubmedArticle']/*[local-name(.)='MedlineCitation']/*[local-name(.)='DateCreated']/*[local-name(.)='Year']</s:stringconstant>
+              </s:processor>
+              <s:processor name="parametersXML">
+                <s:local>
+                  org.embl.ebi.escience.scuflworkers.java.XMLInputSplitter
+                  <s:extensions>
+                    <s:complextype optional="false" unbounded="false" typename="eFetchRequest" name="parameters" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}eFetchRequest">
+                      <s:elements>
+                        <s:basetype optional="true" unbounded="false" typename="string" name="db" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;db" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="id" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;id" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="WebEnv" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;WebEnv" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="query_key" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;query_key" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="tool" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;tool" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="email" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;email" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="retstart" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;retstart" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="retmax" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;retmax" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="rettype" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;rettype" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="strand" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;strand" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="seq_start" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;seq_start" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="seq_stop" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;seq_stop" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="complexity" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;complexity" />
+                        <s:basetype optional="true" unbounded="false" typename="string" name="report" qname="{http://www.ncbi.nlm.nih.gov/soap/eutils/efetch}&gt;eFetchRequest&gt;report" />
+                      </s:elements>
+                    </s:complextype>
+                  </s:extensions>
+                </s:local>
+              </s:processor>
+              <s:processor name="run_eFetch">
+                <s:arbitrarywsdl>
+                  <s:wsdl>http://eutils.ncbi.nlm.nih.gov/entrez/eutils/soap/eutils.wsdl</s:wsdl>
+                  <s:operation>run_eFetch</s:operation>
+                </s:arbitrarywsdl>
+              </s:processor>
+              <s:link source="database:value" sink="parametersXML:db" />
+              <s:link source="parametersXML:output" sink="run_eFetch:parameters" />
+              <s:link source="pubmed_ids" sink="parametersXML:id" />
+              <s:link source="run_eFetch:parameters" sink="extractAbstract:xml-text" />
+              <s:link source="run_eFetch:parameters" sink="extractDates:xml-text" />
+              <s:link source="xpath:value" sink="extractAbstract:xpath" />
+              <s:link source="xpath_2:value" sink="extractDates:xpath" />
+              <s:link source="extractAbstract:nodelist" sink="abstract" />
+              <s:link source="extractDates:nodelist" sink="date" />
+              <s:source name="pubmed_ids" />
+              <s:sink name="abstract" />
+              <s:sink name="date" />
+            </s:scufl>
+          </s:workflow>
+        </s:processor>
+        <s:link source="Pathway_search_term" sink="parametersXML_eFecth:term" />
+        <s:link source="Retrive_abstracts:abstract" sink="merge_abstracts:stringlist" />
+        <s:link source="Retrive_abstracts:date" sink="merge_dates:stringlist" />
+        <s:link source="concat_abstract_ids:output" sink="merge_abstract_ids:stringlist" />
+        <s:link source="extractPMID:nodelist" sink="Retrive_abstracts:pubmed_ids" />
+        <s:link source="extractPMID:nodelist" sink="concat_abstract_ids:id" />
+        <s:link source="max_return:value" sink="parametersXML_eFecth:RetMax" />
+        <s:link source="merge_abstracts:concatenated" sink="concat_abstract_ids:abstract_text" />
+        <s:link source="merge_dates:concatenated" sink="concat_abstract_ids:date_text" />
+        <s:link source="parametersXML_eFecth:output" sink="run_eSearch:parameters" />
+        <s:link source="pubmed_database:value" sink="parametersXML_eFecth:db" />
+        <s:link source="run_eSearch:parameters" sink="extractPMID:xml-text" />
+        <s:link source="xpath:value" sink="extractPMID:xpath" />
+        <s:link source="merge_abstract_ids:concatenated" sink="merged_outputs" />
+        <s:source name="Pathway_search_term" />
+        <s:sink name="merged_outputs" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:link source="Search_PubMed:merged_outputs" sink="pathway_and_abstract:abstracts" />
+  <s:link source="add_MeSH_to_string:output" sink="split_search_terms:string" />
+  <s:link source="add_eco_to_string:output" sink="gene_descriptons:string" />
+  <s:link source="concat_gene_pathways:output" sink="merge_genes_pathways:stringlist" />
+  <s:link source="concat_pathway_ids:output" sink="concat_gene_pathways:pathway_ids" />
+  <s:link source="extract_kegg_gene_id:output" sink="merge_ids:stringlist" />
+  <s:link source="extract_terms:output" sink="add_MeSH_to_string:input" />
+  <s:link source="foldChange" sink="cDNADataAnalysis:FCVal" />
+  <s:link source="geneNumber" sink="cDNADataAnalysis:gNum" />
+  <s:link source="gene_descriptons:return" sink="extract_kegg_gene_id:input" />
+  <s:link source="gene_descriptons:return" sink="merge_descriptions:stringlist" />
+  <s:link source="get_pathways_by_genes:return" sink="merge_pathway_ids:stringlist" />
+  <s:link source="get_pathways_by_genes:return" sink="pathway_desc:string" />
+  <s:link source="megre_pathway_desc_1:concatenated" sink="merge_pathway_desc_2:stringlist" />
+  <s:link source="merge_descriptions:concatenated" sink="remove_gene_nulls_2:input" />
+  <s:link source="merge_genes_pathways:concatenated" sink="remove_gene_pathway_nulls:input" />
+  <s:link source="merge_ids:concatenated" sink="remove_gene_nulls_1:input" />
+  <s:link source="merge_pathway_desc_2:concatenated" sink="remove_pathway_nulls_2:input" />
+  <s:link source="merge_pathway_ids:concatenated" sink="concat_pathway_ids:input" />
+  <s:link source="pValue" sink="cDNADataAnalysis:pVal" />
+  <s:link source="path" sink="cDNADataAnalysis:dirPath" />
+  <s:link source="pathway_and_abstract:output" sink="remove_nulls:input" />
+  <s:link source="pathway_desc:return" sink="megre_pathway_desc_1:stringlist" />
+  <s:link source="regex:value" sink="split_search_terms:regex" />
+  <s:link source="regular_exp:value" sink="split_by_regex:regex" />
+  <s:link source="regular_exp:value" sink="split_by_regex_2:regex" />
+  <s:link source="regular_exp:value" sink="split_by_regex_3:regex" />
+  <s:link source="regulonDir" sink="pieChart:regulonDir" />
+  <s:link source="cDNADataAnalysis:affyID1" sink="geneID" />
+  <s:link source="cDNADataAnalysis:affyID1" sink="merge_GeneID:stringlist" />
+  <s:link source="cDNADataAnalysis:boxNormPlot" sink="boxNorm" />
+  <s:link source="merge_GeneID:concatenated" sink="split_by_regex:string" />
+  <s:link source="remove_nulls:output" sink="merge_outputs_2:stringlist" />
+  <s:link source="remove_pathway_nulls_2:output" sink="extract_terms:input" />
+  <s:link source="split_by_regex:split" sink="add_eco_to_string:input" />
+  <s:link source="split_by_regex_2:split" sink="concat_gene_pathways:gene_ids" />
+  <s:link source="split_by_regex_2:split" sink="removeEcofromGeneId:input" />
+  <s:link source="pieChart:pieChart" sink="pieChartRegulon" />
+  <s:link source="removeEcofromGeneId:output" sink="geneIdwithoutEco" />
+  <s:link source="removeEcofromGeneId:output" sink="pieChart:GeneList" />
+  <s:link source="removeEcofromGeneId:output" sink="pieChart:GeneList" />
+  <s:link source="remove_gene_nulls_1:output" sink="split_by_regex_2:string" />
+  <s:link source="split_by_regex_2:split" sink="split_by_regex_3:string" />
+  <s:link source="split_by_regex_3:split" sink="get_pathways_by_genes:genes_id_list" />
+  <s:link source="split_search_terms:split" sink="Search_PubMed:Pathway_search_term" />
+  <s:link source="split_search_terms:split" sink="pathway_and_abstract:pathway" />
+  <s:link source="cDNADataAnalysis:printTipPlot" sink="prontTip" />
+  <s:link source="cDNADataAnalysis:rawImagePlot" sink="image" />
+  <s:link source="merge_outputs_2:concatenated" sink="pathway_abstracts" />
+  <s:link source="pieChart:GeneList" sink="GeneList" />
+  <s:link source="pieChart:PieList" sink="PieList" />
+  <s:link source="pieChart:Size_GeneList" sink="sizeGene" />
+  <s:link source="pieChart:Size_Gene_ArcA_reg" sink="sizeArcA" />
+  <s:link source="pieChart:Size_Gene_Fnr_reg" sink="sizeFnr" />
+  <s:link source="remove_gene_nulls_2:output" sink="Kegg_gene_desc" />
+  <s:link source="remove_gene_pathway_nulls:output" sink="genes_pathways" />
+  <s:link source="remove_pathway_nulls_2:output" sink="merged_pathway_desc" />
+  <s:source name="path" />
+  <s:source name="pValue" />
+  <s:source name="foldChange" />
+  <s:source name="geneNumber" />
+  <s:source name="regulonDir" />
+  <s:sink name="Kegg_gene_desc" />
+  <s:sink name="merged_pathway_desc" />
+  <s:sink name="genes_pathways" />
+  <s:sink name="pathway_abstracts" />
+  <s:sink name="image" />
+  <s:sink name="boxNorm" />
+  <s:sink name="geneID" />
+  <s:sink name="prontTip" />
+  <s:sink name="pieChartRegulon" />
+  <s:sink name="PieList" />
+  <s:sink name="GeneList" />
+  <s:sink name="sizeFnr" />
+  <s:sink name="sizeArcA" />
+  <s:sink name="sizeGene" />
+  <s:sink name="geneIdwithoutEco" />
+  <s:coordination name="pieChart_BLOCKON_cDNADataAnalysis">
+    <s:condition>
+      <s:state>Completed</s:state>
+      <s:target>cDNADataAnalysis</s:target>
+    </s:condition>
+    <s:action>
+      <s:target>pieChart</s:target>
+      <s:statechange>
+        <s:from>Scheduled</s:from>
+        <s:to>Running</s:to>
+      </s:statechange>
+    </s:action>
+  </s:coordination>
+</s:scufl>
+

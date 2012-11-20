@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:net.sf.taverna:wfDefinition:d03e7996-9580-42b3-b977-972447770fb0" author="Sirisha Gollapudi" title="kegg_gene_to_swissprot_identifier">Takes a KEGG gene identifier, e.g. sce:YAL038W (yeast pyruvate kinase) and converts to the corresponding Swissprot identifier.</s:workflowdescription>
+  <s:processor name="get_linkdb_by_entry">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_linkdb_by_entry</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="returnXML">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+      <s:extensions>
+        <s:arraytype optional="false" unbounded="false" wrapped="false" typename="ArrayOfLinkDBRelation" name="return" qname="{SOAP/KEGG}ArrayOfLinkDBRelation">
+          <s:elementtype>
+            <s:complextype optional="false" unbounded="false" typename="LinkDBRelation" name="" qname="{SOAP/KEGG}LinkDBRelation">
+              <s:elements>
+                <s:basetype optional="false" unbounded="false" typename="string" name="entry_id1" qname="LinkDBRelation&gt;entry_id1" />
+                <s:basetype optional="false" unbounded="false" typename="string" name="entry_id2" qname="LinkDBRelation&gt;entry_id2" />
+                <s:basetype optional="false" unbounded="false" typename="string" name="type" qname="LinkDBRelation&gt;type" />
+                <s:basetype optional="false" unbounded="false" typename="string" name="path" qname="LinkDBRelation&gt;path" />
+              </s:elements>
+            </s:complextype>
+          </s:elementtype>
+        </s:arraytype>
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="database" boring="true">
+    <s:stringconstant>uniprot</s:stringconstant>
+  </s:processor>
+  <s:processor name="returnXML1">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.XMLOutputSplitter
+      <s:extensions>
+        <s:complextype optional="false" unbounded="false" typename="LinkDBRelation" name="" qname="{SOAP/KEGG}LinkDBRelation">
+          <s:elements>
+            <s:basetype optional="false" unbounded="false" typename="string" name="entry_id1" qname="LinkDBRelation&gt;entry_id1" />
+            <s:basetype optional="false" unbounded="false" typename="string" name="entry_id2" qname="LinkDBRelation&gt;entry_id2" />
+            <s:basetype optional="false" unbounded="false" typename="string" name="type" qname="LinkDBRelation&gt;type" />
+            <s:basetype optional="false" unbounded="false" typename="string" name="path" qname="LinkDBRelation&gt;path" />
+          </s:elements>
+        </s:complextype>
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="split">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="colon" boring="true">
+    <s:stringconstant>:</s:stringconstant>
+  </s:processor>
+  <s:processor name="extract">
+    <s:local>
+      org.embl.ebi.escience.scuflworkers.java.SliceList
+      <s:extensions>
+        <s:slicelist s:depth="1" />
+      </s:extensions>
+    </s:local>
+  </s:processor>
+  <s:processor name="from" boring="true">
+    <s:stringconstant>1</s:stringconstant>
+  </s:processor>
+  <s:processor name="to" boring="true">
+    <s:stringconstant>2</s:stringconstant>
+  </s:processor>
+  <s:processor name="merge">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge1">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:link source="kegg_entry_id" sink="get_linkdb_by_entry:entry_id" />
+  <s:link source="colon:value" sink="split:regex" />
+  <s:link source="database:value" sink="get_linkdb_by_entry:db" />
+  <s:link source="extract:outputlist" sink="merge:stringlist" />
+  <s:link source="from:value" sink="extract:fromindex" />
+  <s:link source="get_linkdb_by_entry:return" sink="returnXML:input" />
+  <s:link source="merge:concatenated" sink="merge1:stringlist" />
+  <s:link source="returnXML1:entry_id2" sink="split:string" />
+  <s:link source="returnXML:return" sink="returnXML1:input" />
+  <s:link source="split:split" sink="extract:inputlist" />
+  <s:link source="to:value" sink="extract:toindex" />
+  <s:link source="merge1:concatenated" sink="swissprot_id" />
+  <s:source name="kegg_entry_id" />
+  <s:sink name="swissprot_id">
+    <s:metadata>
+      <s:mimeTypes>
+        <s:mimeType>text/xml</s:mimeType>
+      </s:mimeTypes>
+    </s:metadata>
+  </s:sink>
+</s:scufl>
+

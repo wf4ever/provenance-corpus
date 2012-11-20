@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="" title="" />
+  <s:processor name="GETPATHWAYS">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.ad.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>mark_all_pathways_by_genes</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="GETIMAGE">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.WebImageFetcher</s:local>
+  </s:processor>
+  <s:processor name="KEGGBASEURL" boring="true">
+    <s:stringconstant>http://soap.genome.ad.jp/tmp/</s:stringconstant>
+  </s:processor>
+  <s:processor name="add_ncbi_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "ncbi-gi:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="Kegg_id_conv">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="parse_result">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split("\t");
+	if (trimmedSplit.length == 2)
+	{
+	    String[] trimmedSplit2 = trimmedSplit[1].split(":");
+	    nonEmpty.add(trimmedSplit2[0].trim());
+            nonEmpty.add(trimmedSplit2[1].trim());	
+	}
+}
+
+String abbr = "";
+String ids = "";
+
+abbr = (String) (nonEmpty.elementAt(0));
+ids = (String) (nonEmpty.elementAt(1));</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">abbr</s:beanshelloutput>
+        <s:beanshelloutput s:syntactictype="'text/plain'">ids</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="Gi_number" boring="true">
+    <s:stringconstant>13928664</s:stringconstant>
+  </s:processor>
+  <s:link source="GETIMAGE:image" sink="KEGG_pathways" />
+  <s:link source="GETPATHWAYS:return" sink="GETIMAGE:url" />
+  <s:link source="GETPATHWAYS:return" sink="pathway_id" />
+  <s:link source="Gi_number:value" sink="add_ncbi_string:input" />
+  <s:link source="KEGGBASEURL:value" sink="GETIMAGE:base" />
+  <s:link source="Kegg_id_conv:return" sink="parse_result:input" />
+  <s:link source="parse_result:abbr" sink="GETPATHWAYS:abbr" />
+  <s:link source="parse_result:ids" sink="GETPATHWAYS:oids" />
+  <s:link source="Kegg_id_conv:return" sink="kegg_protein_id" />
+  <s:link source="add_ncbi_string:output" sink="Kegg_id_conv:string" />
+  <s:sink name="KEGG_pathways" />
+  <s:sink name="kegg_protein_id" />
+  <s:sink name="pathway_id" />
+</s:scufl>
+
+

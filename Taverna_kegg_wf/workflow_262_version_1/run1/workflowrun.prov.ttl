@@ -1,0 +1,405 @@
+# @base <file:/C:/Documents%20and%20Settings/agarrido/Mis%20documentos/KEGG%20wfs%202/workflow_262_version_1/run1/workflowrun.prov.ttl> .
+@prefix cnt: <http://www.w3.org/2011/content#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix scufl2: <http://ns.taverna.org.uk/2010/scufl2#> .
+@prefix tavernaprov: <http://ns.taverna.org.uk/2012/tavernaprov/> .
+@prefix wfdesc: <http://purl.org/wf4ever/wfdesc#> .
+@prefix wfprov: <http://purl.org/wf4ever/wfprov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:taverna-prov-export rdfs:label "taverna-prov export of workflow run provenance" ;
+	prov:qualifiedAssociation _:node17c4cis0ux1 ;
+	prov:startedAtTime "2012-11-16T11:35:22.718+01:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine ;
+	prov:wasInformedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> .
+
+_:node17c4cis0ux1 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2011/software/taverna-2.4.0> .
+
+<> prov:wasGeneratedBy :taverna-prov-export .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/20a2b15a-0f06-47eb-bbc7-bed609aa1895/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/b235d298-4715-47b4-a7d4-393807c259a8/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/d89cf440-03be-4d61-98bd-570266a792ea/> ;
+	wfprov:describedByWorkflow <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/> ;
+	wfprov:wasEnactedBy :taverna-engine ;
+	a wfprov:WorkflowRun ;
+	rdfs:label "Workflow run of Untitledworkflow2" ;
+	prov:endedAtTime "2012-11-16T11:33:01.546+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux2 ;
+	prov:startedAtTime "2012-11-16T11:32:55.531+01:00"^^xsd:dateTime ;
+	prov:wasAssociatedWith :taverna-engine .
+
+_:node17c4cis0ux2 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/> .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/82a5253e-56c4-496d-8633-203411f94786/0> tavernaprov:errorMessage "Processor 'GETPATHWAYS' - Port 'return'" ;
+	tavernaprov:stackTrace """Stack trace:
+""" ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/pathway_id> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	a tavernaprov:Error , prov:Entity ;
+	prov:qualifiedGeneration _:node17c4cis0ux3 ;
+	prov:wasDerivedFrom <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/bc6ca97a-9236-492a-bbc4-2804aaff1606/0> , <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/ced17d98-8f37-476c-af3a-855e3c3217bc/0> ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/ced17d98-8f37-476c-af3a-855e3c3217bc/0> tavernaprov:errorMessage "Processor 'parse_result' - Port 'ids': Error evaluating the beanshell script net.sf.taverna.t2.activities.beanshell.BeanshellActivity$1@49e700" ;
+	tavernaprov:stackTrace """Sourced file: inline evaluation of: ``String[] split = input.split(\"\\n\"); Vector nonEmpty = new Vector();  for (int i  . . . '' : Method Invocation nonEmpty.elementAt : at Line: 19 : in file: inline evaluation of: ``String[] split = input.split(\"\\n\"); Vector nonEmpty = new Vector();  for (int i  . . . '' : nonEmpty .elementAt ( 0 ) 
+
+Target exception: java.lang.ArrayIndexOutOfBoundsException: 0 >= 0
+
+        at bsh.BSHMethodInvocation.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHCastExpression.eval(null:-1)
+        at bsh.BSHAssignment.eval(null:-1)
+        at bsh.Interpreter.eval(null:-1)
+        at bsh.Interpreter.eval(null:-1)
+        at bsh.Interpreter.eval(null:-1)
+        at net.sf.taverna.t2.activities.beanshell.BeanshellActivity$1.run(BeanshellActivity.java:179)
+        at java.lang.Thread.run(null:-1)
+""" ;
+	a tavernaprov:Error , prov:Entity .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/bc6ca97a-9236-492a-bbc4-2804aaff1606/0> tavernaprov:errorMessage "Processor 'parse_result' - Port 'abbr': Error evaluating the beanshell script net.sf.taverna.t2.activities.beanshell.BeanshellActivity$1@49e700" ;
+	tavernaprov:stackTrace """Sourced file: inline evaluation of: ``String[] split = input.split(\"\\n\"); Vector nonEmpty = new Vector();  for (int i  . . . '' : Method Invocation nonEmpty.elementAt : at Line: 19 : in file: inline evaluation of: ``String[] split = input.split(\"\\n\"); Vector nonEmpty = new Vector();  for (int i  . . . '' : nonEmpty .elementAt ( 0 ) 
+
+Target exception: java.lang.ArrayIndexOutOfBoundsException: 0 >= 0
+
+        at bsh.BSHMethodInvocation.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHPrimaryExpression.eval(null:-1)
+        at bsh.BSHCastExpression.eval(null:-1)
+        at bsh.BSHAssignment.eval(null:-1)
+        at bsh.Interpreter.eval(null:-1)
+        at bsh.Interpreter.eval(null:-1)
+        at bsh.Interpreter.eval(null:-1)
+        at net.sf.taverna.t2.activities.beanshell.BeanshellActivity$1.run(BeanshellActivity.java:179)
+        at java.lang.Thread.run(null:-1)
+""" ;
+	a tavernaprov:Error , prov:Entity .
+
+_:node17c4cis0ux3 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/pathway_id> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/pathway_id> rdfs:label "Workflow output pathway_id" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/fe87cf50-9fb5-4ec1-bd12-3a003e832222/0> tavernaprov:errorMessage "Processor 'GETIMAGE' - Port 'image'" ;
+	tavernaprov:stackTrace """Stack trace:
+""" ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/KEGG_pathways> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	a tavernaprov:Error , prov:Entity ;
+	prov:qualifiedGeneration _:node17c4cis0ux4 ;
+	prov:wasDerivedFrom <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/82a5253e-56c4-496d-8633-203411f94786/0> ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> .
+
+_:node17c4cis0ux4 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/KEGG_pathways> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/KEGG_pathways> rdfs:label "Workflow output KEGG_pathways" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c86187ff-3e57-4f71-baeb-b83b3e4582f1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/kegg_protein_id> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/out/return> ;
+	prov:qualifiedGeneration _:node17c4cis0ux15 , _:node17c4cis0ux5 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> .
+
+_:node17c4cis0ux5 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/kegg_protein_id> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/out/kegg_protein_id> rdfs:label "Workflow output kegg_protein_id" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/20a2b15a-0f06-47eb-bbc7-bed609aa1895/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution Gi_number (facade0:Untitledworkflow2:Gi_number)" ;
+	prov:endedAtTime "2012-11-16T11:32:59.156+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux6 ;
+	prov:startedAtTime "2012-11-16T11:32:57.421+01:00"^^xsd:dateTime .
+
+_:node17c4cis0ux6 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/> rdfs:label "Processor Gi_number" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/> ;
+	dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/> .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c2a26802-1680-494f-9fe2-e87a643aa851> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/out/value> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/in/input> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/20a2b15a-0f06-47eb-bbc7-bed609aa1895/> ;
+	prov:qualifiedGeneration _:node17c4cis0ux7 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/20a2b15a-0f06-47eb-bbc7-bed609aa1895/> .
+
+_:node17c4cis0ux7 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/20a2b15a-0f06-47eb-bbc7-bed609aa1895/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Gi_number/out/value> rdfs:label "Gi_number output value" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/b235d298-4715-47b4-a7d4-393807c259a8/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution KEGGBASEURL (facade0:Untitledworkflow2:KEGGBASEURL)" ;
+	prov:endedAtTime "2012-11-16T11:32:59.156+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux8 ;
+	prov:startedAtTime "2012-11-16T11:32:57.484+01:00"^^xsd:dateTime .
+
+_:node17c4cis0ux8 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/> rdfs:label "Processor KEGGBASEURL" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/out/value> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/b235d298-4715-47b4-a7d4-393807c259a8/> ;
+	prov:qualifiedGeneration _:node17c4cis0ux9 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/b235d298-4715-47b4-a7d4-393807c259a8/> .
+
+_:node17c4cis0ux9 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/b235d298-4715-47b4-a7d4-393807c259a8/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/out/value> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/KEGGBASEURL/out/value> rdfs:label "KEGGBASEURL output value" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/d89cf440-03be-4d61-98bd-570266a792ea/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c2a26802-1680-494f-9fe2-e87a643aa851> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution add_ncbi_string (facade0:Untitledworkflow2:add_ncbi_string)" ;
+	prov:endedAtTime "2012-11-16T11:32:59.375+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux10 ;
+	prov:qualifiedUsage _:node17c4cis0ux11 ;
+	prov:startedAtTime "2012-11-16T11:32:59.234+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c2a26802-1680-494f-9fe2-e87a643aa851> .
+
+_:node17c4cis0ux10 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/> rdfs:label "Processor add_ncbi_string" .
+
+_:node17c4cis0ux11 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c2a26802-1680-494f-9fe2-e87a643aa851> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/in/input> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/in/input> rdfs:label "add_ncbi_string input input" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c6150d69-b488-4698-983d-f0fd5c2fdd25> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/in/string> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/out/output> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/d89cf440-03be-4d61-98bd-570266a792ea/> ;
+	prov:qualifiedGeneration _:node17c4cis0ux12 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/d89cf440-03be-4d61-98bd-570266a792ea/> .
+
+_:node17c4cis0ux12 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/d89cf440-03be-4d61-98bd-570266a792ea/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/out/output> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/add_ncbi_string/out/output> rdfs:label "add_ncbi_string output output" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c6150d69-b488-4698-983d-f0fd5c2fdd25> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution Kegg_id_conv (facade0:Untitledworkflow2:Kegg_id_conv)" ;
+	prov:endedAtTime "2012-11-16T11:33:01.000+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux13 ;
+	prov:qualifiedUsage _:node17c4cis0ux14 ;
+	prov:startedAtTime "2012-11-16T11:32:59.406+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c6150d69-b488-4698-983d-f0fd5c2fdd25> .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> dcterms:hasPart <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/c5fe07b4-0862-4818-9892-a8d761d82cef/> , <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/e4ef06a3-d385-438c-92f2-1503acdff7a1/> .
+
+_:node17c4cis0ux13 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/> rdfs:label "Processor Kegg_id_conv" .
+
+_:node17c4cis0ux14 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c6150d69-b488-4698-983d-f0fd5c2fdd25> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/in/string> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/in/string> rdfs:label "Kegg_id_conv input string" .
+
+_:node17c4cis0ux15 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/out/return> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/out/return> rdfs:label "Kegg_id_conv output return" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/list/ea38b955-14bf-4a90-8744-d0972fe8bdf9/false/1> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/out/attachmentList> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> ;
+	a prov:Collection , prov:EmptyCollection ;
+	prov:qualifiedGeneration _:node17c4cis0ux16 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> .
+
+_:node17c4cis0ux16 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/aea739bb-73c4-4d96-a3e9-fdd11215cdd0/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/out/attachmentList> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/Kegg_id_conv/out/attachmentList> rdfs:label "Kegg_id_conv output attachmentList" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c86187ff-3e57-4f71-baeb-b83b3e4582f1> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution parse_result (facade0:Untitledworkflow2:parse_result)" ;
+	prov:endedAtTime "2012-11-16T11:33:01.281+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux17 ;
+	prov:qualifiedUsage _:node17c4cis0ux18 ;
+	prov:startedAtTime "2012-11-16T11:33:01.125+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c86187ff-3e57-4f71-baeb-b83b3e4582f1> .
+
+_:node17c4cis0ux17 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/> rdfs:label "Processor parse_result" .
+
+_:node17c4cis0ux18 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c86187ff-3e57-4f71-baeb-b83b3e4582f1> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/in/input> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/in/input> rdfs:label "parse_result input input" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c86187ff-3e57-4f71-baeb-b83b3e4582f1> tavernaprov:content <kegg_protein_id.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/in/input> .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/ced17d98-8f37-476c-af3a-855e3c3217bc/0> wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/in/oids> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/out/ids> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> ;
+	tavernaprov:content <intermediates/ce/ced17d98-8f37-476c-af3a-855e3c3217bc.err> ;
+	prov:qualifiedGeneration _:node17c4cis0ux19 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> .
+
+_:node17c4cis0ux19 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/out/ids> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/out/ids> rdfs:label "parse_result output ids" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/bc6ca97a-9236-492a-bbc4-2804aaff1606/0> tavernaprov:content <intermediates/bc/bc6ca97a-9236-492a-bbc4-2804aaff1606.err> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/in/abbr> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/out/abbr> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> ;
+	prov:qualifiedGeneration _:node17c4cis0ux20 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> .
+
+_:node17c4cis0ux20 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/a4fcbcdb-1e09-4cbe-a04e-26ff0570dc66/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/out/abbr> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/parse_result/out/abbr> rdfs:label "parse_result output abbr" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/c5fe07b4-0862-4818-9892-a8d761d82cef/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/bc6ca97a-9236-492a-bbc4-2804aaff1606/0> , <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/ced17d98-8f37-476c-af3a-855e3c3217bc/0> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution GETPATHWAYS (facade0:Untitledworkflow2:GETPATHWAYS)" ;
+	prov:endedAtTime "2012-11-16T11:33:01.421+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux21 ;
+	prov:qualifiedUsage _:node17c4cis0ux22 , _:node17c4cis0ux23 ;
+	prov:startedAtTime "2012-11-16T11:33:01.328+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/bc6ca97a-9236-492a-bbc4-2804aaff1606/0> , <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/ced17d98-8f37-476c-af3a-855e3c3217bc/0> .
+
+_:node17c4cis0ux21 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/> rdfs:label "Processor GETPATHWAYS" .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/> dcterms:hasPart <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/> ;
+	wfdesc:hasSubProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/> .
+
+_:node17c4cis0ux22 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/bc6ca97a-9236-492a-bbc4-2804aaff1606/0> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/in/abbr> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/in/abbr> rdfs:label "GETPATHWAYS input abbr" .
+
+_:node17c4cis0ux23 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/ced17d98-8f37-476c-af3a-855e3c3217bc/0> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/in/oids> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/in/oids> rdfs:label "GETPATHWAYS input oids" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/82a5253e-56c4-496d-8633-203411f94786/0> tavernaprov:content <pathway_id.err> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/in/url> , <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/out/return> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/c5fe07b4-0862-4818-9892-a8d761d82cef/> ;
+	prov:qualifiedGeneration _:node17c4cis0ux24 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/c5fe07b4-0862-4818-9892-a8d761d82cef/> .
+
+_:node17c4cis0ux24 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/c5fe07b4-0862-4818-9892-a8d761d82cef/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/out/return> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETPATHWAYS/out/return> rdfs:label "GETPATHWAYS output return" .
+
+<http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/e4ef06a3-d385-438c-92f2-1503acdff7a1/> wfprov:describedByProcess <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/> ;
+	wfprov:usedInput <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/82a5253e-56c4-496d-8633-203411f94786/0> , <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62> ;
+	wfprov:wasPartOfWorkflowRun <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/> ;
+	rdfs:label "Processor execution GETIMAGE (facade0:Untitledworkflow2:GETIMAGE)" ;
+	prov:endedAtTime "2012-11-16T11:33:01.515+01:00"^^xsd:dateTime ;
+	prov:qualifiedAssociation _:node17c4cis0ux25 ;
+	prov:qualifiedUsage _:node17c4cis0ux26 , _:node17c4cis0ux27 ;
+	prov:startedAtTime "2012-11-16T11:33:01.453+01:00"^^xsd:dateTime ;
+	prov:used <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/82a5253e-56c4-496d-8633-203411f94786/0> , <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62> .
+
+_:node17c4cis0ux25 a prov:Association ;
+	prov:agent :taverna-engine ;
+	prov:hadPlan <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/> rdfs:label "Processor GETIMAGE" .
+
+_:node17c4cis0ux26 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/82a5253e-56c4-496d-8633-203411f94786/0> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/in/url> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/in/url> rdfs:label "GETIMAGE input url" .
+
+_:node17c4cis0ux27 a prov:Usage ;
+	prov:entity <http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/in/base> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/in/base> rdfs:label "GETIMAGE input base" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62> tavernaprov:content <intermediates/af/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62.txt> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/in/base> .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/error/fe87cf50-9fb5-4ec1-bd12-3a003e832222/0> tavernaprov:content <KEGG_pathways.err> ;
+	wfprov:describedByParameter <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/out/image> ;
+	wfprov:wasOutputFrom <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/e4ef06a3-d385-438c-92f2-1503acdff7a1/> ;
+	prov:qualifiedGeneration _:node17c4cis0ux28 ;
+	prov:wasGeneratedBy <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/e4ef06a3-d385-438c-92f2-1503acdff7a1/> .
+
+_:node17c4cis0ux28 a prov:Generation ;
+	prov:activity <http://ns.taverna.org.uk/2011/run/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/process/e4ef06a3-d385-438c-92f2-1503acdff7a1/> ;
+	prov:hadRole <http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/out/image> .
+
+<http://ns.taverna.org.uk/2010/workflowBundle/11d05a1f-dcae-4a8a-bc9a-6c1064f8de76/workflow/Untitledworkflow2/processor/GETIMAGE/out/image> rdfs:label "GETIMAGE output image" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c6150d69-b488-4698-983d-f0fd5c2fdd25> tavernaprov:content <intermediates/c6/c6150d69-b488-4698-983d-f0fd5c2fdd25.txt> .
+
+<intermediates/c6/c6150d69-b488-4698-983d-f0fd5c2fdd25.txt> tavernaprov:sha1 "f8b0400ae4a895aa7a79b9d9a8fb71f814319b48" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<kegg_protein_id.txt> tavernaprov:sha1 "1670345b07fa32d98d9644451966468c5088136a" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/list/ea38b955-14bf-4a90-8744-d0972fe8bdf9/false/1> tavernaprov:content <intermediates/ea/ea38b955-14bf-4a90-8744-d0972fe8bdf9.list> .
+
+<http://ns.taverna.org.uk/2011/data/6f9e61fe-83d6-4e2d-8f66-83eb2e97924e/ref/c2a26802-1680-494f-9fe2-e87a643aa851> tavernaprov:content <intermediates/c2/c2a26802-1680-494f-9fe2-e87a643aa851.txt> .
+
+<intermediates/c2/c2a26802-1680-494f-9fe2-e87a643aa851.txt> tavernaprov:sha1 "9fdb0345756fa5382b55590e8cd4238095f13577" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+<intermediates/af/af5f6aeb-a5fa-4066-b0d5-f10df0a47e62.txt> tavernaprov:sha1 "8e1f0427e625a42826b35077552e0f61e60215c9" ;
+	tavernaprov:sha512 "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e" .
+
+:taverna-prov-export prov:endedAtTime "2012-11-16T11:36:07.921+01:00"^^xsd:dateTime .

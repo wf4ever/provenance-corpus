@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:NEH6KY21LR75" author="" title="" />
+  <s:processor name="String_Constant" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="Split_string_into_string_list_by_regular_expression">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="Merge_string_list_to_string">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="get_pathways_by_genes1">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_pathways_by_genes</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Concatenate_two_strings">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="string2" />
+        <i:iterator name="string1" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="lister">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://phoebus.cs.man.ac.uk:8081/axis/EnsemblListner.jws?wsdl</s:wsdl>
+      <s:operation>lister</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Merge_string_list_to_string1">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:link source="Concatenate_two_strings:output" sink="Merge_string_list_to_string1:stringlist" />
+  <s:link source="Merge_string_list_to_string:concatenated" sink="Concatenate_two_strings:string2" />
+  <s:link source="Merge_string_list_to_string:concatenated" sink="merged" />
+  <s:link source="Split_string_into_string_list_by_regular_expression:split" sink="lister:file" />
+  <s:link source="String_Constant:value" sink="Split_string_into_string_list_by_regular_expression:regex" />
+  <s:link source="gene_ids" sink="Split_string_into_string_list_by_regular_expression:string" />
+  <s:link source="get_pathways_by_genes1:return" sink="Merge_string_list_to_string:stringlist" />
+  <s:link source="Concatenate_two_strings:output" sink="pathway_output" />
+  <s:link source="Merge_string_list_to_string1:concatenated" sink="pathway_genes" />
+  <s:link source="get_pathways_by_genes1:return" sink="pathway_2" />
+  <s:link source="lister:listerReturn" sink="Concatenate_two_strings:string1" />
+  <s:link source="lister:listerReturn" sink="get_pathways_by_genes1:genes_id_list" />
+  <s:link source="lister:listerReturn" sink="split_genes_2" />
+  <s:source name="gene_ids" />
+  <s:sink name="pathway_output" />
+  <s:sink name="merged" />
+  <s:sink name="pathway_2" />
+  <s:sink name="split_genes_2" />
+  <s:sink name="pathway_genes" />
+</s:scufl>
+
+

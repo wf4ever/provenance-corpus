@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:D3NM0VIZOZ0" author="Paul Fisher" title="Pathways and Gene annotations for QTL Phenotype" />
+  <s:processor name="regex_2" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="kegg_pathway_release" boring="true">
+    <s:stringconstant>kegg pathway</s:stringconstant>
+  </s:processor>
+  <s:processor name="species" boring="true">
+    <s:stringconstant>bos_taurus</s:stringconstant>
+  </s:processor>
+  <s:processor name="add_ncbi_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "ncbi-geneid:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="split_gene_ids">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split("\t");
+	if (trimmedSplit.length == 2)
+	{
+	    nonEmpty.add(trimmedSplit[1].trim());	
+	}
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="REMOVE_NULLS_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_pathway_nulls_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_desc_gaps">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="add_uniprot_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "uniprot:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_Nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="split_for_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_desc">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_gene_desc">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_uniprot_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_list_1">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_duplicate_kegg_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="concat_kegg_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringConcat</s:local>
+  </s:processor>
+  <s:processor name="merge_entrez_genes">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_pathways_3">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_uniprot_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="merge_reports">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_pathways_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_kegg_references">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_entrez_duplicates">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringStripDuplicates</s:local>
+  </s:processor>
+  <s:processor name="merge_pathway_list_2">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="merge_genes_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="binfo">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>binfo</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="gene_descriptions">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>btit</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids_2">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="btaurus_gene_ensembl">
+    <s:description>Bos taurus genes (Btau_2.0)</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Bos taurus genes (Btau_2.0)" name="btaurus_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2006-12-06 12:55:01">
+          <biomart:MartURLLocation database="ensembl_mart_42" default="1" displayName="ENSEMBL 42 GENE (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" softwareVersion="0.5" requestId="taverna">
+          <biomart:Dataset name="btaurus_gene_ensembl">
+            <biomart:Attribute name="ensembl_gene_id" />
+            <biomart:Attribute name="ensembl_transcript_id" />
+            <biomart:Attribute name="external_gene_id" />
+            <biomart:Attribute name="chromosome_name" />
+            <biomart:Attribute name="end_position" />
+            <biomart:Attribute name="start_position" />
+            <biomart:Filter name="chromosome_name" value="1" />
+            <biomart:Filter name="end" value="10000000" />
+            <biomart:Filter name="start" value="1" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="compara_btau_hsap_orthologs">
+    <s:description>Bos taurus (Btau_2.0)|Homo sapiens (NCBI36)|Orthologues</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Bos taurus (Btau_2.0)|Homo sapiens (NCBI36)|Orthologues" name="compara_btau_hsap_orthologs" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2006-11-19 17:44:33">
+          <biomart:MartURLLocation database="compara_mart_homology_42" default="0" displayName="ENSEMBL 42 HOMOLOGY (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="compara_mart_homology_42" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" softwareVersion="0.5" requestId="taverna">
+          <biomart:Dataset name="compara_btau_hsap_orthologs">
+            <biomart:Attribute name="hsap_gene_stable_id" />
+            <biomart:Filter name="btau_ensembl_gene_id" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="hsapiens_gene_ensembl">
+    <s:description>Homo sapiens genes (NCBI36)</s:description>
+    <s:biomart>
+      <biomart:MartQuery xmlns:biomart="http://org.embl.ebi.escience/xscufl-biomart/0.1alpha">
+        <biomart:MartService location="http://www.biomart.org/biomart/martservice" />
+        <biomart:MartDataset displayName="Homo sapiens genes (NCBI36)" name="hsapiens_gene_ensembl" type="TableSet" initialBatchSize="200" maximumBatchSize="50000" visible="false" interface="default" modified="2006-12-06 13:14:22">
+          <biomart:MartURLLocation database="ensembl_mart_42" default="1" displayName="ENSEMBL 42 GENE (SANGER)" host="www.biomart.org" includeDatasets="" martUser="" name="ensembl" path="/biomart/martservice" port="80" serverVirtualSchema="default" virtualSchema="default" visible="1" />
+        </biomart:MartDataset>
+        <biomart:Query virtualSchemaName="default" count="0" softwareVersion="0.5" requestId="taverna">
+          <biomart:Dataset name="hsapiens_gene_ensembl">
+            <biomart:Attribute name="entrezgene" />
+            <biomart:Attribute name="uniprot_swissprot_accession" />
+            <biomart:Filter name="ensembl_gene_id" value="" list="true" />
+          </biomart:Dataset>
+        </biomart:Query>
+      </biomart:MartQuery>
+    </s:biomart>
+  </s:processor>
+  <s:processor name="create_report">
+    <s:beanshell>
+      <s:scriptvalue>result = ensembl_gene_id + "," + external_gene_id + "," + chromosome_name + "," + start_position + "," + end_position + "," + ensembl_transcript_id;</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">ensembl_gene_id</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">chromosome_name</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">end_position</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">start_position</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">ensembl_transcript_id</s:beanshellinput>
+        <s:beanshellinput s:syntactictype="'text/plain'">external_gene_id</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">result</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+    <s:iterationstrategy>
+      <i:dot xmlns:i="http://org.embl.ebi.escience/xscufliteration/0.1beta10">
+        <i:iterator name="external_gene_id" />
+        <i:iterator name="ensembl_transcript_id" />
+        <i:iterator name="start_position" />
+        <i:iterator name="end_position" />
+        <i:iterator name="chromosome_name" />
+        <i:iterator name="ensembl_gene_id" />
+      </i:dot>
+    </s:iterationstrategy>
+  </s:processor>
+  <s:processor name="GetPathways">
+    <s:description>This workflow removes any null values from a list of strings</s:description>
+    <s:workflow>
+      <s:scufl version="0.2" log="0">
+        <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="Paul Fisher / Jun Zhao" title="Remove null values">This workflow removes any null values from a list of strings</s:workflowdescription>
+        <s:processor name="Merge_gene_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="Merge_pathway_desc">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="concat_gene_pathway_ids">
+          <s:beanshell>
+            <s:scriptvalue>String pathway_id_input = pathway_ids.trim();
+String gene_id_input = gene_id.trim();
+
+String output = "";
+
+output = gene_id_input + "\t" + pathway_id_input;</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">pathway_ids</s:beanshellinput>
+              <s:beanshellinput s:syntactictype="'text/plain'">gene_id</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="concat_ids">
+          <s:beanshell>
+            <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\t");
+}</s:scriptvalue>
+            <s:beanshellinputlist>
+              <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+            </s:beanshellinputlist>
+            <s:beanshelloutputlist>
+              <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+            </s:beanshelloutputlist>
+          </s:beanshell>
+        </s:processor>
+        <s:processor name="split_by_regex">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+        </s:processor>
+        <s:processor name="Merge_pathways">
+          <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+        </s:processor>
+        <s:processor name="regex" boring="true">
+          <s:stringconstant>\n</s:stringconstant>
+        </s:processor>
+        <s:processor name="get_pathways_by_genes1">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>get_pathways_by_genes</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="pathway_desc">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+            <s:operation>btit</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:processor name="lister">
+          <s:arbitrarywsdl>
+            <s:wsdl>http://phoebus.cs.man.ac.uk:8081/axis/EnsemblListner.jws?wsdl</s:wsdl>
+            <s:operation>lister</s:operation>
+          </s:arbitrarywsdl>
+        </s:processor>
+        <s:link source="gene_ids" sink="split_by_regex:string" />
+        <s:link source="Merge_gene_pathways:concatenated" sink="pathway_genes" />
+        <s:link source="Merge_pathway_desc:concatenated" sink="pathway_desc" />
+        <s:link source="Merge_pathways:concatenated" sink="concat_ids:input" />
+        <s:link source="Merge_pathways:concatenated" sink="pathway_desc:string" />
+        <s:link source="Merge_pathways:concatenated" sink="pathway_ids" />
+        <s:link source="concat_gene_pathway_ids:output" sink="Merge_gene_pathways:stringlist" />
+        <s:link source="concat_ids:output" sink="concat_gene_pathway_ids:pathway_ids" />
+        <s:link source="get_pathways_by_genes1:return" sink="Merge_pathways:stringlist" />
+        <s:link source="lister:listerReturn" sink="concat_gene_pathway_ids:gene_id" />
+        <s:link source="lister:listerReturn" sink="get_pathways_by_genes1:genes_id_list" />
+        <s:link source="pathway_desc:return" sink="Merge_pathway_desc:stringlist" />
+        <s:link source="regex:value" sink="split_by_regex:regex" />
+        <s:link source="split_by_regex:split" sink="lister:file" />
+        <s:source name="gene_ids" />
+        <s:sink name="pathway_genes" />
+        <s:sink name="pathway_desc" />
+        <s:sink name="pathway_ids" />
+      </s:scufl>
+    </s:workflow>
+  </s:processor>
+  <s:processor name="getcurrentdatabase">
+    <s:description>Retrieves the current databases from ENSEMBL for a species</s:description>
+    <s:soaplabwsdl>http://phoebus.cs.man.ac.uk:1977/axis/services/qtl_analysis.getcurrentdatabase</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="remove_nulls_3">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:link source="GetPathways:pathway_desc" sink="merge_pathway_desc:stringlist" />
+  <s:link source="GetPathways:pathway_genes" sink="merge_genes_pathways:stringlist" />
+  <s:link source="GetPathways:pathway_ids" sink="merge_pathway_list_1:stringlist" />
+  <s:link source="Kegg_gene_ids:return" sink="concat_kegg_genes:string1" />
+  <s:link source="Kegg_gene_ids_2:return" sink="concat_kegg_genes:string2" />
+  <s:link source="REMOVE_NULLS_2:output" sink="add_uniprot_to_string:input" />
+  <s:link source="add_ncbi_to_string:output" sink="Kegg_gene_ids_2:string" />
+  <s:link source="add_uniprot_to_string:output" sink="Kegg_gene_ids:string" />
+  <s:link source="chromosome" sink="btaurus_gene_ensembl:btaurus_gene_ensembl.chromosome_name_filter" />
+  <s:link source="end_position" sink="btaurus_gene_ensembl:btaurus_gene_ensembl.end_filter" />
+  <s:link source="kegg_pathway_release:value" sink="binfo:db" />
+  <s:link source="merge_entrez_genes:concatenated" sink="remove_Nulls:input" />
+  <s:link source="merge_genes_pathways:concatenated" sink="merge_genes_pathways_2:stringlist" />
+  <s:link source="merge_genes_pathways_2:concatenated" sink="merge_genes_pathways_3:stringlist" />
+  <s:link source="merge_pathway_desc:concatenated" sink="remove_pathway_nulls:input" />
+  <s:link source="merge_pathway_list_1:concatenated" sink="merge_pathway_list_2:stringlist" />
+  <s:link source="merge_pathway_list_2:concatenated" sink="remove_pathway_nulls_2:input" />
+  <s:link source="merge_uniprot_ids:concatenated" sink="REMOVE_NULLS_2:input" />
+  <s:link source="regex_2:value" sink="split_for_duplicates:regex" />
+  <s:link source="remove_Nulls:output" sink="add_ncbi_to_string:input" />
+  <s:link source="remove_duplicate_kegg_genes:strippedlist" sink="merge_kegg_references:stringlist" />
+  <s:link source="start_position" sink="btaurus_gene_ensembl:btaurus_gene_ensembl.start_filter" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.chromosome_name" sink="create_report:chromosome_name" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.end_position" sink="create_report:end_position" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.ensembl_gene_id" sink="compara_btau_hsap_orthologs:compara_btau_hsap_orthologs.btau_ensembl_gene_id_filter" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.ensembl_gene_id" sink="create_report:ensembl_gene_id" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.ensembl_transcript_id" sink="create_report:ensembl_transcript_id" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.external_gene_id" sink="create_report:external_gene_id" />
+  <s:link source="btaurus_gene_ensembl:btaurus_gene_ensembl.start_position" sink="create_report:start_position" />
+  <s:link source="compara_btau_hsap_orthologs:compara_btau_hsap_orthologs.hsap_gene_stable_id" sink="hsapiens_gene_ensembl:hsapiens_gene_ensembl.ensembl_gene_id_filter" />
+  <s:link source="concat_kegg_genes:output" sink="split_for_duplicates:string" />
+  <s:link source="create_report:result" sink="merge_reports:stringlist" />
+  <s:link source="gene_descriptions:return" sink="merge_gene_desc:stringlist" />
+  <s:link source="merge_gene_desc:concatenated" sink="remove_nulls_3:input" />
+  <s:link source="remove_duplicate_kegg_genes:strippedlist" sink="split_gene_ids:input" />
+  <s:link source="remove_entrez_duplicates:strippedlist" sink="merge_entrez_genes:stringlist" />
+  <s:link source="binfo:return" sink="kegg_pathway_release" />
+  <s:link source="getcurrentdatabase:output" sink="ensembl_database_release" />
+  <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.entrezgene" sink="remove_entrez_duplicates:stringlist" />
+  <s:link source="hsapiens_gene_ensembl:hsapiens_gene_ensembl.uniprot_swissprot_accession" sink="remove_uniprot_duplicates:stringlist" />
+  <s:link source="merge_genes_pathways_3:concatenated" sink="merged_pathways" />
+  <s:link source="merge_kegg_references:concatenated" sink="kegg_external_gene_reference" />
+  <s:link source="merge_reports:concatenated" sink="report" />
+  <s:link source="remove_desc_gaps:output" sink="gene_descriptions" />
+  <s:link source="remove_nulls_3:output" sink="gene_descriptions" />
+  <s:link source="remove_uniprot_duplicates:strippedlist" sink="merge_uniprot_ids:stringlist" />
+  <s:link source="species:value" sink="getcurrentdatabase:species" />
+  <s:link source="split_for_duplicates:split" sink="remove_duplicate_kegg_genes:stringlist" />
+  <s:link source="split_gene_ids:output" sink="GetPathways:gene_ids" />
+  <s:link source="split_gene_ids:output" sink="gene_descriptions:string" />
+  <s:link source="remove_pathway_nulls:output" sink="pathway_descriptions" />
+  <s:link source="remove_pathway_nulls_2:output" sink="pathway_ids" />
+  <s:source name="chromosome" />
+  <s:source name="start_position" />
+  <s:source name="end_position" />
+  <s:sink name="merged_pathways" />
+  <s:sink name="gene_descriptions" />
+  <s:sink name="pathway_descriptions" />
+  <s:sink name="ensembl_database_release" />
+  <s:sink name="kegg_pathway_release" />
+  <s:sink name="report" />
+  <s:sink name="kegg_external_gene_reference" />
+  <s:sink name="pathway_ids" />
+</s:scufl>
+

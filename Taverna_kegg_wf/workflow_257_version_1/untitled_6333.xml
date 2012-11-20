@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:scufl xmlns:s="http://org.embl.ebi.escience/xscufl/0.1alpha" version="0.2" log="0">
+  <s:workflowdescription lsid="urn:lsid:www.mygrid.org.uk:operation:P81DV9PQW02" author="" title="" />
+  <s:processor name="species" boring="true">
+    <s:stringconstant>mus_musculus</s:stringconstant>
+  </s:processor>
+  <s:processor name="end" boring="true">
+    <s:stringconstant>32192076</s:stringconstant>
+  </s:processor>
+  <s:processor name="regex" boring="true">
+    <s:stringconstant>\n</s:stringconstant>
+  </s:processor>
+  <s:processor name="split_by_regex">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="getGeneInfo">
+    <s:description>get gene information</s:description>
+    <s:arbitrarywsdl>
+      <s:wsdl>http://xml.nig.ac.jp/wsdl/Ensembl.wsdl</s:wsdl>
+      <s:operation>getGeneInfo</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="parse_swiss">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split(":");
+	if (trimmedSplit.length == 2)
+	{
+	    nonEmpty.add(trimmedSplit[1].trim());	
+	}
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="remove_Nulls">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="start" boring="true">
+    <s:stringconstant>31505229</s:stringconstant>
+  </s:processor>
+  <s:processor name="chromo" boring="true">
+    <s:stringconstant>17</s:stringconstant>
+  </s:processor>
+  <s:processor name="options" boring="true">
+    <s:stringconstant>swiss</s:stringconstant>
+  </s:processor>
+  <s:processor name="add_uniprot_to_string">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	nonEmpty.add(trimmed);	
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + "uniprot:" + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="merge_swissprot">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="split_uniprot_strings">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.SplitByRegex</s:local>
+  </s:processor>
+  <s:processor name="Kegg_gene_ids">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>bconv</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="merge_pathways">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="getgenesbyspecies">
+    <s:description>Retrieves a list of Ensembl genes for a given species, chromosome and position</s:description>
+    <s:soaplabwsdl>http://phoebus.cs.man.ac.uk:1977/axis/services/qtl_analysis.getgenesbyspecies</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="parse_ddbj_gene_info">
+    <s:description>extract information from geneGeneInfo processor at http://xml.nig.ac.jp/wsdl/Ensembl.wsdl</s:description>
+    <s:soaplabwsdl>http://phoebus.cs.man.ac.uk:1977/axis/services/seq_analysis.parse_ddbj_gene_info</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="getcurrentdatabase">
+    <s:description>Retrieves the current databases from ENSEMBL for a species</s:description>
+    <s:soaplabwsdl>http://phoebus.cs.man.ac.uk:1977/axis/services/qtl_analysis.getcurrentdatabase</s:soaplabwsdl>
+  </s:processor>
+  <s:processor name="get_pathways_by_genes">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://soap.genome.jp/KEGG.wsdl</s:wsdl>
+      <s:operation>get_pathways_by_genes</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:processor name="parse_gene_id">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++) 
+{		
+	String trimmed = split[i].trim();
+	String[] trimmedSplit = trimmed.split("\t");
+	if (trimmedSplit.length == 2)
+	{
+	    nonEmpty.add(trimmedSplit[1].trim());	
+	}
+}
+
+String output = "";
+
+for (int i = 0; i &lt; nonEmpty.size(); i++)
+{
+	output = output + (String) (nonEmpty.elementAt(i) + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="merge_gene_ids">
+    <s:local>org.embl.ebi.escience.scuflworkers.java.StringListMerge</s:local>
+  </s:processor>
+  <s:processor name="remove_nulls_2">
+    <s:beanshell>
+      <s:scriptvalue>String[] split = input.split("\n");
+Vector nonEmpty = new Vector();
+
+for (int i = 0; i &lt; split.length; i++){
+   if (!(split[i].equals("")))
+   {
+       nonEmpty.add(split[i].trim());
+   }
+}
+
+String[] non_empty = new String[nonEmpty.size()];
+
+for (int i = 0; i &lt; non_empty.length; i ++)
+{
+   non_empty[i] = nonEmpty.elementAt(i);
+}
+
+String output = "";
+
+for (int i = 0; i &lt; non_empty.length; i++)
+{
+	output = output + (String) (non_empty[i] + "\n");
+}</s:scriptvalue>
+      <s:beanshellinputlist>
+        <s:beanshellinput s:syntactictype="'text/plain'">input</s:beanshellinput>
+      </s:beanshellinputlist>
+      <s:beanshelloutputlist>
+        <s:beanshelloutput s:syntactictype="'text/plain'">output</s:beanshelloutput>
+      </s:beanshelloutputlist>
+    </s:beanshell>
+  </s:processor>
+  <s:processor name="lister">
+    <s:arbitrarywsdl>
+      <s:wsdl>http://phoebus.cs.man.ac.uk:8081/axis/EnsemblListner.jws?wsdl</s:wsdl>
+      <s:operation>lister</s:operation>
+    </s:arbitrarywsdl>
+  </s:processor>
+  <s:link source="Kegg_gene_ids:return" sink="merge_gene_ids:stringlist" />
+  <s:link source="add_uniprot_to_string:output" sink="split_uniprot_strings:string" />
+  <s:link source="chromo:value" sink="getgenesbyspecies:chromo" />
+  <s:link source="end:value" sink="getgenesbyspecies:end" />
+  <s:link source="getGeneInfo:Result" sink="parse_ddbj_gene_info:file_direct_data" />
+  <s:link source="get_pathways_by_genes:return" sink="merge_pathways:stringlist" />
+  <s:link source="getcurrentdatabase:output" sink="getgenesbyspecies:database" />
+  <s:link source="getgenesbyspecies:output" sink="split_by_regex:string" />
+  <s:link source="lister:listerReturn" sink="get_pathways_by_genes:genes_id_list" />
+  <s:link source="merge_gene_ids:concatenated" sink="remove_nulls_2:input" />
+  <s:link source="merge_swissprot:concatenated" sink="remove_Nulls:input" />
+  <s:link source="options:value" sink="parse_ddbj_gene_info:options" />
+  <s:link source="parse_ddbj_gene_info:output" sink="parse_swiss:input" />
+  <s:link source="parse_gene_id:output" sink="lister:file" />
+  <s:link source="parse_swiss:output" sink="merge_swissprot:stringlist" />
+  <s:link source="regex:value" sink="split_by_regex:regex" />
+  <s:link source="regex:value" sink="split_uniprot_strings:regex" />
+  <s:link source="remove_Nulls:output" sink="add_uniprot_to_string:input" />
+  <s:link source="remove_nulls_2:output" sink="parse_gene_id:input" />
+  <s:link source="getgenesbyspecies:output" sink="genes_in_qtl" />
+  <s:link source="merge_pathways:concatenated" sink="merged_kegg_pathways" />
+  <s:link source="species:value" sink="getcurrentdatabase:species" />
+  <s:link source="split_by_regex:split" sink="getGeneInfo:geneId" />
+  <s:link source="split_uniprot_strings:split" sink="Kegg_gene_ids:string" />
+  <s:link source="start:value" sink="getgenesbyspecies:start" />
+  <s:sink name="merged_kegg_pathways" />
+  <s:sink name="genes_in_qtl" />
+</s:scufl>
+
+
